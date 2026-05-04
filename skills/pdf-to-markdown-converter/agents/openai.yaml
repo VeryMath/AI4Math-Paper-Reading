@@ -1,0 +1,4 @@
+interface:
+  display_name: "PDF to Markdown Converter"
+  short_description: "Convert PDF papers to Markdown with MinerU."
+  default_prompt: "Use this skill to set up a local environment, configure a MinerU API key if needed, and convert a PDF in the current folder to Markdown."

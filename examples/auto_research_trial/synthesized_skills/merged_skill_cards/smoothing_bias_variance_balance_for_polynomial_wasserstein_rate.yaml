@@ -1,0 +1,55 @@
+id: smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
+name: Smoothing-bias and stability-error balance
+zh_name: 平滑偏差与稳定性误差平衡
+type: proof_pattern
+category: proof_pattern
+summary: "EN: Combine a smoothed-problem stability bound with a smoothing-bias term, then optimize the smoothing scale to obtain a polynomial Wasserstein rate. ZH: 将平滑问题的稳定性误差和平滑偏差相加，再优化平滑尺度得到多项式 Wasserstein 速率。"
+status: ready_for_library
+source:
+  paper_md: see synthesis.source_papers
+  start_line: 0
+  end_line: 0
+inputs:
+  - perturbation bound for smoothed dynamics
+  - smoothing scale
+  - W2 bias bound between smoothed and original targets
+  - regularity parameter
+  - function class satisfying the stability conditions
+outputs:
+  - combined W2 error inequality
+  - optimized smoothing parameter
+  - polynomial convergence rate
+assumptions:
+  - The true smoothed velocity lies in the constrained class.
+  - Smoothing bias has an explicit W2 estimate.
+  - The schedule satisfies the stability theorem.
+core_steps:
+  - Apply the flow stability bound to the smoothed target.
+  - Use triangle inequality to add the smoothing bias.
+  - Express total error as stability-amplified approximation plus bias.
+  - Optimize the smoothing parameter.
+  - State the resulting rate with its regularity dependence.
+trigger_keywords:
+  - smoothing bias
+  - Wasserstein rate
+  - optimize gamma
+  - triangle inequality
+  - polynomial rate
+limitations:
+  - The rate can degrade sharply with the regularity parameter.
+  - The bias estimate is schedule-dependent.
+synthesis:
+  cluster_id: C05
+  source_skill_ids:
+    - uqQPyWFDhY:smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
+  source_papers:
+    - paper_id: uqQPyWFDhY
+      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/paper.md
+      start_line: 259
+      end_line: 295
+  merge_status: ready_for_library
+  generalization_notes:
+    - The transferable idea is the bias-stability balance, not the exact exponent from one paper.
+  conflicts_or_risks:
+    - Must not reuse the exponent unless the same assumptions and schedule hold.
+review_status: ready_for_library

@@ -1,0 +1,49 @@
+name: lambda_regular_certification_via_conditional_covariance
+zh_name: 通过条件协方差认证 lambda-regular 条件
+category: proof_pattern
+status: needs_review
+source:
+  paper_title: "Error Bounds for Flow Matching Methods"
+  paper_md: paper.md
+  source_blocks:
+    - lines 413-447
+    - lines 453-457
+    - lines 461-499
+  start_line: 413
+  end_line: 499
+description: "Bilingual: Certify a covariance regularity condition by bounding the conditional covariance of Gaussian noise after observing a noisy variable. 中文：通过观测加噪变量后的高斯噪声条件协方差上界，认证 lambda-regular 正则性条件。"
+input:
+  - candidate distribution W
+  - Gaussian observation noise
+  - structural assumption such as log-concavity or Gaussian mixture form
+  - target regularity parameter lambda
+output:
+  - lambda-regularity certificate
+  - conditional covariance operator-norm bound
+  - verified distribution examples
+assumptions:
+  - Brascamp-Lieb or variance decomposition applies
+  - conditioning is well-defined
+  - Gaussian noise model matches the theorem
+core_steps:
+  - Write the conditional density of noise given noisy observation.
+  - For log-concave W, use Brascamp-Lieb to bound directional variance.
+  - For subspace Gaussian W, split noise into parallel and orthogonal parts.
+  - For bounded Gaussian mixtures, use total variance decomposition.
+  - Convert directional variance into an operator-norm covariance bound.
+trigger_keywords:
+  - lambda-regular
+  - conditional covariance
+  - Brascamp-Lieb
+  - Gaussian mixture
+limitations:
+  - Specialized to Gaussian observation noise.
+  - Nonstandard condition should be reviewed by a domain expert.
+quality:
+  reusability: 4
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 3
+  mathematical_risk: 4
+  total_score: 3.65

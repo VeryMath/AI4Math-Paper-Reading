@@ -1,0 +1,22 @@
+{
+  "research_project_id": "",
+  "created_at": "",
+  "seed_inputs": [],
+  "domain": [],
+  "core_problems": [],
+  "methods": [],
+  "assumptions": [],
+  "proof_patterns": [],
+  "technical_keywords": [],
+  "user_interest_hypotheses": [],
+  "negative_preferences": [],
+  "search_queries": [],
+  "open_questions": [],
+  "checkpoint_questions": [],
+  "checkpoint_questions_bilingual": [],
+  "language_policy": {
+    "user_facing_markdown": "zh_en_bilingual",
+    "json_keys": "english_stable",
+    "json_text": "english_with_bilingual_checkpoints"
+  }
+}

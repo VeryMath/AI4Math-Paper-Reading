@@ -1,0 +1,71 @@
+[
+  {
+    "skill_name": "truncation_based_l2_approximation_on_unbounded_domain",
+    "zh_name": "无界域上的截断式 L2 逼近证明",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 204,
+      "end_line": 212,
+      "source_blocks": ["lines 204-212", "lines 531-619", "lines 632-662"]
+    },
+    "source_span": "The paper splits an unbounded-domain L2 approximation into compact-region approximation plus tail control, then chooses a logarithmic truncation radius.",
+    "why_reusable": "This is a portable proof pattern for converting compact-domain approximation theorems into L2 approximation guarantees under a distribution with controlled tails.",
+    "input": ["target function on an unbounded domain", "sampling distribution with tail control", "compact-domain approximator", "truncation radius R", "desired error epsilon"],
+    "output": ["L2 approximation bound on the full domain", "compact approximation obligation", "tail probability/moment obligation", "parameter choice for R"],
+    "assumptions": ["target has bounded or controlled moments", "sampling distribution tail can be bounded", "compact-domain approximation is available", "outside the truncation set the approximator can be safely clipped or zeroed"],
+    "core_steps": ["Choose a compact truncation set K_R.", "Construct or invoke an approximator on K_R.", "Set or control the approximator outside K_R.", "Split the L2 error into inside-K_R and outside-K_R terms.", "Bound the inside term by uniform approximation.", "Bound the outside term using moment and tail inequalities.", "Choose R so the tail term is at most epsilon."],
+    "trigger_keywords": ["unbounded domain", "truncation argument", "L2 approximation", "tail behavior", "compact approximation", "sub-Gaussian"],
+    "limitations": ["Constants depend on tail decay and moments.", "The method can fail if the outside-domain extension is not bounded.", "A compact-domain approximator must already be available."],
+    "reusability_score": 5,
+    "confidence": 0.86,
+    "status": "accepted_candidate",
+    "quality": {"reusability": 5, "clarity": 4, "generality": 5, "verifiability": 4, "agent_callability": 4, "mathematical_risk": 3, "total_score": 4.1}
+  },
+  {
+    "skill_name": "truncated_empirical_process_generalization_decomposition",
+    "zh_name": "截断经验过程泛化误差分解",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 274,
+      "end_line": 342,
+      "source_blocks": ["lines 274-292", "lines 300-320", "lines 334-342"]
+    },
+    "source_span": "The generalization error is decomposed into ERM terms, target-sample randomness, prior/time-sample randomness, and truncation/statistical components.",
+    "why_reusable": "This pattern is useful when a learning objective contains an unbounded random variable but can be localized to a bounded event before applying covering-number concentration.",
+    "input": ["population risk", "empirical risk", "ERM estimator", "function class covering bound", "unbounded loss term", "truncation event"],
+    "output": ["generalization decomposition", "truncation error terms", "bounded empirical process term", "high-probability risk bound"],
+    "assumptions": ["ERM or approximate ERM inequality", "boundedness after truncation", "tail concentration for the truncated-away event", "covering number bound for the function class"],
+    "core_steps": ["Split excess risk into generalization and approximation terms.", "Use ERM to cancel the empirical comparison term.", "Separate randomness by conditioning or sample source.", "Define a truncated loss on a high-probability bounded event.", "Decompose unbounded empirical error into truncation I, statistical error, and truncation II.", "Control statistical error by covering-number concentration.", "Control truncation errors by tail bounds."],
+    "trigger_keywords": ["generalization error", "covering number", "unbounded loss", "truncation error", "ERM", "high probability"],
+    "limitations": ["The truncation event must preserve the relevant loss geometry.", "Covering numbers may be loose in high dimension.", "Requires careful independence between sample sources."],
+    "reusability_score": 4,
+    "confidence": 0.79,
+    "status": "needs_review",
+    "quality": {"reusability": 4, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 4, "mathematical_risk": 3, "total_score": 3.85}
+  },
+  {
+    "skill_name": "coupling_gronwall_wasserstein_flow_error_bound",
+    "zh_name": "耦合与 Gronwall 的 Wasserstein 流误差证明",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 354,
+      "end_line": 402,
+      "source_blocks": ["lines 354-402", "lines 412-434"]
+    },
+    "source_span": "The paper couples exact and approximate flow maps, differentiates their squared distance, uses Lipschitz/Young inequalities, and closes the bound by Gronwall.",
+    "why_reusable": "This is a standard and transferable path for turning a vector-field L2 error into a Wasserstein distance between ODE-generated distributions.",
+    "input": ["exact flow map", "approximate flow map", "shared initial coupling", "velocity approximation error", "spatial Lipschitz constant", "Gronwall inequality"],
+    "output": ["Wasserstein error bound for flow endpoints", "differential inequality for path discrepancy", "sampling or recovery error estimate"],
+    "assumptions": ["both flows exist and are unique", "approximate velocity is Lipschitz in space", "velocity error is measured along the exact flow law", "initial conditions are coupled"],
+    "core_steps": ["Use the shared initial distribution to define a coupling of exact and approximate flows.", "Upper-bound W2 by expected squared path discrepancy.", "Differentiate the discrepancy functional.", "Add and subtract the approximate velocity evaluated on the exact path.", "Bound the approximation term by Young's inequality.", "Bound the flow-stability term by Lipschitz continuity.", "Apply Gronwall to integrate the differential inequality.", "Insert the available L2 velocity error bound."],
+    "trigger_keywords": ["Wasserstein", "flow map", "coupling", "Gronwall", "Lipschitz velocity", "ODE sampling"],
+    "limitations": ["The error is controlled along the exact-flow distribution, not arbitrary off-support paths.", "Lipschitz constants can create exponential factors.", "Discretization error requires a separate argument."],
+    "reusability_score": 5,
+    "confidence": 0.9,
+    "status": "accepted_candidate",
+    "quality": {"reusability": 5, "clarity": 5, "generality": 4, "verifiability": 5, "agent_callability": 5, "mathematical_risk": 2, "total_score": 4.55}
+  }
+]

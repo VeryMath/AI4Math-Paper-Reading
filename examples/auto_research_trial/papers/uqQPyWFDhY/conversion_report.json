@@ -1,0 +1,10 @@
+{
+  "input_pdf": "/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/paper.pdf",
+  "output_md": "/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/paper.md",
+  "artifacts_dir": "/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/mineru",
+  "converter": "MinerU",
+  "conda_env": "ai4math",
+  "markdown_chars": 77471,
+  "status": "success",
+  "warnings": []
+}

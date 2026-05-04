@@ -1,0 +1,129 @@
+research_project_id: auto_research_trial_flow_matching_error_analysis
+created_at: 2026-05-04
+source_extractions:
+  - paper_id: vES22INUKm
+    path: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/skill_cards
+  - paper_id: uqQPyWFDhY
+    path: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/skill_cards
+clusters:
+  - cluster_id: C01
+    name: ODE flow stability to Wasserstein error
+    proof_pattern_family: flow_stability_wasserstein
+    representative_skill: ode_flow_stability_to_wasserstein_error
+    status: ready_for_library
+    source_skill_ids:
+      - vES22INUKm:coupling_gronwall_wasserstein_flow_error_bound
+      - uqQPyWFDhY:alekseev_grobner_ode_perturbation_wasserstein_bound
+    shared_assumptions:
+      - Exact and approximate ODE flows exist and share a valid coupling.
+      - The approximate drift or velocity field has a spatial Lipschitz bound.
+      - Drift or velocity error is measured under the correct path law.
+    transferable_core:
+      - Couple exact and approximate paths.
+      - Convert endpoint W2 to expected path discrepancy.
+      - Use a stability estimate for the flow map.
+      - Insert the L2 drift or velocity approximation error.
+    conflicts_or_risks:
+      - One source uses direct coupling plus differential inequality; the other uses Alekseev-Grobner. The merged card keeps both routes.
+      - Lipschitz factors may be exponential or otherwise loose.
+    merged_skill_card: merged_skill_cards/ode_flow_stability_to_wasserstein_error.yaml
+  - cluster_id: C02
+    name: Truncation-based L2 approximation on unbounded domains
+    proof_pattern_family: approximation_truncation
+    representative_skill: truncation_based_l2_approximation_on_unbounded_domain
+    status: ready_for_library
+    source_skill_ids:
+      - vES22INUKm:truncation_based_l2_approximation_on_unbounded_domain
+    shared_assumptions:
+      - Compact-region approximation is available.
+      - Tail probabilities or moments are controlled.
+      - The outside-region extension is bounded or harmless.
+    transferable_core:
+      - Choose a truncation set.
+      - Split L2 error into compact and tail terms.
+      - Bound compact error by uniform approximation.
+      - Bound tail error by moment and concentration inequalities.
+    conflicts_or_risks:
+      - Single-paper evidence; ready because the proof pattern is standard and operational.
+    merged_skill_card: merged_skill_cards/truncation_based_l2_approximation_on_unbounded_domain.yaml
+  - cluster_id: C03
+    name: Truncated empirical-process generalization decomposition
+    proof_pattern_family: statistical_learning_truncation
+    representative_skill: truncated_empirical_process_generalization_decomposition
+    status: needs_human_review
+    source_skill_ids:
+      - vES22INUKm:truncated_empirical_process_generalization_decomposition
+    shared_assumptions:
+      - ERM comparison holds.
+      - The loss is bounded after truncation.
+      - Covering-number concentration is applicable.
+      - Tail events have high-probability control.
+    transferable_core:
+      - Decompose excess risk into generalization and approximation terms.
+      - Truncate unbounded loss terms.
+      - Apply covering-number concentration to the bounded class.
+      - Control truncation terms separately.
+    conflicts_or_risks:
+      - Needs review for sample-source independence and constants.
+    merged_skill_card: merged_skill_cards/truncated_empirical_process_generalization_decomposition.yaml
+  - cluster_id: C04
+    name: Gaussian smoothing Lipschitz integral control
+    proof_pattern_family: smoothing_regularization
+    representative_skill: gaussian_smoothing_lipschitz_integral_control
+    status: ready_for_library
+    source_skill_ids:
+      - uqQPyWFDhY:gaussian_smoothing_lipschitz_integral_control
+    shared_assumptions:
+      - The smoothing scale stays positive on the analysis interval.
+      - Conditional covariance regularity is available.
+      - Interpolant coefficients are differentiable.
+    transferable_core:
+      - Differentiate the conditional velocity field.
+      - Express derivatives via conditional covariance.
+      - Bound covariance terms using regularity.
+      - Integrate a time-varying Lipschitz envelope.
+    conflicts_or_risks:
+      - The lambda-regular condition is nonstandard and should be checked before use.
+    merged_skill_card: merged_skill_cards/gaussian_smoothing_lipschitz_integral_control.yaml
+  - cluster_id: C05
+    name: Smoothing-bias and stability-error balance
+    proof_pattern_family: smoothing_bias_tradeoff
+    representative_skill: smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
+    status: ready_for_library
+    source_skill_ids:
+      - uqQPyWFDhY:smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
+    shared_assumptions:
+      - A perturbation or stability bound is available for the smoothed problem.
+      - Smoothing bias has an explicit W2 bound.
+      - The smoothing parameter can be optimized.
+    transferable_core:
+      - Bound the smoothed problem.
+      - Add smoothing bias by triangle inequality.
+      - Balance stability-amplified approximation error with smoothing bias.
+      - Optimize the smoothing scale.
+    conflicts_or_risks:
+      - Rate depends strongly on the regularity parameter and schedule constraints.
+    merged_skill_card: merged_skill_cards/smoothing_bias_variance_balance_for_polynomial_wasserstein_rate.yaml
+  - cluster_id: C06
+    name: Lambda-regular certification by conditional covariance
+    proof_pattern_family: regularity_certification
+    representative_skill: lambda_regular_certification_via_conditional_covariance
+    status: needs_human_review
+    source_skill_ids:
+      - uqQPyWFDhY:lambda_regular_certification_via_conditional_covariance
+    shared_assumptions:
+      - The distribution belongs to a certifiable structural class such as log-concave, subspace Gaussian, or bounded Gaussian mixture.
+      - Gaussian observation noise is the right model.
+      - Conditional covariance is well-defined.
+    transferable_core:
+      - Write the conditional density after Gaussian observation.
+      - Bound directional variance.
+      - Convert directional bounds to operator-norm covariance bounds.
+    conflicts_or_risks:
+      - The condition is nonstandard and specialized to Gaussian observation noise.
+    merged_skill_card: merged_skill_cards/lambda_regular_certification_via_conditional_covariance.yaml
+review_queue:
+  - cluster_id: C03
+    reason: Verify independence structure, truncation event, and covering-number constants.
+  - cluster_id: C06
+    reason: Review whether lambda-regularity certification is suitable as a general library skill.

@@ -1,0 +1,57 @@
+id: truncation_based_l2_approximation_on_unbounded_domain
+name: Truncation-based L2 approximation on unbounded domains
+zh_name: 无界域上的截断式 L2 逼近
+type: proof_pattern
+category: proof_pattern
+summary: "EN: Extend compact-domain approximation results to an unbounded-domain L2 bound by splitting compact and tail regions. ZH: 将紧域逼近定理通过紧集/尾部分解扩展为无界域 L2 误差界。"
+status: ready_for_library
+source:
+  paper_md: see synthesis.source_papers
+  start_line: 0
+  end_line: 0
+inputs:
+  - target function on an unbounded domain
+  - compact-domain approximator
+  - sampling distribution with moment or tail control
+  - truncation radius
+  - desired tolerance
+outputs:
+  - full-domain L2 approximation bound
+  - tail-control proof obligation
+  - parameter choice for the truncation radius
+assumptions:
+  - Compact approximation is available.
+  - Tail probabilities or moments are bounded.
+  - The approximator outside the compact region is controlled.
+core_steps:
+  - Select a compact truncation region.
+  - Construct or invoke uniform approximation on the compact region.
+  - Extend the approximator outside the compact region.
+  - Split L2 error into compact and tail terms.
+  - Bound compact error using uniform approximation.
+  - Bound tail error using moment and concentration inequalities.
+  - Choose truncation radius to meet the tolerance.
+trigger_keywords:
+  - unbounded domain
+  - truncation argument
+  - L2 approximation
+  - tail bound
+  - compact approximation
+limitations:
+  - Tail assumptions are essential.
+  - Constants can be poor in high dimension.
+synthesis:
+  cluster_id: C02
+  source_skill_ids:
+    - vES22INUKm:truncation_based_l2_approximation_on_unbounded_domain
+  source_papers:
+    - paper_id: vES22INUKm
+      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.md
+      start_line: 204
+      end_line: 212
+  merge_status: ready_for_library
+  generalization_notes:
+    - Single-paper source, but the proof pattern is standard and operational.
+  conflicts_or_risks:
+    - Reuse requires explicit tail control.
+review_status: ready_for_library

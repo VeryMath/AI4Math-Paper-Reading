@@ -1,0 +1,27 @@
+- skill_name: ""
+  zh_name: ""
+  skill_type: "proof_pattern"
+  source:
+    paper_md: "paper.md"
+    start_line: 0
+    end_line: 0
+    source_blocks: []
+  source_span: ""
+  why_reusable: ""
+  input: []
+  output: []
+  assumptions: []
+  core_steps: []
+  trigger_keywords: []
+  limitations: []
+  reusability_score: 1
+  confidence: 0.0
+  status: "needs_review"
+  quality:
+    reusability: 1
+    clarity: 1
+    generality: 1
+    verifiability: 1
+    agent_callability: 1
+    mathematical_risk: 5
+    total_score: 0.95

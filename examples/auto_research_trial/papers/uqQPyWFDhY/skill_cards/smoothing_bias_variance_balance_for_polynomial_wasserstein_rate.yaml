@@ -1,0 +1,48 @@
+name: smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
+zh_name: 平滑偏差与流误差平衡得到多项式 W2 速率
+category: proof_pattern
+status: accepted_candidate
+source:
+  paper_title: "Error Bounds for Flow Matching Methods"
+  paper_md: paper.md
+  source_blocks:
+    - lines 259-279
+    - lines 281-295
+  start_line: 259
+  end_line: 295
+description: "Bilingual: Balance the stability benefit of smoothing against smoothing bias to convert an exponential-Lipschitz perturbation bound into a polynomial Wasserstein rate. 中文：把平滑带来的稳定性收益和平滑偏差相平衡，将指数 Lipschitz 依赖转化为多项式 W2 速率。"
+input:
+  - perturbation bound for the smoothed problem
+  - smoothing scale
+  - bias bound between smoothed and original targets
+  - Lipschitz-constrained function class
+output:
+  - combined Wasserstein error bound
+  - optimized smoothing parameter
+  - polynomial rate
+assumptions:
+  - true velocity lies in the constrained class
+  - smoothing bias has an explicit W2 bound
+  - schedule constraints match the stability theorem
+core_steps:
+  - Define the function class through the derived Lipschitz envelope.
+  - Apply the perturbation theorem to the smoothed target.
+  - Add smoothing bias using triangle inequality.
+  - Express total error as stability-amplified approximation plus bias.
+  - Optimize the boundary smoothing scale.
+trigger_keywords:
+  - smoothing bias
+  - polynomial Wasserstein rate
+  - optimize gamma
+  - triangle inequality
+limitations:
+  - Rate depends strongly on the regularity parameter.
+  - Requires a correct bias estimate for the chosen smoothing scheme.
+quality:
+  reusability: 5
+  clarity: 5
+  generality: 4
+  verifiability: 4
+  agent_callability: 5
+  mathematical_risk: 3
+  total_score: 4.35

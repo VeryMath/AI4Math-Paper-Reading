@@ -1,0 +1,66 @@
+id: ode_flow_stability_to_wasserstein_error
+name: ODE flow stability to Wasserstein error
+zh_name: ODE 流稳定性到 Wasserstein 误差
+type: proof_pattern
+category: proof_pattern
+summary: "EN: Bound endpoint distribution error by comparing exact and approximate ODE flows through a shared coupling, a flow-stability estimate, and an L2 drift error. ZH: 通过同一起点耦合、流稳定性估计和 L2 漂移误差，将 ODE 终点分布误差控制在 Wasserstein 距离下。"
+status: ready_for_library
+source:
+  paper_md: see synthesis.source_papers
+  start_line: 0
+  end_line: 0
+inputs:
+  - exact ODE flow or velocity field
+  - approximate ODE flow or velocity field
+  - shared initial coupling
+  - L2 drift or velocity error along the correct path law
+  - spatial or time-varying Lipschitz bound
+outputs:
+  - endpoint Wasserstein error bound
+  - path discrepancy bound
+  - stability factor depending on Lipschitz constants
+assumptions:
+  - Exact and approximate flows exist and are unique.
+  - The approximate field is differentiable or Lipschitz enough to control flow stability.
+  - The L2 error is measured along the distribution used in the comparison formula.
+  - The initial coupling is valid for the target Wasserstein comparison.
+core_steps:
+  - Couple exact and approximate paths through a shared initialization.
+  - Bound W2 by expected squared endpoint discrepancy.
+  - Use either a direct discrepancy differential inequality or the Alekseev-Grobner formula.
+  - Bound the flow Jacobian or stability term by Gronwall.
+  - Insert the L2 drift mismatch under the exact path law.
+  - Take square roots or optimize constants to obtain the endpoint W2 estimate.
+trigger_keywords:
+  - Wasserstein
+  - ODE perturbation
+  - flow matching
+  - coupling
+  - Gronwall
+  - Alekseev-Grobner
+limitations:
+  - Exponential dependence on Lipschitz constants can be loose.
+  - The argument is sensitive to which path law the L2 error is measured under.
+  - Numerical discretization error needs a separate bound.
+synthesis:
+  cluster_id: C01
+  source_skill_ids:
+    - vES22INUKm:coupling_gronwall_wasserstein_flow_error_bound
+    - uqQPyWFDhY:alekseev_grobner_ode_perturbation_wasserstein_bound
+  source_papers:
+    - paper_id: vES22INUKm
+      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.md
+      start_line: 354
+      end_line: 402
+    - paper_id: uqQPyWFDhY
+      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/paper.md
+      start_line: 101
+      end_line: 171
+  merge_status: ready_for_library
+  generalization_notes:
+    - The two source cards share the same transferable target: drift or velocity error implies endpoint W2 error through ODE stability.
+    - The merged card keeps both proof routes instead of forcing one formalism.
+  conflicts_or_risks:
+    - Direct coupling and Alekseev-Grobner use different technical assumptions.
+    - Reuse must check that the L2 error is evaluated under the correct path distribution.
+review_status: ready_for_library
