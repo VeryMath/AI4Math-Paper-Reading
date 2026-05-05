@@ -9,6 +9,7 @@ It preserves the full PDF-to-Skill evidence chain while excluding local credenti
 ```text
 seed papers
   -> research_profile.json
+  -> human_feedback_state.json
   -> candidate_papers.json + innovation_candidates.json
   -> reading_plan.json
   -> paper.pdf downloads
@@ -23,6 +24,7 @@ seed papers
 - `seed_papers/*/paper.pdf`: original seed PDFs.
 - `seed_papers/*/paper.md`: converted seed Markdown papers used for profiling.
 - `research_profile.json`: seed-paper interest profile.
+- `human_feedback_state.json`: human corrections and directives applied across later Skills.
 - `candidate_papers.json`: related-paper candidates.
 - `innovation_candidates.json`: innovation-oriented candidates.
 - `reading_plan.json`: triage output and download queue.

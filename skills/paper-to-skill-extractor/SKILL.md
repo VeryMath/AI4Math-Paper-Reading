@@ -9,17 +9,26 @@ description: Extract reusable mathematical research skills from Markdown papers,
 
 Use this skill to extract reusable mathematical research methods from papers. Do not summarize the paper. Extract transferable methods that an agent could later call on a different research task.
 
+## Inputs
+
+Accept:
+
+- A Markdown paper such as `paper.md`.
+- Optional `human_feedback_state.json` from the same research project.
+
 ## Workflow
 
 1. Preserve the input paper exactly as `paper.md` in the output directory when writing artifacts.
-2. Read the full paper or the user-specified section. Track 1-based line numbers from the Markdown source.
-3. Identify high-value evidence spans: theorem statements, lemmas, propositions, assumptions, proofs, convergence analysis, stability analysis, error analysis, generalization bounds, lower bounds, and appendix proofs.
-4. For each span, decide whether it contains a reusable `proof_pattern`. Reject paper-specific conclusions, background exposition, related work, and experiment results.
-5. Extract `SkillCandidate` objects with source evidence, reusable intent, inputs, outputs, assumptions, core steps, trigger keywords, limitations, score, and confidence.
-6. Generalize away paper-specific names such as "our algorithm", "Assumption 2", "Theorem 3", and local notation while preserving necessary mathematical conditions.
-7. Score each candidate with the rubric. Mark it as `accepted_candidate`, `needs_review`, or `rejected`.
-8. Write one Skill Card YAML per accepted or review-worthy candidate, plus `skill_candidates.json` and `report.md`.
-9. Verify every generated skill has source line references back to `paper.md`.
+2. If `human_feedback_state.json` exists, read `focus_updates`, `negative_preferences`, `skill_decisions`, and `next_step_directives` before selecting evidence spans.
+3. Read the full paper or the user-specified section. Track 1-based line numbers from the Markdown source.
+4. Identify high-value evidence spans: theorem statements, lemmas, propositions, assumptions, proofs, convergence analysis, stability analysis, error analysis, generalization bounds, lower bounds, and appendix proofs.
+5. For each span, decide whether it contains a reusable `proof_pattern`. Reject paper-specific conclusions, background exposition, related work, and experiment results.
+6. Extract `SkillCandidate` objects with source evidence, reusable intent, inputs, outputs, assumptions, core steps, trigger keywords, limitations, score, and confidence.
+7. Generalize away paper-specific names such as "our algorithm", "Assumption 2", "Theorem 3", and local notation while preserving necessary mathematical conditions.
+8. Score each candidate with the rubric. Mark it as `accepted_candidate`, `needs_review`, or `rejected`.
+9. Write one Skill Card YAML per accepted or review-worthy candidate, plus `skill_candidates.json` and `report.md`.
+10. In `report.md`, explain how human feedback changed evidence selection, scoring, or rejection decisions.
+11. Verify every generated skill has source line references back to `paper.md`.
 
 ## Required References
 
@@ -65,6 +74,13 @@ Do not extract:
 - A broad contribution statement without operational steps.
 - Literature review, background motivation, implementation notes, or experiments.
 - A proof step whose missing assumptions make it mathematically unsafe unless it is marked `needs_review`.
+
+When `human_feedback_state.json` exists:
+
+- Prioritize proof patterns named in `focus_updates` or `next_step_directives`.
+- Down-rank candidates that match `negative_preferences`.
+- Apply user `skill_decisions` such as `accept`, `revise`, `reject`, or `merge` when re-running extraction.
+- Never accept an unsafe generalization only because the user expressed interest; mark it `needs_review`.
 
 ## Completion Check
 

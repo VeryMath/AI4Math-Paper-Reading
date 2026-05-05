@@ -4,6 +4,12 @@ This example preserves the full human-in-the-loop test flow for the Codex-native
 
 It starts from PDFs and preserves the full `paper.pdf -> paper.md -> Skill Card` evidence chain. MinerU folders, local `.env`, and other machine-local intermediate artifacts are intentionally excluded.
 
+The interaction loop is:
+
+```text
+Codex output -> human feedback -> human_feedback_state.json -> next Skill uses state
+```
+
 ## 0. Seed Papers
 
 Seed PDF and Markdown papers:
@@ -26,6 +32,7 @@ seed-paper-profiler
 Outputs:
 
 - `research_profile.json`
+- `human_feedback_state.json`
 - `profile_review.md`
 
 Purpose:
@@ -33,6 +40,12 @@ Purpose:
 - infer target domain;
 - identify core problems, methods, assumptions, proof patterns, and search directions;
 - create a structured profile for retrieval and triage.
+
+Human feedback applied:
+
+- emphasize Wasserstein error, coupling bias, and reusable proof patterns;
+- down-rank heavy-tailed priors as a standalone topic;
+- down-rank purely empirical flow-matching papers unless needed for positioning.
 
 ## 2. Related And Innovation Paper Retrieval
 
@@ -55,6 +68,11 @@ Purpose:
 - find directly related papers;
 - find papers that may provide new proof techniques, sharper assumptions, alternative theory, or cross-domain transfer ideas.
 
+Human feedback state used:
+
+- retrieval prioritized proof-technique, error-analysis, coupling, lower-bound, and regularity routes;
+- speculative or application-only papers were kept lower unless they could support positioning.
+
 ## 3. Paper Triage
 
 Skill:
@@ -73,6 +91,11 @@ Purpose:
 - rank papers into reading priorities;
 - create a confirmed `download_queue`;
 - decide which papers should be downloaded and converted next.
+
+Human feedback state used:
+
+- proof-pattern value was weighted above topical proximity alone;
+- `vES22INUKm` and `uqQPyWFDhY` were selected for download and extraction as high-value error-bound papers.
 
 ## 4. PDF Download
 
@@ -93,6 +116,10 @@ Purpose:
 - download only confirmed open-access PDFs;
 - preserve metadata and source URLs;
 - avoid paywall bypassing.
+
+Human feedback state used:
+
+- only papers selected by the reading plan and aligned with user paper decisions were downloaded.
 
 ## 5. PDF To Markdown Conversion
 
@@ -117,6 +144,10 @@ Purpose:
 - preserve conversion metadata;
 - prepare Markdown input for single-paper Skill extraction.
 
+Human feedback state used:
+
+- conversion preserved the project handoff path so extraction could still read `human_feedback_state.json`.
+
 ## 6. Single-Paper Skill Extraction
 
 Skill:
@@ -136,6 +167,10 @@ Purpose:
 - extract reusable `proof_pattern` Skill Cards from each selected `paper.md`;
 - preserve line references to each source `paper.md`;
 - mark candidates as `accepted_candidate`, `needs_review`, or `rejected`.
+
+Human feedback state used:
+
+- extraction prioritized proof spans that convert approximation, coupling, or velocity-field errors into Wasserstein or total-variation guarantees.
 
 ## 7. Cross-Paper Skill Synthesis
 
@@ -157,12 +192,19 @@ Purpose:
 - generalize proof patterns across papers;
 - produce a domain method map and library-ready or review-worthy merged Skill Cards.
 
+Human feedback state used:
+
+- synthesis prioritized reusable proof mechanisms over paper-specific model families;
+- `ode_flow_stability_to_wasserstein_error` was accepted as central;
+- empirical-process style skills were kept visible but marked for review where assumptions need checking.
+
 ## Preserved Artifacts
 
 This example preserves:
 
 - seed papers as PDFs;
 - seed papers as Markdown;
+- human feedback state;
 - profile, retrieval, triage, and report JSON/Markdown artifacts;
 - downloaded selected PDFs;
 - converted `paper.md` files;

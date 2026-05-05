@@ -14,17 +14,19 @@ Use this skill to turn candidate paper lists into a reading plan. The output sho
 - `candidate_papers.json`
 - `innovation_candidates.json`
 - Optional `research_profile.json`
+- Optional `human_feedback_state.json`
 - Optional user constraints such as time budget or target research question.
 
 ## Workflow
 
 1. Load all candidate lists and merge duplicate papers by title, URL, DOI, or arXiv ID.
-2. Score each paper for relevance, innovation potential, proof-pattern value, positioning value, reading cost, and access status.
-3. Assign each paper to `must_read`, `should_read`, `maybe_read`, or `skip`.
-4. For `must_read` and `should_read`, specify what to inspect: abstract, intro, theorem statements, proofs, experiments, related work, or appendices.
-5. Mark whether download and Markdown conversion are recommended.
-6. Write `reading_plan.json` using `references/schemas.md`.
-7. Write `triage_report.md` with a concise reading sequence and checkpoint questions.
+2. If `human_feedback_state.json` exists, read it before scoring. Apply `focus_updates`, `negative_preferences`, `paper_decisions`, and `next_step_directives`.
+3. Score each paper for relevance, innovation potential, proof-pattern value, positioning value, reading cost, and access status.
+4. Assign each paper to `must_read`, `should_read`, `maybe_read`, or `skip`.
+5. For `must_read` and `should_read`, specify what to inspect: abstract, intro, theorem statements, proofs, experiments, related work, or appendices.
+6. Mark whether download and Markdown conversion are recommended.
+7. Write `reading_plan.json` using `references/schemas.md`.
+8. Write `triage_report.md` with a concise reading sequence, applied human feedback, and checkpoint questions.
 
 ## Required References
 
@@ -51,6 +53,9 @@ outputs/<research_project_id>/
 - Do not let recency dominate if an older paper contains the core theorem or proof method.
 - Down-rank papers that are only benchmark or generic background unless positioning requires them.
 - Separate reading priority from download status.
+- User `paper_decisions` override default ranking unless doing so would violate access or paywall rules; explain any conflict in `triage_report.md`.
+- Increase the weight of papers matching user focus updates, especially proof-pattern value when the feedback asks for reusable methods.
+- Down-rank papers matching negative preferences, such as pure empirical benchmarks, unless needed for positioning.
 - Ask for user confirmation before downloading, converting, or extracting from multiple papers.
 
 ## Completion Check

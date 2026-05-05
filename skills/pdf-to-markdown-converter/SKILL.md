@@ -9,6 +9,8 @@ description: Convert local PDF papers to Markdown using a self-contained MinerU 
 
 Use this skill to convert a local PDF into Markdown before paper-to-skill extraction. Keep this skill focused on preprocessing only: `PDF -> Markdown`.
 
+If the project contains `human_feedback_state.json`, preserve it beside the converted paper artifacts or keep its path visible in the conversion report. The converter does not interpret research feedback, but it should not break the feedback chain for downstream extraction.
+
 ## Workflow
 
 1. Work from the directory where the user wants `.env` and Markdown output.
@@ -54,6 +56,8 @@ Batch output is grouped by PDF stem:
 ├── mineru/
 └── conversion_report.json
 ```
+
+8. If conversion is part of an `outputs/<research_project_id>/` workflow and `human_feedback_state.json` exists, leave it unchanged and mention its path in the handoff to `paper-to-skill-extractor`.
 
 ## What The Bootstrap Does
 

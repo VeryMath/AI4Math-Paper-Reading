@@ -11,6 +11,7 @@ The current direction is a human-in-the-loop automatic research workflow:
 ```text
 seed papers
   -> seed-paper-profiler
+  -> human_feedback_state.json
   -> related-paper-retriever + innovation-paper-finder
   -> paper-triage-ranker
   -> paper-pdf-downloader
@@ -50,6 +51,7 @@ Recommended project output layout:
 outputs/<research_project_id>/
 ├── seed_papers/
 ├── research_profile.json
+├── human_feedback_state.json
 ├── candidate_papers.json
 ├── innovation_candidates.json
 ├── reading_plan.json
@@ -79,6 +81,41 @@ The complete reproducible example copy lives at:
 
 [examples/auto_research_trial](examples/auto_research_trial)
 
+## Human-in-the-loop Research State
+
+Use `human_feedback_state.json` to keep human feedback inside the workflow instead of leaving it only in chat history.
+
+```text
+outputs/<research_project_id>/human_feedback_state.json
+```
+
+This file records how the user corrects or redirects Codex's current interpretation of the research direction. Codex can create or update it from natural-language feedback; the user does not need to hand-write JSON.
+
+Minimum fields:
+
+- `focus_updates`: research directions to emphasize.
+- `negative_preferences`: topics, paper types, or methods to down-rank.
+- `paper_decisions`: user decisions such as `must_read`, `skip`, `download`, or `do_not_download`.
+- `skill_decisions`: user decisions on extracted Skill Cards such as `accept`, `revise`, `reject`, or `merge`.
+- `next_step_directives`: instructions that later Skills must apply.
+- `stage_feedback_log`: chronological record of human feedback and how it should affect the next stage.
+
+Example user feedback:
+
+```text
+弱化 heavy-tailed prior 本身，强化 Wasserstein error、coupling bias 和可复用 proof pattern。
+后续检索不要找太多纯实验型 flow matching paper。
+```
+
+The next Skill should read both the previous machine artifact and `human_feedback_state.json`. In practice:
+
+```text
+research_profile.json + human_feedback_state.json -> retrieval
+candidate_papers.json + innovation_candidates.json + human_feedback_state.json -> triage
+reading_plan.json + human_feedback_state.json -> download / extraction
+skill_cards + human_feedback_state.json -> synthesis
+```
+
 ## How To Run With Codex
 
 Use these as Codex instructions.
@@ -95,6 +132,9 @@ Use these as Codex instructions.
 
 输出到：
 outputs/<research_project_id>
+
+如果用户已经给出方向修正，请同时创建或更新：
+outputs/<research_project_id>/human_feedback_state.json
 ```
 
 ### 2. Retrieve Related And Innovative Papers
@@ -104,6 +144,9 @@ outputs/<research_project_id>
 
 请基于：
 outputs/<research_project_id>/research_profile.json
+
+如果存在，也必须读取：
+outputs/<research_project_id>/human_feedback_state.json
 
 检索相关论文和可能提供创新点的论文，生成：
 - candidate_papers.json
@@ -121,6 +164,7 @@ outputs/<research_project_id>/research_profile.json
 - outputs/<research_project_id>/research_profile.json
 - outputs/<research_project_id>/candidate_papers.json
 - outputs/<research_project_id>/innovation_candidates.json
+- outputs/<research_project_id>/human_feedback_state.json
 ```
 
 ### 4. Download Confirmed PDFs
@@ -131,6 +175,9 @@ outputs/<research_project_id>/research_profile.json
 请下载 reading_plan.json 里 download_queue 的前 N 篇：
 
 outputs/<research_project_id>/reading_plan.json
+
+如果存在，也必须读取：
+outputs/<research_project_id>/human_feedback_state.json
 ```
 
 Download policy:
@@ -147,6 +194,9 @@ Download policy:
 请把下面 PDF 转成 paper.md：
 
 outputs/<research_project_id>/papers/<paper_id>/paper.pdf
+
+如果存在，保留并传递本项目的人类反馈状态：
+outputs/<research_project_id>/human_feedback_state.json
 ```
 
 Equivalent command:
@@ -169,6 +219,9 @@ python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py \
 
 outputs/<research_project_id>/papers/<paper_id>/paper.md
 
+如果存在，也必须读取：
+outputs/<research_project_id>/human_feedback_state.json
+
 要求：
 1. 输出中英文并列。
 2. 每个 Skill 必须包含 source.paper_md、start_line、end_line。
@@ -184,6 +237,7 @@ outputs/<research_project_id>/papers/<paper_id>/paper.md
 
 - outputs/<research_project_id>/papers/<paper_id_1>/skill_cards
 - outputs/<research_project_id>/papers/<paper_id_2>/skill_cards
+- outputs/<research_project_id>/human_feedback_state.json
 
 输出到：
 outputs/<research_project_id>/synthesized_skills

@@ -17,17 +17,20 @@ Accept any mix of:
 - `extractions/<paper_id>/skill_cards/*.yaml`
 - Paper metadata files.
 - User notes about which skills should be merged or rejected.
+- Optional `human_feedback_state.json` from the research project.
 
 ## Workflow
 
 1. Load all SkillCandidates and SkillCards.
-2. Preserve source evidence from every paper. Do not drop line references.
-3. Cluster candidates by proof pattern, intent, assumptions, inputs, outputs, and core steps.
-4. Deduplicate near-identical skills while keeping all source references.
-5. Generalize paper-specific notation into reusable method language.
-6. Identify conflicts: incompatible assumptions, different conclusions, unsafe generalizations, or missing evidence.
-7. Rank clusters for library readiness.
-8. Write `domain_method_map.yaml`, merged SkillCards, and `synthesis_report.md`.
+2. If `human_feedback_state.json` exists, read `focus_updates`, `negative_preferences`, `skill_decisions`, and `next_step_directives` before clustering.
+3. Preserve source evidence from every paper. Do not drop line references.
+4. Cluster candidates by proof pattern, intent, assumptions, inputs, outputs, and core steps.
+5. Deduplicate near-identical skills while keeping all source references.
+6. Generalize paper-specific notation into reusable method language.
+7. Identify conflicts: incompatible assumptions, different conclusions, unsafe generalizations, or missing evidence.
+8. Rank clusters for library readiness.
+9. Write `domain_method_map.yaml`, merged SkillCards, and `synthesis_report.md`.
+10. In `synthesis_report.md`, explain which user feedback affected merge, reject, or library-readiness decisions.
 
 ## Required References
 
@@ -58,6 +61,8 @@ outputs/<research_project_id>/synthesized_skills/
 - Separate `ready_for_library`, `needs_human_review`, `too_specific`, `duplicate`, and `unsafe_generalization`.
 - Keep rejected or unsafe clusters in the report so future reviewers understand the decision.
 - Prefer fewer, stronger SkillCards over many thin variants.
+- Apply user `skill_decisions` when grouping, merging, rejecting, or marking skills for revision.
+- Use human focus updates to prioritize the domain method map, but keep conflicting or unsafe clusters visible instead of silently dropping them.
 
 ## Completion Check
 

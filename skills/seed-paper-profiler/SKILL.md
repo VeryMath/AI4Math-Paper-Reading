@@ -16,6 +16,7 @@ Accept any mix of:
 - Markdown papers such as `paper.md`.
 - Abstracts, introductions, theorem statements, or user notes.
 - Existing extraction reports or SkillCards from seed papers.
+- Optional `outputs/<research_project_id>/human_feedback_state.json` if the user has already corrected or narrowed the research direction.
 
 When a full `paper.md` is available, preserve source line references for claims used in the profile.
 
@@ -27,8 +28,10 @@ When a full `paper.md` is available, preserve source line references for claims 
 4. Separate stable interests from one-paper accidents. Mark uncertain inferences as hypotheses.
 5. Extract positive interests and negative preferences. Negative preferences include topics the user likely does not want to pursue.
 6. Generate search directions covering problem, method, theorem, assumption, application, and adjacent-domain routes.
-7. Write `research_profile.json` using the schema in `references/schemas.md`.
-8. Write `profile_review.md` with a short checkpoint asking the user to confirm, remove, or emphasize directions.
+7. If `human_feedback_state.json` exists, apply its `focus_updates`, `negative_preferences`, and `next_step_directives` before finalizing the profile.
+8. Write `research_profile.json` using the schema in `references/schemas.md`.
+9. Write `profile_review.md` with a short checkpoint asking the user to confirm, remove, or emphasize directions.
+10. When the user provides profile feedback, create or update `human_feedback_state.json` so later Skills can read the correction.
 
 ## Language Policy
 
@@ -55,6 +58,7 @@ Use the template:
 ```text
 outputs/<research_project_id>/
 ├── seed_papers/
+├── human_feedback_state.json
 ├── research_profile.json
 └── profile_review.md
 ```
@@ -66,6 +70,8 @@ outputs/<research_project_id>/
 - Keep `user_interest_hypotheses` explicit; do not present guesses as facts.
 - Generate queries that can be used by Codex search or browsing tools.
 - Include `checkpoint_questions` that help the user correct the direction before retrieval begins.
+- Treat `research_profile.json` as Codex's current interpretation and `human_feedback_state.json` as the user's correction layer.
+- Suggested profile feedback should be concrete enough to affect retrieval, such as focus updates, down-ranked topics, or next-step directives.
 
 ## Completion Check
 

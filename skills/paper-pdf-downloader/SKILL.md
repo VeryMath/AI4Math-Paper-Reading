@@ -18,6 +18,7 @@ Accept one or more of:
 - `outputs/<research_project_id>/reading_plan.json`
 - `outputs/<research_project_id>/candidate_papers.json`
 - `outputs/<research_project_id>/innovation_candidates.json`
+- Optional `outputs/<research_project_id>/human_feedback_state.json`
 - Explicit paper IDs supplied by the user.
 
 Default to papers in `download_queue` from `reading_plan.json` only when the user asks to download from the plan. If the user names paper IDs, download only those IDs.
@@ -25,13 +26,14 @@ Default to papers in `download_queue` from `reading_plan.json` only when the use
 ## Workflow
 
 1. Read the input plan or candidate files.
-2. Resolve each requested paper ID to metadata and `pdf_url`.
-3. Confirm each selected paper has an open PDF URL or user-provided local PDF.
-4. Do not bypass paywalls, scrape institutional access, or use unofficial mirrors.
-5. Download each open PDF into `outputs/<research_project_id>/papers/<paper_id>/paper.pdf`.
-6. Write `metadata.json` beside each PDF using `references/schemas.md`.
-7. Write a bilingual `download_report.md` in `outputs/<research_project_id>/`.
-8. Leave Markdown conversion to `pdf-to-markdown-converter`.
+2. If `human_feedback_state.json` exists, read `paper_decisions` and `next_step_directives` before selecting downloads.
+3. Resolve each requested paper ID to metadata and `pdf_url`.
+4. Confirm each selected paper has an open PDF URL or user-provided local PDF.
+5. Do not bypass paywalls, scrape institutional access, or use unofficial mirrors.
+6. Download each open PDF into `outputs/<research_project_id>/papers/<paper_id>/paper.pdf`.
+7. Write `metadata.json` beside each PDF using `references/schemas.md`.
+8. Write a bilingual `download_report.md` in `outputs/<research_project_id>/`.
+9. Leave Markdown conversion to `pdf-to-markdown-converter`.
 
 ## Scripted Download
 
@@ -86,6 +88,8 @@ outputs/<research_project_id>/
 - If the URL does not return PDF bytes, mark the paper as `failed` and explain why.
 - Preserve existing `paper.pdf` unless the user explicitly asks to overwrite; use the script's default skip behavior.
 - Do not download every candidate by default. Download only confirmed paper IDs or the confirmed `download_queue`.
+- Do not download papers marked `skip` or `do_not_download` in `human_feedback_state.json` unless the user explicitly overrides that decision.
+- Papers marked `download` or `must_read` by the user may be selected when they also have an open PDF URL or user-provided local PDF.
 
 ## Completion Check
 

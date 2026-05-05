@@ -12,18 +12,20 @@ Use this skill to find papers that may create new research angles. This is not o
 ## Inputs
 
 - `outputs/<research_project_id>/research_profile.json`
+- Optional `outputs/<research_project_id>/human_feedback_state.json`
 - Optional `candidate_papers.json`, seed papers, or user constraints.
 
 ## Workflow
 
 1. Read the research profile and any existing candidate list.
-2. Identify innovation routes: new proof technique, sharper bound, weaker assumption, cross-domain transfer, lower bound, alternative formulation, or new abstraction.
-3. Use Codex's available search or browsing capability for each route.
-4. Prefer primary paper pages and open full text where available.
-5. For each candidate, explain why it may help and what research angle it suggests.
-6. Record risks such as weak relevance, high reading cost, speculative transfer, or paywalled access.
-7. Write `innovation_candidates.json` using `references/schemas.md`.
-8. Write `innovation_report.md` with recommended next actions and checkpoint questions.
+2. If `human_feedback_state.json` exists, read it before selecting innovation routes. Apply `focus_updates`, `negative_preferences`, and `next_step_directives`.
+3. Identify innovation routes: new proof technique, sharper bound, weaker assumption, cross-domain transfer, lower bound, alternative formulation, or new abstraction.
+4. Use Codex's available search or browsing capability for each route.
+5. Prefer primary paper pages and open full text where available.
+6. For each candidate, explain why it may help and what research angle it suggests.
+7. Record risks such as weak relevance, high reading cost, speculative transfer, or paywalled access.
+8. Write `innovation_candidates.json` using `references/schemas.md`.
+9. Write `innovation_report.md` with recommended next actions, applied human feedback, and checkpoint questions.
 
 ## Required References
 
@@ -48,6 +50,8 @@ outputs/<research_project_id>/
 
 - Deliberately search adjacent fields, not only exact keyword neighbors.
 - Include at least one route targeting assumptions and one route targeting proof techniques when possible.
+- Prefer routes that match explicit user focus updates, such as proof technique, coupling, error bounds, or lower-bound directions.
+- Down-rank speculative leads that match user negative preferences unless they are included as a clearly labeled contrast case.
 - Keep speculative ideas, but label them as speculative.
 - Do not download full text unless the user selected the paper or explicitly requested download.
 - Do not bypass paywalls.
