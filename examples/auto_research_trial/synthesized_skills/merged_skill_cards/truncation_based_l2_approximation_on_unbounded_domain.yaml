@@ -46,7 +46,7 @@ synthesis:
     - vES22INUKm:truncation_based_l2_approximation_on_unbounded_domain
   source_papers:
     - paper_id: vES22INUKm
-      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.md
+      paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
       start_line: 204
       end_line: 212
   merge_status: ready_for_library

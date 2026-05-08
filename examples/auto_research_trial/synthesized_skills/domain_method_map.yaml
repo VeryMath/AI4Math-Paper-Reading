@@ -2,9 +2,9 @@ research_project_id: auto_research_trial_flow_matching_error_analysis
 created_at: 2026-05-04
 source_extractions:
   - paper_id: vES22INUKm
-    path: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/skill_cards
+    path: examples/auto_research_trial/papers/vES22INUKm/skill_cards
   - paper_id: uqQPyWFDhY
-    path: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/skill_cards
+    path: examples/auto_research_trial/papers/uqQPyWFDhY/skill_cards
 clusters:
   - cluster_id: C01
     name: ODE flow stability to Wasserstein error

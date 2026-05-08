@@ -1,7 +1,7 @@
 {
-  "input_pdf": "/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.pdf",
-  "output_md": "/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.md",
-  "artifacts_dir": "/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/mineru",
+  "input_pdf": "examples/auto_research_trial/papers/vES22INUKm/paper.pdf",
+  "output_md": "examples/auto_research_trial/papers/vES22INUKm/paper.md",
+  "artifacts_dir": "examples/auto_research_trial/papers/vES22INUKm/mineru",
   "converter": "MinerU",
   "conda_env": "ai4math",
   "markdown_chars": 140645,

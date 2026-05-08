@@ -49,11 +49,11 @@ synthesis:
     - uqQPyWFDhY:alekseev_grobner_ode_perturbation_wasserstein_bound
   source_papers:
     - paper_id: vES22INUKm
-      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.md
+      paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
       start_line: 354
       end_line: 402
     - paper_id: uqQPyWFDhY
-      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/paper.md
+      paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
       start_line: 101
       end_line: 171
   merge_status: ready_for_library

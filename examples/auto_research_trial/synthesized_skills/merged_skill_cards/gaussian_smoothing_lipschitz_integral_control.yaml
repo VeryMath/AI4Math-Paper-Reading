@@ -46,7 +46,7 @@ synthesis:
     - uqQPyWFDhY:gaussian_smoothing_lipschitz_integral_control
   source_papers:
     - paper_id: uqQPyWFDhY
-      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/paper.md
+      paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
       start_line: 177
       end_line: 255
   merge_status: ready_for_library

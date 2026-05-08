@@ -17,7 +17,7 @@ If the project contains `human_feedback_state.json`, preserve it beside the conv
 2. Run the bootstrap script with the target PDF:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf
 ```
 
 3. If `MINERU_API_TOKEN` is missing, let the script prompt for it interactively. Do not ask the user to paste API keys into chat unless they explicitly choose to.
@@ -33,19 +33,19 @@ python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bo
 5. For a custom output name:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md
 ```
 
 6. For a custom MinerU artifacts folder:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md --artifacts-dir paper_mineru
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md --artifacts-dir paper_mineru
 ```
 
 7. For a batch of PDFs, pass one or more PDF files or directories with `--batch`:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py papers/ --batch
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py papers/ --batch
 ```
 
 Batch output is grouped by PDF stem:

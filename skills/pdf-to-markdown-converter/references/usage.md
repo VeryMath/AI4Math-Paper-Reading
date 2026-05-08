@@ -7,7 +7,7 @@ This skill is self-contained. It uses bundled scripts instead of the project-lev
 Run from the directory where the user wants `.env` and the Markdown output:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf
 ```
 
 Default output:
@@ -22,25 +22,25 @@ Default output:
 Explicit output:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md
 ```
 
 Explicit artifacts folder:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md --artifacts-dir paper_mineru
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md --artifacts-dir paper_mineru
 ```
 
 Explicit report path:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md --artifacts-dir paper_mineru --report conversion_report.json
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py input.pdf --out paper.md --artifacts-dir paper_mineru --report conversion_report.json
 ```
 
 Batch conversion:
 
 ```bash
-python /Users/conanxu/paper-to-skill/skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py papers/ --batch
+python skills/pdf-to-markdown-converter/scripts/bootstrap_pdf_to_markdown.py papers/ --batch
 ```
 
 Batch output:

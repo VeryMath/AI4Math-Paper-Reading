@@ -49,7 +49,7 @@ synthesis:
     - vES22INUKm:truncated_empirical_process_generalization_decomposition
   source_papers:
     - paper_id: vES22INUKm
-      paper_md: /Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/paper.md
+      paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
       start_line: 274
       end_line: 342
   merge_status: needs_human_review

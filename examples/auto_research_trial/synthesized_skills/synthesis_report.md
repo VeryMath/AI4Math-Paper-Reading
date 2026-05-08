@@ -4,8 +4,8 @@ Research project: `auto_research_trial_flow_matching_error_analysis`
 
 Inputs:
 
-- `/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/vES22INUKm/skill_cards`
-- `/Users/conanxu/paper-to-skill/outputs/auto_research_trial/papers/uqQPyWFDhY/skill_cards`
+- `examples/auto_research_trial/papers/vES22INUKm/skill_cards`
+- `examples/auto_research_trial/papers/uqQPyWFDhY/skill_cards`
 
 ## Result / 结果
 
