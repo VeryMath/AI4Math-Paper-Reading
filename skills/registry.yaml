@@ -1,0 +1,213 @@
+schema_version: 1
+default_entrypoint: paper-to-skill-workflow
+workflow_scope:
+  version: 1.0.0
+  supported_input:
+    - PDF paper.pdf
+    - Markdown paper.md
+  supported_skill_type:
+    - proof_pattern
+  extraction_engine: active coding agent
+  reference_operator: Codex
+  default_flow:
+    - preserve paper.pdf when provided
+    - convert paper.pdf to paper.md when needed
+    - extract proof_pattern SkillCandidates and SkillCards from paper.md
+    - preserve source line references back to paper.md
+platform_policy:
+  shared_workflow_layer: skills/
+  registry: skills/registry.yaml
+  adapter_rule: Keep platform-specific files thin and do not fork workflow behavior.
+  supported_agent_classes:
+    - Codex
+    - Claude Code
+    - Gemini
+    - OpenCode
+    - Cursor
+    - GitHub Copilot coding agent
+    - generic coding agents that can read files, write artifacts, and follow Skill instructions
+review_gates:
+  - name: research_direction_feedback
+    artifact: human_feedback_state.json
+    applies_to:
+      - seed-paper-profiler
+      - related-paper-retriever
+      - innovation-paper-finder
+      - paper-triage-ranker
+      - paper-to-skill-extractor
+      - cross-paper-skill-synthesizer
+  - name: download_confirmation
+    artifact: reading_plan.json
+    applies_to:
+      - paper-pdf-downloader
+  - name: conversion_boundary
+    artifact: conversion_report.json
+    applies_to:
+      - paper-to-skill-workflow
+      - pdf-to-markdown-converter
+  - name: extraction_review
+    artifact: report.md
+    applies_to:
+      - paper-to-skill-workflow
+      - paper-to-skill-extractor
+  - name: synthesis_review
+    artifact: synthesis_report.md
+    applies_to:
+      - paper-to-skill-workflow
+      - cross-paper-skill-synthesizer
+skills:
+  - name: paper-to-skill-workflow
+    phase: entrypoint
+    path: paper-to-skill-workflow
+    description: Default PDF-first workflow from paper.pdf or paper.md to proof_pattern SkillCards.
+    requires_skills:
+      - pdf-to-markdown-converter
+      - paper-to-skill-extractor
+      - cross-paper-skill-synthesizer
+    input_artifacts:
+      - paper.pdf
+      - optional_paper.md
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - paper.pdf
+      - paper.md
+      - mineru/
+      - conversion_report.json
+      - skill_candidates.json
+      - skill_cards/*.yaml
+      - report.md
+    review_gates:
+      - conversion_boundary
+      - extraction_review
+      - synthesis_review
+    risk_level: medium
+  - name: seed-paper-profiler
+    phase: profiling
+    path: seed-paper-profiler
+    description: Build the research profile that guides search, triage, and extraction.
+    requires_skills: []
+    input_artifacts:
+      - seed_papers
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - research_profile.json
+      - profile_review.md
+    review_gates:
+      - research_direction_feedback
+    risk_level: low
+  - name: related-paper-retriever
+    phase: retrieval
+    path: related-paper-retriever
+    description: Find directly related papers from the research profile.
+    requires_skills:
+      - seed-paper-profiler
+    input_artifacts:
+      - research_profile.json
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - candidate_papers.json
+      - retrieval_report.md
+    review_gates:
+      - research_direction_feedback
+    risk_level: low
+  - name: innovation-paper-finder
+    phase: retrieval
+    path: innovation-paper-finder
+    description: Find adjacent or method-rich papers that may contribute new proof ideas.
+    requires_skills:
+      - seed-paper-profiler
+    input_artifacts:
+      - research_profile.json
+      - optional_candidate_papers.json
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - innovation_candidates.json
+      - innovation_report.md
+    review_gates:
+      - research_direction_feedback
+    risk_level: low
+  - name: paper-triage-ranker
+    phase: triage
+    path: paper-triage-ranker
+    description: Rank candidate papers and prepare a reading or download queue.
+    requires_skills:
+      - related-paper-retriever
+      - innovation-paper-finder
+    input_artifacts:
+      - candidate_papers.json
+      - innovation_candidates.json
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - reading_plan.json
+      - triage_report.md
+    review_gates:
+      - research_direction_feedback
+      - download_confirmation
+    risk_level: low
+  - name: paper-pdf-downloader
+    phase: acquisition
+    path: paper-pdf-downloader
+    description: Download only confirmed open-access PDFs and preserve metadata.
+    requires_skills:
+      - paper-triage-ranker
+    input_artifacts:
+      - reading_plan.json
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - papers/<paper_id>/metadata.json
+      - papers/<paper_id>/paper.pdf
+      - download_report.md
+    review_gates:
+      - download_confirmation
+    risk_level: medium
+  - name: pdf-to-markdown-converter
+    phase: conversion
+    path: pdf-to-markdown-converter
+    description: Convert a local PDF to paper.md while preserving conversion artifacts.
+    requires_skills:
+      - paper-pdf-downloader
+    input_artifacts:
+      - paper.pdf
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - paper.md
+      - mineru/
+      - conversion_report.json
+    review_gates:
+      - conversion_boundary
+    risk_level: medium
+  - name: paper-to-skill-extractor
+    phase: extraction
+    path: paper-to-skill-extractor
+    description: Internal extraction stage for Markdown paper.md to proof_pattern SkillCards.
+    requires_skills: []
+    input_artifacts:
+      - paper.md
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - paper.md
+      - skill_candidates.json
+      - skill_cards/*.yaml
+      - report.md
+    review_gates:
+      - research_direction_feedback
+      - extraction_review
+    risk_level: low
+  - name: cross-paper-skill-synthesizer
+    phase: synthesis
+    path: cross-paper-skill-synthesizer
+    description: Merge and generalize proof-pattern SkillCards across papers.
+    requires_skills:
+      - paper-to-skill-extractor
+    input_artifacts:
+      - skill_candidates.json
+      - skill_cards/*.yaml
+      - optional_human_feedback_state.json
+    output_artifacts:
+      - domain_method_map.yaml
+      - merged_skill_cards/*.yaml
+      - synthesis_report.md
+    review_gates:
+      - research_direction_feedback
+      - synthesis_review
+    risk_level: low

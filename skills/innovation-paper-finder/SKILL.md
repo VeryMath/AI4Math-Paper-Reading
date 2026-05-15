@@ -1,6 +1,6 @@
 ---
 name: innovation-paper-finder
-description: Search for papers that may provide new methods, new theory, sharper bounds, different assumptions, proof techniques, lower bounds, abstractions, or cross-domain transfers for a math research direction. Use when Codex should look beyond nearest-neighbor related work and generate innovation_candidates.json with reasons and risks.
+description: Search for papers that may provide new methods, new theory, sharper bounds, different assumptions, proof techniques, lower bounds, abstractions, or cross-domain transfers for a math research direction. Use when a coding agent should look beyond nearest-neighbor related work and generate innovation_candidates.json with reasons and risks.
 ---
 
 # Innovation Paper Finder
@@ -20,7 +20,7 @@ Use this skill to find papers that may create new research angles. This is not o
 1. Read the research profile and any existing candidate list.
 2. If `human_feedback_state.json` exists, read it before selecting innovation routes. Apply `focus_updates`, `negative_preferences`, and `next_step_directives`.
 3. Identify innovation routes: new proof technique, sharper bound, weaker assumption, cross-domain transfer, lower bound, alternative formulation, or new abstraction.
-4. Use Codex's available search or browsing capability for each route.
+4. Use the active agent's available search or browsing capability for each route.
 5. Prefer primary paper pages and open full text where available.
 6. For each candidate, explain why it may help and what research angle it suggests.
 7. Record risks such as weak relevance, high reading cost, speculative transfer, or paywalled access.

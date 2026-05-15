@@ -1,0 +1,25 @@
+schema_version: 1
+name: paper-triage-ranker
+version: 0.1.0
+scope: ai4math-paper-skills
+description: Rank candidate papers into reading priorities and download queues for downstream paper-to-skill extraction.
+entrypoint: SKILL.md
+requires_env: {}
+requires_tools:
+  - agent-native-read
+requires_skills:
+  - related-paper-retriever
+  - innovation-paper-finder
+input_artifacts:
+  - candidate_papers.json
+  - innovation_candidates.json
+  - optional_research_profile.json
+  - optional_human_feedback_state.json
+output_artifacts:
+  - reading_plan.json
+  - triage_report.md
+approval_required_for:
+  - download_queue_selection
+  - paper_decision_update
+  - human_feedback_state_update
+risk_level: low

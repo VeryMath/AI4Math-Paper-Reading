@@ -1,6 +1,6 @@
 ---
 name: seed-paper-profiler
-description: Build a research-interest profile from a small set of seed math papers, abstracts, or user notes. Use when Codex should infer the user's target domain, core problems, methods, assumptions, proof patterns, technical keywords, negative preferences, and search directions before related-paper retrieval or paper-to-skill extraction.
+description: Build a research-interest profile from a small set of seed math papers, abstracts, or user notes. Use when a coding agent should infer the user's target domain, core problems, methods, assumptions, proof patterns, technical keywords, negative preferences, and search directions before related-paper retrieval or paper-to-skill extraction.
 ---
 
 # Seed Paper Profiler
@@ -68,9 +68,9 @@ outputs/<research_project_id>/
 - Prefer reusable research intent over paper-specific details.
 - Track evidence for important claims when source lines are available.
 - Keep `user_interest_hypotheses` explicit; do not present guesses as facts.
-- Generate queries that can be used by Codex search or browsing tools.
+- Generate queries that can be used by the active agent's search or browsing tools.
 - Include `checkpoint_questions` that help the user correct the direction before retrieval begins.
-- Treat `research_profile.json` as Codex's current interpretation and `human_feedback_state.json` as the user's correction layer.
+- Treat `research_profile.json` as the active agent's current interpretation and `human_feedback_state.json` as the user's correction layer.
 - Suggested profile feedback should be concrete enough to affect retrieval, such as focus updates, down-ranked topics, or next-step directives.
 
 ## Completion Check

@@ -1,8 +1,8 @@
 # ai4math-paper-skills
 
-`ai4math-paper-skills` is a Codex-native paper-to-skill workflow module for AI4Math auto research.
+`ai4math-paper-skills` is a coding-agent-neutral paper-to-skill workflow module for AI4Math auto research.
 
-本项目不是论文总结器，也不是完整的 auto research 主仓库。它是 AI4Math auto research 的论文 Skill 子模块：让 Codex 从论文中识别可迁移的证明套路、理论分析套路和方法论结构，生成可复核、可入库的 Skill Card。
+本项目不是论文总结器，也不是完整的 auto research 主仓库。它是 AI4Math auto research 的论文 Skill 子模块：让 coding agent 从论文中识别可迁移的证明套路、理论分析套路和方法论结构，生成可复核、可入库的 Skill Card。Codex 是参考 operator，但 Skill 层应保持可被 Claude Code、Gemini、OpenCode、Cursor 等 coding agent 使用。
 
 ## Current Direction
 
@@ -23,12 +23,37 @@ seed papers
 
 核心原则：
 
-- Use Codex as the research reasoning and extraction engine.
-- Do not build a custom search engine in v0.1.
-- Do not rely on external LLM APIs in v0.1.
-- Preserve every `paper.md` as the source of truth.
+- Use the active coding agent as the research reasoning and extraction engine.
+- Accept `paper.pdf` as the simplest user input.
+- Do not rely on external LLM APIs for extraction.
+- Preserve every original `paper.pdf` when provided and every converted `paper.md`.
 - Every extracted Skill must keep source line references.
 - Keep each Skill narrow: retrieval, triage, download, conversion, extraction, and synthesis are separate responsibilities.
+
+## Quick Start
+
+Give a coding agent a PDF and an output directory:
+
+```text
+Use this repository's paper-to-skill workflow.
+
+Read:
+- AGENTS.md
+- skills/registry.yaml
+- skills/paper-to-skill-workflow/SKILL.md
+
+Input:
+/absolute/path/to/paper.pdf
+
+Output:
+outputs/<research_project_id>/papers/<paper_id>/
+
+Goal:
+Preserve the PDF, convert it to paper.md, then extract proof_pattern SkillCandidates,
+SkillCards, and report.md with source line references back to paper.md.
+```
+
+If you already have `paper.md`, use the same workflow and provide the Markdown file as input. The workflow skips PDF conversion and runs extraction directly.
 
 ## Skill Chain
 
@@ -40,8 +65,36 @@ seed papers
 | `paper-triage-ranker` | candidate lists | `reading_plan.json` | rank papers into reading priorities |
 | `paper-pdf-downloader` | `reading_plan.json` or selected paper IDs | `papers/<paper_id>/paper.pdf` | download confirmed open-access PDFs only |
 | `pdf-to-markdown-converter` | local PDF | `paper.md` | convert PDF to Markdown |
+| `paper-to-skill-workflow` | `paper.pdf` or `paper.md` | `paper.md`, `skill_candidates.json`, `skill_cards/*.yaml`, `report.md` | run the user-facing PDF-first workflow |
 | `paper-to-skill-extractor` | `paper.md` | `skill_candidates.json`, `skill_cards/*.yaml`, `report.md` | extract single-paper `proof_pattern` Skills |
 | `cross-paper-skill-synthesizer` | multiple Skill Cards | `domain_method_map.yaml`, merged Skill Cards | cluster, merge, and generalize across papers |
+
+## Skill Metadata
+
+The repository has a thin root Skill compatibility entrypoint at `SKILL.md`. It points back to the shared Skill layer and does not define a separate workflow.
+
+Use `skills/registry.yaml` as the machine-readable source for Skill routing, phase order, input/output contracts, and review gates. Each Skill folder also has a `manifest.yaml` that declares its entrypoint, expected input artifacts, output artifacts, dependent Skills, risk level, and operations that require human approval.
+
+The default registry entrypoint is `paper-to-skill-workflow`:
+
+```text
+paper.pdf -> paper.md -> proof_pattern SkillCandidate / SkillCard / report
+```
+
+## Platform Adapters
+
+The shared product is the Skill layer under `skills/`. Platform-specific files are intentionally thin adapters:
+
+- `SKILL.md`: generic top-level Skill entrypoint.
+- `AGENTS.md`: repository contract for coding agents that read agent instructions.
+- `CLAUDE.md`: Claude Code orientation.
+- `GEMINI.md`: Gemini orientation.
+- `.codex/INSTALL.md`: Codex loading notes.
+- `.opencode/INSTALL.md`: OpenCode loading notes.
+- `.cursor/rules/ai4math-paper-skills.mdc`: Cursor rule entrypoint.
+- `.github/copilot-instructions.md`: GitHub Copilot coding agent instructions.
+
+All adapters should point back to `skills/registry.yaml` and should not fork workflow behavior.
 
 ## Output Layout
 
@@ -89,7 +142,7 @@ Use `human_feedback_state.json` to keep human feedback inside the workflow inste
 outputs/<research_project_id>/human_feedback_state.json
 ```
 
-This file records how the user corrects or redirects Codex's current interpretation of the research direction. Codex can create or update it from natural-language feedback; the user does not need to hand-write JSON.
+This file records how the user corrects or redirects the active coding agent's current interpretation of the research direction. The agent can create or update it from natural-language feedback; the user does not need to hand-write JSON.
 
 Minimum fields:
 
@@ -116,9 +169,28 @@ reading_plan.json + human_feedback_state.json -> download / extraction
 skill_cards + human_feedback_state.json -> synthesis
 ```
 
-## How To Run With Codex
+## How To Run With A Coding Agent
 
-Use these as Codex instructions.
+Use these as prompts for any coding agent that can read files, write artifacts, and follow the Skill instructions in this repository.
+
+### 0. Process One PDF End-To-End
+
+```text
+使用 paper-to-skill-workflow。
+
+请处理下面这篇论文：
+/absolute/path/to/paper.pdf
+
+输出到：
+outputs/<research_project_id>/papers/<paper_id>/
+
+要求：
+1. 保留原始 paper.pdf。
+2. 转换生成完整 paper.md。
+3. 基于 paper.md 抽取 proof_pattern SkillCandidates 和 SkillCards。
+4. 每个 accepted_candidate 或 needs_review SkillCard 必须包含 source.paper_md、source.start_line、source.end_line。
+5. 生成 report.md，并区分 accepted_candidate / needs_review / rejected。
+```
 
 ### 1. Build A Research Profile
 
@@ -245,7 +317,7 @@ outputs/<research_project_id>/synthesized_skills
 
 ## Python Environment
 
-The Codex Skill workflow itself does not require a Python package or external LLM API. Python is currently used for helper scripts such as PDF conversion, PDF download, and validation.
+The Skill workflow itself does not require a Python package or external LLM API. Python is currently used for helper scripts such as PDF conversion, PDF download, and validation.
 
 Use the shared Conda environment:
 
@@ -257,14 +329,14 @@ python -m pip install -r requirements-dev.txt
 
 ## Boundaries
 
-`paper-to-skill-extractor` is intentionally narrow:
+`paper-to-skill-workflow` is the user-facing entrypoint:
 
 ```text
-paper.md -> proof_pattern SkillCandidate / SkillCard / report
+paper.pdf -> paper.md -> proof_pattern SkillCandidate / SkillCard / report
 ```
 
-It does not retrieve papers, download PDFs, convert PDFs, rank candidates, or merge cross-paper Skills. Those responsibilities belong to separate Skills.
+`paper-to-skill-extractor` remains intentionally narrow: it reads `paper.md` and writes proof-pattern extraction artifacts. PDF conversion, retrieval, download, extraction, and synthesis stay in separate Skills so each responsibility can be reviewed and improved independently.
 
-Retrieval Skills do not implement a search engine. They define Codex search strategy, relevance criteria, output schema, and human checkpoints.
+Retrieval Skills do not implement a search engine. They define agent search strategy, relevance criteria, output schema, and human checkpoints.
 
 Download and conversion are explicit, user-confirmed steps. Always preserve the original `paper.pdf` and the full `paper.md`.

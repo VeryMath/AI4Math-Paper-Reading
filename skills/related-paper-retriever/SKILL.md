@@ -1,13 +1,13 @@
 ---
 name: related-paper-retriever
-description: Retrieve and structure related math research papers from a research profile using Codex's available search or browsing capability. Use when Codex should find same-problem, same-method, direct-extension, theoretical-background, or benchmark papers, record metadata and relevance reasons, and avoid building a custom retriever or crawler.
+description: Retrieve and structure related math research papers from a research profile using the active agent's available search or browsing capability. Use when a coding agent should find same-problem, same-method, direct-extension, theoretical-background, or benchmark papers, record metadata and relevance reasons, and avoid building a custom retriever or crawler.
 ---
 
 # Related Paper Retriever
 
 ## Purpose
 
-Use this skill to find related papers for a research profile. The skill does not implement a search engine. It instructs Codex how to search, judge relevance, and write structured candidate-paper artifacts.
+Use this skill to find related papers for a research profile. The skill does not implement a search engine. It instructs the active coding agent how to search, judge relevance, and write structured candidate-paper artifacts.
 
 ## Inputs
 
@@ -20,7 +20,7 @@ Use this skill to find related papers for a research profile. The skill does not
 1. Read `research_profile.json`.
 2. If `human_feedback_state.json` exists, read it before generating queries. Apply `focus_updates`, `negative_preferences`, `paper_decisions`, and `next_step_directives`.
 3. Generate or refine search queries across problem, method, theorem, assumption, application, author, and citation routes.
-4. Use Codex's available search or browsing capability when retrieval is needed.
+4. Use the active agent's available search or browsing capability when retrieval is needed.
 5. Prefer primary paper pages, arXiv, OpenReview, conference pages, author pages, and official PDFs.
 6. For each candidate, record metadata, URL, PDF URL if openly available, relation type, relevance reason, and reading priority hint.
 7. Do not download by default. Mark whether an open PDF was found or whether user-provided PDF access is needed.

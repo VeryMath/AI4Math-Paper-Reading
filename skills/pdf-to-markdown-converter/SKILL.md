@@ -1,6 +1,6 @@
 ---
 name: pdf-to-markdown-converter
-description: Convert local PDF papers to Markdown using a self-contained MinerU workflow. Use when Codex is asked to turn a PDF into a .md file, prepare Markdown input for paper-to-skill extraction, configure MinerU PDF conversion, create or reuse the ai4math Conda environment, or run PDF-to-Markdown preprocessing. The skill installs dependencies into the named Conda environment ai4math, creates .env in the current working directory, prompts interactively for MINERU_API_TOKEN when missing, and writes Markdown output in the current folder by default.
+description: Convert local PDF papers to Markdown using a self-contained MinerU workflow. Use when a coding agent is asked to turn a PDF into a .md file, prepare Markdown input for paper-to-skill extraction, configure MinerU PDF conversion, create or reuse the ai4math Conda environment, or run PDF-to-Markdown preprocessing. The skill installs dependencies into the named Conda environment ai4math, creates .env in the current working directory, prompts interactively for MINERU_API_TOKEN when missing, and writes Markdown output in the current folder by default.
 ---
 
 # Pdf To Markdown Converter

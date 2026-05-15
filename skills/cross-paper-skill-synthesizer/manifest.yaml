@@ -1,0 +1,27 @@
+schema_version: 1
+name: cross-paper-skill-synthesizer
+version: 0.1.0
+scope: ai4math-paper-skills
+description: Cluster, merge, generalize, and rank proof-pattern SkillCards across multiple papers.
+entrypoint: SKILL.md
+requires_env: {}
+requires_tools:
+  - agent-native-read
+  - agent-native-write
+requires_skills:
+  - paper-to-skill-extractor
+input_artifacts:
+  - skill_candidates.json
+  - skill_cards/*.yaml
+  - optional_paper_metadata
+  - optional_human_feedback_state.json
+output_artifacts:
+  - domain_method_map.yaml
+  - merged_skill_cards/*.yaml
+  - synthesis_report.md
+approval_required_for:
+  - skill_card_merge
+  - skill_card_generalization
+  - domain_method_map_acceptance
+  - human_feedback_state_update
+risk_level: low

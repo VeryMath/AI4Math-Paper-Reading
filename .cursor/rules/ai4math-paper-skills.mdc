@@ -1,0 +1,15 @@
+---
+description: AI4Math paper-to-skill workflow routing
+alwaysApply: true
+---
+
+This repository is a coding-agent-neutral AI4Math paper-to-skill workflow.
+
+Use the shared Skill layer under `skills/`; do not create a Cursor-specific workflow fork.
+
+- Read `AGENTS.md` for the repository contract.
+- Read `skills/registry.yaml` for phase routing, input/output contracts, and review gates.
+- For user-facing PDF or Markdown paper processing, prioritize `skills/paper-to-skill-workflow/SKILL.md`.
+- Preserve the original `paper.pdf` when provided and the full converted `paper.md`.
+- Every accepted or review-worthy SkillCard must include `source.paper_md`, `source.start_line`, and `source.end_line`.
+- Keep platform-specific behavior thin; improve the shared `skills/` layer first.

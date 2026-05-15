@@ -1,6 +1,6 @@
 ---
 name: paper-pdf-downloader
-description: Download open-access research-paper PDFs selected from reading_plan.json, candidate_papers.json, or innovation_candidates.json. Use when Codex should save paper.pdf, metadata.json, and a bilingual download report for confirmed paper IDs without bypassing paywalls, and before PDF-to-Markdown conversion or paper-to-skill extraction.
+description: Download open-access research-paper PDFs selected from reading_plan.json, candidate_papers.json, or innovation_candidates.json. Use when a coding agent should save paper.pdf, metadata.json, and a bilingual download report for confirmed paper IDs without bypassing paywalls, and before PDF-to-Markdown conversion or paper-to-skill extraction.
 ---
 
 # Paper PDF Downloader

@@ -1,6 +1,6 @@
 ---
 name: paper-triage-ranker
-description: Rank candidate research papers into must_read, should_read, maybe_read, and skip groups for a paper-to-skill workflow. Use when Codex should combine related-paper and innovation candidates, judge relevance, novelty, proof-pattern value, reading cost, access status, and produce a reading_plan.json with user confirmation checkpoints.
+description: Rank candidate research papers into must_read, should_read, maybe_read, and skip groups for a paper-to-skill workflow. Use when a coding agent should combine related-paper and innovation candidates, judge relevance, novelty, proof-pattern value, reading cost, access status, and produce a reading_plan.json with user confirmation checkpoints.
 ---
 
 # Paper Triage Ranker

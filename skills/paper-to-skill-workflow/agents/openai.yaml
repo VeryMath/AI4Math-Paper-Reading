@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper to Skill Workflow"
+  short_description: "Convert papers and extract reusable proof-pattern SkillCards."
+  default_prompt: "Use this workflow with a paper PDF or Markdown file, preserve the original paper, convert PDF to paper.md when needed, then extract proof-pattern SkillCandidates, SkillCards, and a report with source line evidence."

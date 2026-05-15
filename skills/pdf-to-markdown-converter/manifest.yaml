@@ -1,0 +1,28 @@
+schema_version: 1
+name: pdf-to-markdown-converter
+version: 0.1.0
+scope: ai4math-paper-skills
+description: Convert local paper PDFs to Markdown with preserved conversion artifacts for downstream extraction.
+entrypoint: SKILL.md
+requires_env:
+  conda: ai4math
+  python: ">=3.10"
+requires_tools:
+  - python
+  - conda
+  - optional_mineru_api
+requires_skills:
+  - paper-pdf-downloader
+input_artifacts:
+  - paper.pdf
+  - optional_metadata.json
+  - optional_human_feedback_state.json
+output_artifacts:
+  - paper.md
+  - mineru/
+  - conversion_report.json
+approval_required_for:
+  - dependency_install
+  - external_conversion_api
+  - environment_file_update
+risk_level: medium

@@ -1,6 +1,6 @@
 ---
 name: paper-to-skill-extractor
-description: Extract reusable mathematical research skills from Markdown papers, especially proof-pattern skills such as descent lemmas, inequality relaxations, telescoping bounds, error decompositions, Lyapunov arguments, concentration bounds, Galerkin/Cea arguments, Aubin-Nitsche duality, and Lax-Milgram well-posedness. Use when Codex is asked to turn a math paper, proof, theorem section, convergence analysis, stability analysis, or error analysis into SkillCandidate JSON, SkillCard YAML, or a paper-to-skill report without relying on external LLM APIs.
+description: Extract reusable mathematical research skills from Markdown papers, especially proof-pattern skills such as descent lemmas, inequality relaxations, telescoping bounds, error decompositions, Lyapunov arguments, concentration bounds, Galerkin/Cea arguments, Aubin-Nitsche duality, and Lax-Milgram well-posedness. Use when a coding agent is asked to turn a math paper, proof, theorem section, convergence analysis, stability analysis, or error analysis into SkillCandidate JSON, SkillCard YAML, or a paper-to-skill report without relying on external LLM APIs.
 ---
 
 # Paper To Skill Extractor

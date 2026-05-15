@@ -1,6 +1,6 @@
 ---
 name: cross-paper-skill-synthesizer
-description: Cluster, deduplicate, generalize, and rank proof-pattern SkillCandidates or SkillCards extracted from multiple papers. Use when Codex should synthesize single-paper extractions into a domain method map, merged SkillCards, and a synthesis report for an AI4Math skill library.
+description: Cluster, deduplicate, generalize, and rank proof-pattern SkillCandidates or SkillCards extracted from multiple papers. Use when a coding agent should synthesize single-paper extractions into a domain method map, merged SkillCards, and a synthesis report for an AI4Math skill library.
 ---
 
 # Cross Paper Skill Synthesizer
