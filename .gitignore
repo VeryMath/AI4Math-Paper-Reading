@@ -10,8 +10,6 @@ outputs_markdown/
 **/mineru/
 **/paper.pdf
 dist/
-docs/
-tests/
 
 # Keep the public trial example reproducible from PDF inputs.
 !examples/auto_research_trial/seed_papers/*/paper.pdf
