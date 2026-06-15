@@ -1,6 +1,6 @@
 # OpenCode Loading Notes
 
-This repository is a coding-agent-neutral AI4Math paper-to-skill workflow.
+This repository is a coding-agent-neutral AI4Math paper-to-skill workflow. The shared Skill layer lives under `skills/`.
 
 ## Use
 
@@ -11,4 +11,4 @@ This repository is a coding-agent-neutral AI4Math paper-to-skill workflow.
 
 ## Boundary
 
-Do not fork platform-specific behavior into `.opencode/`. Improve the shared `skills/` layer first.
+Do not fork platform-specific behavior into `.opencode/`. Improve the shared Skill layer under `skills/` first.

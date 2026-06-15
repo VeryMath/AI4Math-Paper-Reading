@@ -30,6 +30,21 @@ seed papers
 - Every extracted Skill must keep source line references.
 - Keep each Skill narrow: retrieval, triage, download, conversion, extraction, and synthesis are separate responsibilities.
 
+## Installation / Loading
+
+Use the repository checkout first. Ask your coding agent to read:
+
+```text
+AGENTS.md
+SKILL.md
+skills/registry.yaml
+```
+
+If your agent supports local Skill discovery, install or link this repository or
+the relevant concrete Skill folder into that agent's Skill path and reload the
+agent if needed. Platform notes live in `CLAUDE.md`, `GEMINI.md`,
+`.codex/INSTALL.md`, and `.opencode/INSTALL.md`.
+
 ## Quick Start
 
 Give a coding agent a PDF and an output directory:
@@ -54,6 +69,22 @@ SkillCards, and report.md with source line references back to paper.md.
 ```
 
 If you already have `paper.md`, use the same workflow and provide the Markdown file as input. The workflow skips PDF conversion and runs extraction directly.
+
+## How To Interact
+
+Use a checkpoint loop:
+
+```text
+paper or research goal -> phase routing -> plan -> approve / revise / reject / skip
+                       -> approved conversion, extraction, retrieval, or synthesis
+                       -> evidence report -> next checkpoint
+```
+
+Use `approve` to run a proposed step, `revise` to update the plan or research
+focus, `reject` to stop the path, and `skip` to move past a phase. The agent
+should preserve original PDFs and Markdown, cite source lines for accepted or
+review-worthy SkillCards, and ask before downloads, broad retrieval expansion,
+or final library insertion decisions.
 
 ## Skill Chain
 

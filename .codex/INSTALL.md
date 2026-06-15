@@ -1,6 +1,6 @@
 # Codex Loading Notes
 
-This repository is a coding-agent-neutral AI4Math paper-to-skill workflow. Codex is the reference operator, but the workflow should stay portable across coding agents.
+This repository is a coding-agent-neutral AI4Math paper-to-skill workflow. Codex is the reference operator, but the shared Skill layer should stay portable across coding agents.
 
 ## Use
 
@@ -11,4 +11,4 @@ This repository is a coding-agent-neutral AI4Math paper-to-skill workflow. Codex
 
 ## Boundary
 
-Do not fork platform-specific behavior into `.codex/`. Improve the shared `skills/` layer first.
+Do not fork platform-specific behavior into `.codex/`. Improve the shared Skill layer under `skills/` first.
