@@ -1,5 +1,7 @@
 # ai4math-paper-skills
 
+Chinese guide: [README.zh-CN.md](README.zh-CN.md)
+
 `ai4math-paper-skills` is a coding-agent-neutral paper-to-skill workflow module for AI4Math auto research.
 
 本项目不是论文总结器，也不是完整的 auto research 主仓库。它是 AI4Math auto research 的论文 Skill 子模块：让 coding agent 从论文中识别可迁移的证明套路、理论分析套路和方法论结构，生成可复核、可入库的 Skill Card。Codex 是参考 operator，但 Skill 层应保持可被 Claude Code、Gemini、OpenCode、Cursor 等 coding agent 使用。
