@@ -2,9 +2,23 @@
 
 [English](README.md) | 简体中文
 
+本中文 README 聚焦安装、交互和 AI4Math 角色；完整维护细节见英文 README。
+
 `ai4math-paper-skills` 是 AI4Math auto research 的论文到 Skill 工作流模块。
 它不是论文摘要器，而是让 coding agent 从论文中抽取可迁移的证明套路、理论分析套路和
 方法结构，生成可复核、可入库的 Skill Card。
+
+## AI4Math 角色
+
+这个 Skill 是 AI4Math 体系里的文献到方法抽取层。当论文需要转化为可复用 SkillCards、
+proof-pattern candidates、method maps 或 research profiles，并继续交给发现、证明、优化、
+复现等 Skill 使用时，优先用它。
+
+## 交接
+
+上游通常是 `paper.pdf`、`paper.md`、seed papers 或用户对研究方向的反馈。下游可以交给
+`discover-math-problems` 生成新猜想，交给 `agentic-rethlas-proving` 测试 proof pattern，
+交给优化 Skills 使用抽取出的优化方法，或交给计算复现 Skill 运行论文代码和实验。
 
 ## 安装 / 加载
 
