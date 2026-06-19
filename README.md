@@ -2,19 +2,22 @@
 
 Chinese guide: [README.zh-CN.md](README.zh-CN.md)
 
-`paper-to-skill` is a standalone coding-agent skill for turning papers into reusable SkillCards, proof-pattern candidates, method maps, and review reports. It is not a paper summarizer: the goal is to preserve the source paper, extract reusable reasoning patterns with source references, and produce artifacts that a human can review or curate.
+`paper-to-skill` helps a coding agent turn papers into reusable SkillCards, proof-pattern candidates, method maps, and review reports.
 
-## What This Skill Does
+It is not a paper summarizer: the goal is to preserve source material, extract reusable reasoning patterns, and keep source references reviewable.
 
-This standalone skill helps a coding agent:
+## When To Use It
 
-- preserve an input `paper.pdf` or `paper.md`;
-- convert PDF to Markdown when needed;
-- extract proof patterns, theoretical-analysis routines, algorithmic methods, and reusable SkillCards;
-- cite source lines back to the converted paper text;
-- synthesize multiple papers into a compact method map when requested.
+Use this skill when you have:
 
-Use it directly when you want a paper turned into inspectable, reusable research-method artifacts.
+- a `paper.pdf` or `paper.md` that should become structured method artifacts;
+- proof patterns, theoretical-analysis routines, or algorithmic methods to extract;
+- multiple papers that should be synthesized into a compact method map;
+- a need for source-line references back to the converted paper text.
+
+## What It Produces
+
+The agent should preserve the original paper, create `paper.md` when needed, extract SkillCandidates and SkillCards, and write `report.md` with source references.
 
 ## Current Direction
 
@@ -42,9 +45,7 @@ seed papers
 - Every extracted Skill must keep source line references.
 - Keep each Skill narrow: retrieval, triage, download, conversion, extraction, and synthesis are separate responsibilities.
 
-## Installation / Loading
-
-### One-line Agent Install
+## Installation
 
 Copy this to your coding agent:
 

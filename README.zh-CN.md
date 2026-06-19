@@ -2,24 +2,24 @@
 
 [English](README.md) | 简体中文
 
-`paper-to-skill` 是一个独立的 coding-agent skill，用来把论文转换成可复用的 SkillCards、proof-pattern candidates、method maps 和 review reports。
-它不是论文摘要器；核心目标是保留原始论文，带 source references 抽取可迁移推理模式，并生成可由人类 review 或整理入库的 artifacts。
+`paper-to-skill` 帮助 coding agent 把论文转换成 reusable SkillCards、proof-pattern candidates、method maps 和 review reports。
 
-## 这个 Skill 做什么
+它不是论文摘要器：核心目标是保留 source material，抽取可迁移推理模式，并让 source references 可 review。
 
-这个独立 Skill 帮助 coding agent：
+## 适合什么任务
 
-- 保留输入的 `paper.pdf` 或 `paper.md`；
-- 需要时把 PDF 转成 Markdown；
-- 抽取 proof patterns、theoretical-analysis routines、algorithmic methods 和 reusable SkillCards；
-- 把 source lines 引回转换后的论文文本；
-- 在需要时把多篇论文综合成紧凑的 method map。
+当你有这些输入或需求时使用：
 
-当你希望把论文变成可检查、可复用的研究方法 artifacts 时，可以直接使用它。
+- 需要变成结构化 method artifacts 的 `paper.pdf` 或 `paper.md`；
+- 需要抽取的 proof patterns、theoretical-analysis routines 或 algorithmic methods；
+- 需要综合成紧凑 method map 的多篇论文；
+- 需要回指到转换后论文文本的 source-line references。
 
-## 安装 / 加载
+## 会产出什么
 
-### 一句话安装
+Agent 应保留原始论文，必要时创建 `paper.md`，抽取 SkillCandidates 和 SkillCards，并写带 source references 的 `report.md`。
+
+## 安装
 
 把下面这句话发给你的 coding agent：
 
