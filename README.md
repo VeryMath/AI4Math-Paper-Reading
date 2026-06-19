@@ -2,24 +2,19 @@
 
 Chinese guide: [README.zh-CN.md](README.zh-CN.md)
 
-`paper-to-skill` is a coding-agent-neutral paper-to-skill workflow module for AI4Math auto research.
+`paper-to-skill` is a standalone coding-agent skill for turning papers into reusable SkillCards, proof-pattern candidates, method maps, and review reports. It is not a paper summarizer: the goal is to preserve the source paper, extract reusable reasoning patterns with source references, and produce artifacts that a human can review or curate.
 
-本项目不是论文总结器，也不是完整的 auto research 主仓库。它是 AI4Math auto research 的论文 Skill 子模块：让 coding agent 从论文中识别可迁移的证明套路、理论分析套路和方法论结构，生成可复核、可入库的 Skill Card。Codex 是参考 operator，但 Skill 层应保持可被 Claude Code、Gemini、OpenCode、Cursor 等 coding agent 使用。
+## What This Skill Does
 
-## AI4Math Role
+This standalone skill helps a coding agent:
 
-This skill is the literature-to-method extraction layer in the AI4Math stack.
-Use it when papers should become reusable SkillCards, proof-pattern candidates,
-method maps, or research profiles that later discovery, proving, optimization,
-or reproduction skills can act on.
+- preserve an input `paper.pdf` or `paper.md`;
+- convert PDF to Markdown when needed;
+- extract proof patterns, theoretical-analysis routines, algorithmic methods, and reusable SkillCards;
+- cite source lines back to the converted paper text;
+- synthesize multiple papers into a compact method map when requested.
 
-## Handoff
-
-Upstream input is usually `paper.pdf`, `paper.md`, seed papers, or user feedback
-about research direction. Handoff downstream to `discover-math-problems` for new
-conjectures, to `rethlas-proving` for proof-pattern testing, to
-optimization Skills for extracted optimization methods, or to computational
-reproduction when a paper's code or experiments should be run.
+Use it directly when you want a paper turned into inspectable, reusable research-method artifacts.
 
 ## Current Direction
 
@@ -49,7 +44,8 @@ seed papers
 
 ## Installation / Loading
 
-Use the repository checkout first. Ask your coding agent to read:
+Clone or open this skill repository in your coding-agent environment. Then ask
+your coding agent to read:
 
 ```text
 AGENTS.md

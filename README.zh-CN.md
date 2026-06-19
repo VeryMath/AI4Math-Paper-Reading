@@ -2,27 +2,24 @@
 
 [English](README.md) | 简体中文
 
-本中文 README 聚焦安装、交互和 AI4Math 角色；完整维护细节见英文 README。
+`paper-to-skill` 是一个独立的 coding-agent skill，用来把论文转换成可复用的 SkillCards、proof-pattern candidates、method maps 和 review reports。
+它不是论文摘要器；核心目标是保留原始论文，带 source references 抽取可迁移推理模式，并生成可由人类 review 或整理入库的 artifacts。
 
-`paper-to-skill` 是 AI4Math auto research 的论文到 Skill 工作流模块。
-它不是论文摘要器，而是让 coding agent 从论文中抽取可迁移的证明套路、理论分析套路和
-方法结构，生成可复核、可入库的 Skill Card。
+## 这个 Skill 做什么
 
-## AI4Math 角色
+这个独立 Skill 帮助 coding agent：
 
-这个 Skill 是 AI4Math 体系里的文献到方法抽取层。当论文需要转化为可复用 SkillCards、
-proof-pattern candidates、method maps 或 research profiles，并继续交给发现、证明、优化、
-复现等 Skill 使用时，优先用它。
+- 保留输入的 `paper.pdf` 或 `paper.md`；
+- 需要时把 PDF 转成 Markdown；
+- 抽取 proof patterns、theoretical-analysis routines、algorithmic methods 和 reusable SkillCards；
+- 把 source lines 引回转换后的论文文本；
+- 在需要时把多篇论文综合成紧凑的 method map。
 
-## 交接
-
-上游通常是 `paper.pdf`、`paper.md`、seed papers 或用户对研究方向的反馈。下游可以交给
-`discover-math-problems` 生成新猜想，交给 `rethlas-proving` 测试 proof pattern，
-交给优化 Skills 使用抽取出的优化方法，或交给计算复现 Skill 运行论文代码和实验。
+当你希望把论文变成可检查、可复用的研究方法 artifacts 时，可以直接使用它。
 
 ## 安装 / 加载
 
-优先从当前仓库 checkout 使用。让 coding agent 读取：
+在你的 coding-agent 环境里 clone 或打开这个 skill 仓库，然后让 coding agent 读取：
 
 ```text
 AGENTS.md
