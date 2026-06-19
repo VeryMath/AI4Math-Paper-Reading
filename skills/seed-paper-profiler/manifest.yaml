@@ -1,7 +1,7 @@
 schema_version: 1
 name: seed-paper-profiler
 version: 0.1.0
-scope: ai4math-paper-skills
+scope: paper-to-skill
 description: Build a research-interest profile from seed papers, abstracts, notes, or existing extraction artifacts.
 entrypoint: SKILL.md
 requires_env: {}

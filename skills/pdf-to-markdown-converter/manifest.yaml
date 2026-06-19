@@ -1,7 +1,7 @@
 schema_version: 1
 name: pdf-to-markdown-converter
 version: 0.1.0
-scope: ai4math-paper-skills
+scope: paper-to-skill
 description: Convert local paper PDFs to Markdown with preserved conversion artifacts for downstream extraction.
 entrypoint: SKILL.md
 requires_env:

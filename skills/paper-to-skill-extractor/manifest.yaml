@@ -1,7 +1,7 @@
 schema_version: 1
 name: paper-to-skill-extractor
 version: 0.1.0
-scope: ai4math-paper-skills
+scope: paper-to-skill
 description: Extract reusable proof-pattern SkillCandidates and SkillCards from Markdown papers with source line evidence.
 entrypoint: SKILL.md
 requires_env: {}

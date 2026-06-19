@@ -1,7 +1,7 @@
 schema_version: 1
 name: innovation-paper-finder
 version: 0.1.0
-scope: ai4math-paper-skills
+scope: paper-to-skill
 description: Find papers with possible new proof ideas, methods, assumptions, bounds, lower bounds, or cross-domain transfers.
 entrypoint: SKILL.md
 requires_env: {}

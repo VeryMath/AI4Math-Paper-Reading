@@ -1,8 +1,8 @@
-# ai4math-paper-skills
+# paper-to-skill
 
 Chinese guide: [README.zh-CN.md](README.zh-CN.md)
 
-`ai4math-paper-skills` is a coding-agent-neutral paper-to-skill workflow module for AI4Math auto research.
+`paper-to-skill` is a coding-agent-neutral paper-to-skill workflow module for AI4Math auto research.
 
 本项目不是论文总结器，也不是完整的 auto research 主仓库。它是 AI4Math auto research 的论文 Skill 子模块：让 coding agent 从论文中识别可迁移的证明套路、理论分析套路和方法论结构，生成可复核、可入库的 Skill Card。Codex 是参考 operator，但 Skill 层应保持可被 Claude Code、Gemini、OpenCode、Cursor 等 coding agent 使用。
 
@@ -17,7 +17,7 @@ or reproduction skills can act on.
 
 Upstream input is usually `paper.pdf`, `paper.md`, seed papers, or user feedback
 about research direction. Handoff downstream to `discover-math-problems` for new
-conjectures, to `agentic-rethlas-proving` for proof-pattern testing, to
+conjectures, to `rethlas-proving` for proof-pattern testing, to
 optimization Skills for extracted optimization methods, or to computational
 reproduction when a paper's code or experiments should be run.
 
@@ -139,7 +139,7 @@ The shared product is the Skill layer under `skills/`. Platform-specific files a
 - `GEMINI.md`: Gemini orientation.
 - `.codex/INSTALL.md`: Codex loading notes.
 - `.opencode/INSTALL.md`: OpenCode loading notes.
-- `.cursor/rules/ai4math-paper-skills.mdc`: Cursor rule entrypoint.
+- `.cursor/rules/paper-to-skill.mdc`: Cursor rule entrypoint.
 - `.github/copilot-instructions.md`: GitHub Copilot coding agent instructions.
 
 All adapters should point back to `skills/registry.yaml` and should not fork workflow behavior.

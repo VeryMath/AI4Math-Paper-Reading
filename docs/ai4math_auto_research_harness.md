@@ -240,7 +240,7 @@ Purpose:
 Existing module:
 
 ```text
-ai4math-paper-skills
+paper-to-skill
 ```
 
 Relevant Skills:
@@ -444,7 +444,7 @@ Goal:
 Primary repository:
 
 ```text
-ai4math-paper-skills
+paper-to-skill
 ```
 
 ### Phase 2: Decision Harness

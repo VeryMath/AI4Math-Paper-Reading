@@ -1,9 +1,9 @@
 ---
-name: ai4math-paper-skills
+name: paper-to-skill
 description: Use when extracting reusable AI4Math research skills from papers, especially PDF-to-SkillCard workflows, paper triage, PDF preparation, proof-pattern extraction, and cross-paper SkillCard synthesis for a coding-agent-neutral paper-to-skill workflow.
 ---
 
-# AI4Math Paper Skills
+# Paper To Skill
 
 This repository is a Skill-first paper-to-skill workflow package for AI4Math auto research. Codex is the reference operator, but the shared Skill layer is intended for any capable coding agent.
 
