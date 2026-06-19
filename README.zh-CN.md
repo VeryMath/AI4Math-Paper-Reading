@@ -19,18 +19,15 @@
 
 ## 安装 / 加载
 
-在你的 coding-agent 环境里 clone 或打开这个 skill 仓库，然后让 coding agent 读取：
+### 一句话安装
+
+把下面这句话发给你的 coding agent：
 
 ```text
-AGENTS.md
-SKILL.md
-skills/registry.yaml
+请帮我安装 `paper-to-skill` skill，链接是：https://github.com/VeryMath/AI4Math-Paper-Reading.git，分支：kn-Xu。请读取 `.agent.md`，安装其中声明的 Skill entrypoint，验证 `$paper-to-skill` 可用，并告诉我是否需要重启 agent。
 ```
 
-如果目标 agent 支持本地 Skill discovery，可以把本仓库或相关 concrete Skill folder
-安装或软链接到它的 Skill 路径，然后按需 reload 或 restart。Codex、Claude、Gemini
-和 OpenCode 的薄 adapter 分别见 `.codex/INSTALL.md`、`CLAUDE.md`、`GEMINI.md`
-和 `.opencode/INSTALL.md`。
+如果你已经有这个 skill 仓库的本地文件夹，把链接换成本地路径即可。clone、link、配置、reload/restart 检查和验证都交给 coding agent 处理。
 
 ## 快速开始
 
