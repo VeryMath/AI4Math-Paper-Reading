@@ -1,8 +1,8 @@
-# 数学论文 AI 助手 — Claude Code skills
+# Math Paper Reading - AI4Math Skill Package
 
 The English version of the README is placed below the Chinese version.
 
-该仓库为 Claude Code 提供了一套高度专业、环环相扣的系统提示词（Skills），旨在将 Claude 打造为具备顶尖数学科研能力的 AI 助理。
+该技能包提供了一套高度专业、环环相扣的系统提示词（Skills），用于构建面向数学论文精读、结构提取、证明依赖分析和文献管理的 AI4Math 助理。
 
 本系统采用了**数据驱动架构（Data-Driven Architecture）**。其核心逻辑是先通过结构提取将论文转化为 Ground Truth JSON 文件，随后所有深度阅读、图谱渲染、文献检索等操作均严格基于该结构化数据执行，从而杜绝大模型的逻辑幻觉。
 
@@ -62,10 +62,10 @@ The English version of the README is placed below the Chinese version.
 
 ## 💻 使用指南
 
-要在 Claude Code 中使用此套件，请务必在每次开启新会话时，**首先让 Claude 加载并遵守路由中枢的指令**：
+要使用此套件，请务必在每次开启新会话时，**首先让 AI 助手加载并遵守路由中枢的指令**：
 
 1. **环境准备**：将 `agent_router.md` 和所有 5 个 `skill_*.md` 文件放入您的工作目录。
-2. **初始化路由（关键第一步）**：启动 Claude Code 后，**优先发送以下指令**，确立 Agent 的工作模式：
+2. **初始化路由（关键第一步）**：启动会话后，**优先发送以下指令**，确立 Agent 的工作模式：
 > *"请读取本地的 `agent_router.md` 文件，明确你作为首席数学科研 AI 助理的身份，并严格遵守其中的 Master Router SOP 作为本次会话的核心调度指令。准备好后请回复我。"*
 
 
@@ -83,9 +83,9 @@ The English version of the README is placed below the Chinese version.
 每次执行完毕后，Agent 会确认相关成果（JSON、Markdown 报告、依赖图文件或数据库更新）已成功保存，并在完成当前环节后清理上下文，准备执行下一个任务。
 
 
-# Math Paper AI Assistant — Claude Code Skills
+# Math Paper Reading - AI4Math Skill Package
 
-This repository provides Claude Code with a highly specialized, interlocking set of system prompts (Skills) designed to transform Claude into an AI assistant with top-tier mathematical research capabilities.
+This package provides a specialized, interlocking set of AI4Math skill instructions for structured mathematical paper reading, theorem dependency extraction, proof-path analysis, and reference management.
 
 The system adopts a **Data-Driven Architecture**. Its core logic first converts a paper into a Ground Truth JSON file through structure extraction. All subsequent operations — deep reading, graph rendering, literature retrieval, etc. — are executed strictly based on this structured data, thereby eliminating the logical hallucinations of large models.
 
@@ -145,13 +145,13 @@ The system is centrally orchestrated by a master routing hub, following a "route
 
 ## 💻 Usage Guide
 
-To use this suite within Claude Code, you must, at the start of every new session, **first have Claude load and follow the instructions of the routing hub**:
+To use this suite with an AI coding agent, start every new session by **loading and following the routing hub instructions**:
 
 1. **Environment setup:** Place `agent_router.md` and all 5 `skill_*.md` files in your working directory.
-2. **Initialize the router (critical first step):** After launching Claude Code, **immediately send the following command** to establish the Agent's working mode:
+2. **Initialize the router (critical first step):** After launching the session, **immediately send the following command** to establish the Agent's working mode:
 > *"Please read the local `agent_router.md` file, clarify your role as the chief mathematical research AI assistant, and strictly adhere to the Master Router SOP as the core scheduling directive for this session. Reply when ready."*
 
-3. **Issue research tasks:** Once the routing mechanism is active, you no longer need to specify a particular skill file. Simply describe your research needs in natural language, and Claude will automatically load the required modules on demand. For example:
+3. **Issue research tasks:** Once the routing mechanism is active, you no longer need to specify a particular skill file. Simply describe your research needs in natural language, and the agent will load the required modules on demand. For example:
 * **Structuring and archiving:** “Help me process this new paper, extract its structure, and save it in my literature notes.” (**Router** will automatically invoke `skill_base` and `skill_reference_manager` in sequence)
 * **Logical deconstruction:** “How was Lemma 3.1 in this paper derived? Please draw its dependency subgraph.” (**Router** will automatically orchestrate `skill_paper_deep_read` and `skill_pathway_proof`)
 * **Backward tracing:** “Trace all external theorems that the proof of this paper depends on.” (**Router** will analyze the JSON and activate `skill_literature_search` to generate search queries)

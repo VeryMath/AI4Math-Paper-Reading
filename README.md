@@ -1,19 +1,79 @@
-# AI4Math Paper Reading
+<div align="center">
 
-AI4Math Paper Reading collects Skill-as-adapter packages for turning
-mathematical papers into structured understanding, reusable workflows, and
-research-assistant routines.
+# AI4Math · Paper Reading
+
+Structured workflows for reading mathematical papers, extracting proof
+dependencies, and turning papers into reusable AI4Math skills.
+
+[中文说明](README.zh-CN.md) · [Skill packages](#skill-packages) · [Quick start](#quick-start) · [Security model](#security-and-scope)
+
+![version](https://img.shields.io/badge/version-0.1.0-blue)
+![skills](https://img.shields.io/badge/skills-2-2ea44f)
+![license](https://img.shields.io/badge/license-MIT-green)
+
+</div>
+
+## What This Repository Is
+
+This repository is the AI4Math home for paper-reading skills. It does not try
+to be a single monolithic agent. Instead, each package under `skills/` owns a
+focused workflow, its own README, and the agent instructions needed to run it.
+
+Use the root page as the public map, then open the package that matches your
+task.
 
 ## Skill Packages
 
-| Package | Purpose | Entry point |
+| Package | Use it for | Start here |
 | --- | --- | --- |
-| `skills/paper-to-skill-extractor/` | Extract reusable AI4Math skills from Markdown papers. | `SKILL.md`, `README.md` |
-| `skills/skills-math-paper/` | Mathematical paper-reading assistant modules. | `SKILL.md`, `README.md`, `agent_router.md` |
+| [`paper-to-skill-extractor`](skills/paper-to-skill-extractor/) | Extract reusable AI4Math skill cards from Markdown papers and proof sections. | [`README`](skills/paper-to-skill-extractor/README.md) · [`SKILL`](skills/paper-to-skill-extractor/SKILL.md) |
+| [`math-paper-reading`](skills/math-paper-reading/) | Read papers deeply, extract theorem dependencies, build proof pathways, and manage local reference notes. | [`README`](skills/math-paper-reading/README.md) · [`SKILL`](skills/math-paper-reading/SKILL.md) · [`router`](skills/math-paper-reading/agent_router.md) |
 
-## Usage
+## Quick Start
 
-Open the package that matches your paper-reading task, read its README and
-agent instructions, then ask your coding agent to follow that package's
-workflow. Keep paper examples and derived artifacts inside package-local
-directories.
+Clone the repository and choose a package:
+
+```bash
+git clone https://github.com/VeryMath/AI4Math-Paper-Reading.git
+cd AI4Math-Paper-Reading
+```
+
+For reusable skill extraction, start with:
+
+```text
+skills/paper-to-skill-extractor/SKILL.md
+```
+
+For structured paper reading, start with:
+
+```text
+skills/math-paper-reading/agent_router.md
+```
+
+## Repository Layout
+
+```text
+AI4Math-Paper-Reading/
+├── README.md
+├── README.zh-CN.md
+├── SKILL.md
+└── skills/
+    ├── paper-to-skill-extractor/
+    └── math-paper-reading/
+```
+
+Package-local examples are illustrative fixtures. Derived outputs from private
+papers should stay outside git unless they are intentionally sanitized examples.
+
+## Validation
+
+There is no root build step. When changing a package, validate its `SKILL.md`
+and README links, then run any package-local tests or scripts described by that
+package. If you use Codex's local skill validator, run it against the changed
+package directory.
+
+## Security and Scope
+
+Do not commit private papers, unpublished notes, local databases with personal
+annotations, API keys, `.env` files, or generated caches. Keep public examples
+small, source-attributed, and safe to redistribute.

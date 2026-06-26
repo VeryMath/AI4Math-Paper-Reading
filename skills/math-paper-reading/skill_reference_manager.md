@@ -628,7 +628,7 @@ EOF
 
 ## 七、任务链式协作协议（CLI 环境）
 
-> 在 Claude Code CLI 环境中，没有后端路由器拦截 `[SYSTEM-CALL]`。模块间协作通过 Agent 自行读取对应 skill 的提示文件并顺序执行来实现。
+> 在 Agent CLI 环境中，没有后端路由器拦截 `[SYSTEM-CALL]`。模块间协作通过 Agent 自行读取对应 skill 的提示文件并顺序执行来实现。
 
 ### 7.1 结构提取（原 skill_base 模块）
 
@@ -693,7 +693,7 @@ EOF
 
 ---
 
-## 九、文件保存指引（Claude Code CLI 环境）
+## 九、文件保存指引（Agent CLI 环境）
 
 笔记、BibTeX 和引用必须**实际写入磁盘文件**，不得仅输出到终端。
 
