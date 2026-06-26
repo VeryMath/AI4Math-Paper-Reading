@@ -1,9 +1,9 @@
 ---
-name: skills-math-paper
+name: math-paper-reading
 description: Route mathematical paper-reading tasks through structured extraction, dependency analysis, deep reading, literature search, and reference management modules.
 ---
 
-# Math Paper AI Assistant
+# Math Paper Reading
 
 Use this skill when a coding agent needs to read, structure, explain, trace, or
 manage mathematical papers with a data-driven workflow.
