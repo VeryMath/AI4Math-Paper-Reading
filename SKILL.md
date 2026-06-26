@@ -1,0 +1,19 @@
+---
+name: ai4math-paper-reading
+description: Route AI4Math paper-reading tasks to the appropriate bundled skill package.
+---
+
+# AI4Math Paper Reading
+
+Use this repository as a routing layer for mathematical paper-reading
+workflows.
+
+## Packages
+
+- `skills/paper-to-skill-extractor/`: extract reusable AI4Math skills from
+  Markdown papers. Read `SKILL.md` and `README.md` before use.
+- `skills/skills-math-paper/`: paper-reading assistant modules. Start with
+  `README.md` and `agent_router.md`.
+
+Prefer package-local instructions over this router when running a concrete
+workflow.

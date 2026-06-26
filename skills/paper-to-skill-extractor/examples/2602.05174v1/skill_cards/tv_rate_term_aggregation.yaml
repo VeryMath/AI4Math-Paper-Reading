@@ -1,0 +1,45 @@
+name: "tv_rate_term_aggregation"
+zh_name: "TV 误差率逐项拼接"
+category: "proof_pattern"
+status: "accepted_candidate"
+source:
+  paper_title: "Total Variation Rates for Riemannian Flow Matching"
+  paper_md: "paper.md"
+  source_blocks:
+    - "The proof of Theorem 1 integrates Lemma 5.1, bounds the score-vector mismatch and divergence mismatch, and uses sum_k int_{t_k}^{t_{k+1}} (t - t_k) dt = h^2/2 to isolate h and epsilon terms."
+    - "The resulting bound is TV(pi_T, pi_hat_T) <= h C_Lip + epsilon C_eps, with constants assembled from score, vector-field, divergence, and curvature regularity."
+  start_line: 1121
+  end_line: 1190
+description: "Aggregate local score, vector-field, and divergence estimates into a global total-variation rate with separated discretization and learning errors."
+input:
+  - "Integrated TV stability inequality"
+  - "Local h-dependent consistency bounds"
+  - "Epsilon-dependent learned-field bounds"
+output:
+  - "Global TV error rate"
+  - "Separated h and epsilon constants"
+assumptions:
+  - "Initial coupling has zero or controlled TV"
+  - "Local bounds are summable over the grid"
+  - "Early stopping prevents terminal singularity"
+core_steps:
+  - "Insert local estimates into the integrated TV inequality."
+  - "Evaluate grid integrals of (t - t_k)."
+  - "Use Nh <= T to simplify."
+  - "Group terms into C_Lip and C_eps."
+trigger_keywords:
+  - "TV rate"
+  - "discretization error"
+  - "learning error"
+  - "term aggregation"
+limitations:
+  - "Aggregate constants may hide large geometry factors."
+  - "Requires accurate local bounds first."
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 5
+  verifiability: 5
+  agent_callability: 5
+  mathematical_risk: 3
+  total_score: 4.4

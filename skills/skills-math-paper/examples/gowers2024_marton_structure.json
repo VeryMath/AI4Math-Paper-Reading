@@ -1,0 +1,272 @@
+{
+  "paper": {
+    "title": "On a conjecture of Marton",
+    "authors": ["W. T. Gowers", "Ben Green", "Freddie Manners", "Terence Tao"],
+    "venue": "[UNKNOWN]",
+    "year": 2024,
+    "arxiv_id": "2311.05762",
+    "source_file": "pfr2-submit.tex",
+    "language": "EN",
+    "analysis_date": "2026-05-15",
+    "skill_version": "4.2",
+    "paper_type": ["纯证明型"],
+    "complexity_estimate": {
+      "entity_count_estimate": 25,
+      "proof_directions": 1,
+      "skill2_effort": "medium"
+    }
+  },
+  "section_map": [
+    {"section": "§1", "title": "Introduction", "section_type": "引言", "core_action": "陈述 Marton 猜想及其等价形式，概述主要结果和应用", "key_labels": ["Conjecture 1", "Theorem 1", "Theorem 1.13", "Corollary additive-stability", "Corollary partial-additivity", "Corollary u3-inverse", "Theorem pfr-entropy"], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§2", "title": "Induction on entropy distance", "section_type": "主要结果", "core_action": "引入 tau 泛函和变分框架，证明 entropic PFR 的推导", "key_labels": ["Proposition de-prop", "Lemma lem:100pc"], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§3", "title": "Plan of the remaining argument", "section_type": "证明节", "core_action": "概述反证法策略和四种候选构造（和/纤维），以及终局论证", "key_labels": [], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§4", "title": "Fibring lemma", "section_type": "预备知识", "core_action": "建立纤维引理及其推论，是技术核心工具", "key_labels": ["Proposition projections-1", "Corollary cor-fibre"], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§5", "title": "First estimate", "section_type": "证明节", "core_action": "建立第一个互信息上界估计 I_1 ≤ 2ηk", "key_labels": ["Lemma cond-dist-fact", "Lemma first-useful"], "skill2_action": "正常提取", "appendix": false}
+  ],
+  "paper_summary": "证明了 Katalin Marton 提出的多项式 Freiman-Ruzsa 猜想在特征 2 下的情形。该猜想断言：若 A ⊂ F₂ⁿ 是倍常数为 K 的集合，则 A 可被至多 2K^C 个陪集覆盖，其中 H 是大小不超过 |A| 的子群。本文证明了 C=12 成立。证明采用熵方法和变分框架，通过构造适当的随机变量对并最小化含惩罚项的泛函来完成。",
+  "main_theorems": [
+    {
+      "label": "Conjecture 1 (PFR Conjecture)",
+      "short_title": "PFR conjecture in characteristic 2",
+      "statement": "Suppose that A ⊂ F₂ⁿ is a set with |A+A| ≤ K|A|. Then A is covered by at most 2K^C cosets of some subgroup H ≤ F₂ⁿ of size at most |A|.",
+      "location": {"section": "§1", "page": "1"},
+      "proof_methods": [{"proof_variant": 1, "method": "熵方法 + 变分最小化 + 纤维引理 + Balog-Szemerédi-Gowers 引理", "detail": "通过最小化含惩罚项的 tau 泛函，构造四种候选随机变量对（和与纤维），若均不成功则进入终局论证利用特征 2 的特殊性质导出矛盾", "location": "§2–§8"}],
+      "role": "main"
+    },
+    {
+      "label": "Theorem 1 (pfr)",
+      "short_title": "PFR with C=12",
+      "statement": "Conjecture 1 (pfr-conj) is true with C = 12.",
+      "location": {"section": "§1", "page": "1"},
+      "proof_methods": [{"proof_variant": 1, "method": "由 Theorem pfr-entropy 推导", "detail": "见附录 equiv-app", "location": "§1"}],
+      "role": "corollary"
+    },
+    {
+      "label": "Theorem pfr-entropy",
+      "short_title": "Entropic PFR",
+      "statement": "Let G = F₂ⁿ, and suppose that X¹₀, X²₀ are G-valued random variables. Then there is some subgroup H ≤ G such that d(X¹₀, U_H) + d(X²₀, U_H) ≤ 11·d(X¹₀, X²₀), where U_H denotes the uniform distribution on H. Furthermore, both d(X¹₀, U_H) and d(X²₀, U_H) are at most 6·d(X¹₀, X²₀).",
+      "location": {"section": "§1", "page": "4"},
+      "proof_methods": [{"proof_variant": 1, "method": "由 Proposition de-prop 通过紧性/极小化论证推导", "detail": "选择 tau 泛函的极小元，利用 de-prop 的逆否推出距离为 0，再由 Lemma lem:100pc 得到子群", "location": "§2"}],
+      "role": "main"
+    },
+    {
+      "label": "Proposition de-prop",
+      "short_title": "Decrement proposition",
+      "statement": "Let X₁, X₂ be two G-valued random variables with d(X₁, X₂) > 0. Then there are G-valued random variables X'₁, X'₂ such that τ[X'₁; X'₂] < τ[X₁; X₂], where τ[X₁; X₂] := d(X₁, X₂) + η·d(X¹₀, X₁) + η·d(X²₀, X₂) with η = 1/9.",
+      "location": {"section": "§2", "page": "5"},
+      "proof_methods": [{"proof_variant": 1, "method": "反证法 + 四种构造 + 终局论证", "detail": "假设对所有 X'₁,X'₂ 有 τ 不减，测试和构造与纤维构造，推导互信息上界，进入终局用特征 2 的 pairwise independent 性质导出矛盾", "location": "§3–§8"}],
+      "role": "main"
+    },
+    {
+      "label": "Theorem th13",
+      "short_title": "Weak PFR over Z",
+      "statement": "Let A be a finite subset of Z^D for some D, and suppose that |A+A| ≤ K|A|. Then there is some set A' ⊆ A, |A'| ≥ K^{-C₁/₂}|A|, with dim A' ≤ C₂ log K, for some absolute constants C₁, C₂ > 0.",
+      "location": {"section": "§1", "page": "2"},
+      "proof_methods": [{"proof_variant": 1, "method": "由 pfr-entropy 通过 GMT 论文的论证推导", "detail": "该结果解决了 [GMT] 中提出的猜想", "location": "§1"}],
+      "role": "corollary"
+    }
+  ],
+  "entities": [
+    {
+      "type": "THEOREM",
+      "label": "Theorem 1 (pfr)",
+      "statement": "Conjecture 1 (pfr-conj) is true with C = 12.",
+      "location": {"section": "§1", "page": "1"},
+      "dependencies": ["Theorem pfr-entropy"],
+      "uncertain_dependencies": [],
+      "cited_by": ["Corollary additive-stability", "Corollary partial-additivity", "Corollary u3-inverse", "Theorem th13"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "THEOREM",
+      "label": "Theorem pfr-entropy",
+      "statement": "Let G = F2^n, X1_0, X2_0 be G-valued r.v.'s. Then ∃ subgroup H ≤ G s.t. d(X1_0,U_H) + d(X2_0,U_H) ≤ 11·d(X1_0,X2_0) and both ≤ 6·d(X1_0,X2_0).",
+      "location": {"section": "§1", "page": "4"},
+      "dependencies": ["Proposition de-prop", "Lemma lem:100pc"],
+      "uncertain_dependencies": [],
+      "cited_by": ["Theorem 1 (pfr)"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "PROPOSITION",
+      "label": "Proposition de-prop",
+      "statement": "If d(X1,X2) > 0 then ∃ X'_1,X'_2 such that τ[X'_1;X'_2] < τ[X1;X2].",
+      "location": {"section": "§2", "page": "5"},
+      "dependencies": ["Corollary cor-fibre", "Lemma cond-dist-fact", "Lemma first-useful", "Lemma second-useful", "Lemma lem:abstract"],
+      "uncertain_dependencies": ["Lemma lem-bsg [UNCERTAIN: 通过 Lemma lem:abstract 间接使用]"],
+      "cited_by": ["Theorem pfr-entropy"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "LEMMA",
+      "label": "Lemma lem:100pc",
+      "statement": "If d(X1,X2)=0 then ∃ subgroup H s.t. d(X1,U_H)=d(X2,U_H)=0.",
+      "location": {"section": "§2", "page": "5"},
+      "dependencies": [],
+      "uncertain_dependencies": [],
+      "cited_by": ["Theorem pfr-entropy"],
+      "external_refs": ["[EXTERNAL: tao-entropy Theorem 1.11(i)]"],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "PROPOSITION",
+      "label": "Proposition projections-1",
+      "statement": "Fibring lemma: d(Z1,Z2) ≥ d(π(Z1),π(Z2)) + d(Z1|π(Z1), Z2|π(Z2)).",
+      "location": {"section": "§4", "page": "14"},
+      "dependencies": [],
+      "uncertain_dependencies": [],
+      "cited_by": ["Corollary cor-fibre"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "COROLLARY",
+      "label": "Corollary cor-fibre",
+      "statement": "d(Y1-Y3, Y2-Y4) + d(Y1|Y1-Y3, Y2|Y2-Y4) + I(Y1-Y2:Y2-Y4|Y1-Y2-Y3+Y4) = d(Y1,Y2)+d(Y3,Y4).",
+      "location": {"section": "§4", "page": "15"},
+      "dependencies": ["Proposition projections-1"],
+      "uncertain_dependencies": [],
+      "cited_by": ["Proposition de-prop"],
+      "external_refs": [],
+      "shared_node": true,
+      "auto_labeled": false
+    },
+    {
+      "type": "LEMMA",
+      "label": "Lemma cond-dist-fact",
+      "statement": "d(X|Z, Y|W) ≤ d(X,Y) + ½ I(X:Z) + ½ I(Y:W).",
+      "location": {"section": "§5", "page": "16"},
+      "dependencies": [],
+      "uncertain_dependencies": [],
+      "cited_by": ["Proposition de-prop", "Lemma first-useful", "Lemma lem:abstract"],
+      "external_refs": ["[EXTERNAL: standard entropy identities]"],
+      "shared_node": true,
+      "auto_labeled": false
+    },
+    {
+      "type": "LEMMA",
+      "label": "Lemma first-useful",
+      "statement": "d(X,Y-Z)-d(X,Y) ≤ ½(ent(Y-Z)-ent(Y)) = ½ d(Y,Z) + ¼ ent(Z) - ¼ ent(Y).",
+      "location": {"section": "§5", "page": "16"},
+      "dependencies": ["Lemma cond-dist-fact"],
+      "uncertain_dependencies": ["[EXTERNAL: Madiman inequality / KV inequality]"],
+      "cited_by": ["Proposition de-prop", "Lemma second-useful"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "LEMMA",
+      "label": "Lemma second-useful",
+      "statement": "d(X, Y-Z | Y-Z-Z') - d(X,Y) ≤ ½(ent(Y-Z-Z')+ent(Y-Z)-ent(Y)-ent(Z')).",
+      "location": {"section": "§7", "page": "20"},
+      "dependencies": ["Lemma first-useful"],
+      "uncertain_dependencies": [],
+      "cited_by": ["Proposition de-prop"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "LEMMA",
+      "label": "Lemma lem:abstract",
+      "statement": "If T1+T2+T3=0 then ∃ T'_1,T'_2 with ψ bound involving δ = Σ_{i<j} I(Ti;Tj) and distance terms.",
+      "location": {"section": "§7", "page": "21"},
+      "dependencies": ["Lemma lem-bsg", "Lemma cond-dist-fact"],
+      "uncertain_dependencies": [],
+      "cited_by": ["Proposition de-prop"],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "LEMMA",
+      "label": "Lemma lem-bsg",
+      "statement": "Σ_z p_Z(z) d((A|Z=z),(B|Z=z)) ≤ 3 I(A:B) + 2 ent(Z) - ent(A) - ent(B) for Z = A+B.",
+      "location": {"section": "§A", "page": "27"},
+      "dependencies": [],
+      "uncertain_dependencies": [],
+      "cited_by": ["Lemma lem:abstract"],
+      "external_refs": ["[EXTERNAL: tao-entropy Lemma 3.3]"],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "COROLLARY",
+      "label": "Corollary additive-stability",
+      "statement": "If |{f(x)+f(y)-f(x+y)}| ≤ K then f = g+h with g linear and range(h) = O(K^{C_3}).",
+      "location": {"section": "§1", "page": "3"},
+      "dependencies": ["Theorem 1 (pfr)"],
+      "uncertain_dependencies": [],
+      "cited_by": [],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "COROLLARY",
+      "label": "Corollary partial-additivity",
+      "statement": "If P(f(x+y)=f(x)+f(y)) ≥ 1/K then ∃ homomorphism g with P(f(x)=g(x)) ≫ K^{-C_4}.",
+      "location": {"section": "§1", "page": "3"},
+      "dependencies": ["Theorem 1 (pfr)"],
+      "uncertain_dependencies": [],
+      "cited_by": [],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "COROLLARY",
+      "label": "Corollary u3-inverse",
+      "statement": "If ‖f‖_{U^3(F2^n)} ≥ 1/K then ∃ quadratic P s.t. |2^{-n} Σ f(x)(-1)^{P(x)}| ≫ K^{-C_5}.",
+      "location": {"section": "§1", "page": "3"},
+      "dependencies": ["Theorem 1 (pfr)"],
+      "uncertain_dependencies": [],
+      "cited_by": [],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    },
+    {
+      "type": "THEOREM",
+      "label": "Theorem th13",
+      "statement": "Weak PFR over Z: if |A+A|≤K|A| then ∃ A'⊆A, |A'|≥K^{-C1/2}|A| with dim A'≤C2 log K.",
+      "location": {"section": "§1", "page": "2"},
+      "dependencies": ["Theorem 1 (pfr)"],
+      "uncertain_dependencies": [],
+      "cited_by": [],
+      "external_refs": [],
+      "shared_node": false,
+      "auto_labeled": false
+    }
+  ],
+  "proof_framework": {
+    "center_theorem": "Theorem pfr-entropy",
+    "theorem_relation_map": "Theorem pfr-entropy (中心)\n├── Proposition de-prop (主引理)\n│   ├── Lemma cond-dist-fact (条件距离界)\n│   ├── Lemma first-useful (熵不等式)\n│   ├── Proposition projections-1 (纤维引理)\n│   └── Corollary cor-fibre (纤维引理推论)\n├── Lemma lem:100pc (零距离情形)\n└── → Theorem 1 (组合形式 PFR)\n    └── → Theorem th13 (整数群上的弱 PFR)",
+    "dependency_tree": "",
+    "proof_strategies": [],
+    "timeline": [],
+    "strategy_summary": "本文的核心策略是将组合形式的 PFR 猜想转化为熵形式的等价表述，然后通过极小化一个含惩罚项的 tau 泛函来证明熵形式 PFR。关键在于证明 Proposition de-prop：若两个随机变量的 Ruzsa 熵距离为正，则可构造新的变量对使 tau 泛函严格递减。证明采用反证法，测试四种构造（和与纤维），并利用特征 2 的特殊性质在终局中通过 Balog-Szemerédi-Gowers 引理导出矛盾。"
+  },
+  "completeness_check": {
+    "dependency_integrity": [],
+    "self_containment": "medium",
+    "external_deps": [],
+    "isolated_results": [],
+    "circular_deps": [],
+    "backquery_results": [],
+    "summary": "论文核心技术引自 [GMT] 的熵框架和纤维引理，以及 [tao-entropy] 的熵 Balog-Szemerédi-Gowers 引理。证明在特征 2 下完全自包含，常数 C=12 是具体的。"
+  },
+  "uncertain_log": [],
+  "merge_status": "complete",
+  "user_notes": "",
+  "user_edits": {}
+}

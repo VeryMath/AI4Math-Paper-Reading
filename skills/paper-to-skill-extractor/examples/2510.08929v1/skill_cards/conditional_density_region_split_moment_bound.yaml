@@ -1,0 +1,46 @@
+name: "conditional_density_region_split_moment_bound"
+zh_name: "条件密度分区矩估计"
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: "Mirror Flow Matching with Heavy-Tailed Priors for Generative Modeling on Convex Domains"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Proposition 12 bounds E_{p_{t,x}}[||z_1||^2] uniformly over x and t <= T by first lower-bounding the normalizing constant."
+    - "The proof splits R^d into regions near x/t, far with ||z_1|| >= 1, and far with ||z_1|| <= 1, deriving separate bounds and requiring alpha >= 2d + nu + 2."
+  start_line: 587
+  end_line: 681
+description: "Control moments of a conditional heavy-tailed interpolation law by lower-bounding the normalizer and splitting the state space into geometry-aware regions."
+input:
+  - "Conditional density proportional to interpolation kernel times target density"
+  - "Polynomial tail and local boundedness assumptions"
+  - "Moment order to prove"
+output:
+  - "Uniform conditional moment bound"
+  - "Tail exponent threshold"
+assumptions:
+  - "Target density has sufficient polynomial decay"
+  - "Conditional normalizer admits a lower bound"
+  - "The region split covers all relevant cases"
+core_steps:
+  - "Lower-bound the conditional normalizer."
+  - "Split the integration domain into near and far regions."
+  - "Bound the integrand in each region."
+  - "Check dimension and tail exponents for integrability."
+  - "Sum the region-wise estimates."
+trigger_keywords:
+  - "conditional density"
+  - "region split"
+  - "moment bound"
+  - "heavy tail"
+limitations:
+  - "Region definitions are sensitive to the interpolation formula."
+  - "High mathematical risk if the normalizer or tail exponent is misestimated."
+quality:
+  reusability: 5
+  clarity: 3
+  generality: 4
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 4
+  total_score: 3.65

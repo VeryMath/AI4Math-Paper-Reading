@@ -1,0 +1,45 @@
+name: "manifold_score_regularity_reduction"
+zh_name: "流形 score 正则性归约"
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: "Total Variation Rates for Riemannian Flow Matching"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Section 5.2.1 identifies score regularity E||grad log p_t(X_t)||^2 <= L_t^score as a key input."
+    - "Proposition 5.3 handles compact manifolds, while Proposition 5.4 handles Hadamard manifolds using conditional density decompositions and moment controls."
+  start_line: 375
+  end_line: 3272
+description: "Isolate score square-integrability as a proof obligation and verify it using geometry-specific density, cut-locus, and moment estimates."
+input:
+  - "Interpolating density p_t"
+  - "Geometry-specific conditional density formulas"
+  - "Smoothness and moment assumptions"
+output:
+  - "Bound L_t^score for E||grad log p_t(X_t)||^2"
+  - "Regularity input for TV stability"
+assumptions:
+  - "p_t is positive and differentiable"
+  - "Cut-locus issues are controlled or absent"
+  - "Noncompact geometry has sufficient moment control"
+core_steps:
+  - "State score regularity as a separate lemma."
+  - "Decompose grad log p_t into manageable geometric terms."
+  - "Use compactness or Hadamard structure to control terms."
+  - "Apply moment assumptions to convert pointwise growth into expectation bounds."
+trigger_keywords:
+  - "score regularity"
+  - "grad log p_t"
+  - "Hadamard"
+  - "compact manifold"
+limitations:
+  - "Broad and geometry-specific; should be reviewed before reuse."
+  - "Failure of positivity or smoothness breaks the argument."
+quality:
+  reusability: 4
+  clarity: 3
+  generality: 4
+  verifiability: 3
+  agent_callability: 4
+  mathematical_risk: 5
+  total_score: 3.2

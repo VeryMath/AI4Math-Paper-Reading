@@ -1,0 +1,46 @@
+name: "regularized_barrier_tail_moment_transfer"
+zh_name: "正则化屏障映射的尾部矩控制"
+category: "proof_pattern"
+status: "accepted_candidate"
+source:
+  paper_title: "Mirror Flow Matching with Heavy-Tailed Priors for Generative Modeling on Convex Domains"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Proposition 2 states that a regularized log-barrier plus quadratic term gives W2(nu, mu) <= W_{2,Psi}(nu, mu), and converts boundary-layer mass P(K \\ K_delta) <= C_K delta^beta into a dual tail bound P(||grad Psi(X)|| >= R) <= C / R^{beta/kappa}."
+    - "The proof computes grad Psi and Hessian Psi, uses convexity to get Hessian Psi >= I, then bounds ||grad Psi(x)|| by C' / delta^kappa on K_delta and converts the boundary-layer probability into a polynomial tail bound."
+  start_line: 84
+  end_line: 515
+description: "Design a regularized barrier/mirror map that simultaneously gives metric error transfer and finite transformed-space moments."
+input:
+  - "Convex domain with smooth convex constraints"
+  - "Boundary-layer mass estimate"
+  - "Barrier exponent and desired moment order"
+output:
+  - "Metric comparison between primal and transformed Wasserstein distances"
+  - "Polynomial tail and finite-moment guarantee in transformed space"
+assumptions:
+  - "Constraint gradients are bounded"
+  - "Boundary-layer mass decays polynomially"
+  - "Quadratic regularization makes the potential strongly convex"
+core_steps:
+  - "Compute gradient and Hessian of the regularized barrier potential."
+  - "Use Hessian lower bound to obtain metric comparison."
+  - "Bound transformed norm on the delta-interior."
+  - "Convert large transformed norm to membership in a primal boundary layer."
+  - "Choose exponent so the transformed tail has the required moment."
+trigger_keywords:
+  - "mirror map"
+  - "boundary layer"
+  - "finite moments"
+  - "barrier regularization"
+limitations:
+  - "Requires explicit boundary-layer probability control."
+  - "Constants can depend strongly on domain geometry."
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 5
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 4.1

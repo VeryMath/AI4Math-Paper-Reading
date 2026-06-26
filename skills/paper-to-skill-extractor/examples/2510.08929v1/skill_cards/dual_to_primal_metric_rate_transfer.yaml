@@ -1,0 +1,46 @@
+name: "dual_to_primal_metric_rate_transfer"
+zh_name: "对偶到原空间的度量误差转移"
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: "Mirror Flow Matching with Heavy-Tailed Priors for Generative Modeling on Convex Domains"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Lemma 8 states that dual-space Lipschitzness transfers to the primal space under the squared Hessian metric."
+    - "Lemma 16 uses a change-of-variables argument and the determinant of Hessian Psi to convert a primal boundary density condition into a dual polynomial tail condition."
+    - "Theorem 9 then follows by combining the mirror-map tail result, Euclidean t-Flow bound, and metric transfer."
+  start_line: 217
+  end_line: 1025
+description: "Transfer a convergence rate from a transformed Euclidean or dual space back to a constrained primal space using metric comparison and density change of variables."
+input:
+  - "Invertible transform or mirror map"
+  - "Transformed-space convergence theorem"
+  - "Primal density or boundary assumptions"
+output:
+  - "Primal-space distribution error guarantee"
+  - "Parameter restrictions needed for transformed assumptions"
+assumptions:
+  - "Metric relation between primal and dual spaces is valid"
+  - "Change of variables applies to the target density"
+  - "Boundary decay implies the required transformed tail bound"
+core_steps:
+  - "Transfer regularity through the metric/isometry."
+  - "Use density change of variables to derive transformed-space assumptions."
+  - "Choose transform parameters to meet theorem thresholds."
+  - "Apply transformed-space convergence and map the result back."
+trigger_keywords:
+  - "dual-to-primal"
+  - "metric transfer"
+  - "change of variables"
+  - "mirror map"
+limitations:
+  - "Needs careful verification of metric and density conventions."
+  - "High risk if the target metric differs from the transformed metric."
+quality:
+  reusability: 4
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 4
+  total_score: 3.6

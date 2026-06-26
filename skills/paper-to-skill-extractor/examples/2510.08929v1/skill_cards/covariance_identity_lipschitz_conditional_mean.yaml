@@ -1,0 +1,46 @@
+name: "covariance_identity_lipschitz_conditional_mean"
+zh_name: "协方差恒等式控制条件均值导数"
+category: "proof_pattern"
+status: "accepted_candidate"
+source:
+  paper_title: "Mirror Flow Matching with Heavy-Tailed Priors for Generative Modeling on Convex Domains"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Lemma 13 differentiates E[Z_1 | Z_t = x], rewrites the derivative as a covariance-like expression, and bounds it by a conditional first moment times a uniform score-kernel factor."
+    - "Proposition 6 then turns Lemma 13 and Lemma 14 into spatial Lipschitzness and temporal regularity of the flow-matching velocity field."
+  start_line: 683
+  end_line: 887
+description: "Bound derivatives of conditional means by rewriting the derivative of a normalized integral as a covariance term."
+input:
+  - "Conditional expectation defined by a differentiable density ratio"
+  - "Moment bounds for the conditioned variable"
+  - "Uniform kernel-derivative factor"
+output:
+  - "Derivative bound for the conditional mean"
+  - "Regularity constants for a velocity field using that conditional mean"
+assumptions:
+  - "Differentiation under the integral sign is valid"
+  - "Conditional first and second moments are finite"
+  - "The kernel derivative can be uniformly bounded away from terminal singularities"
+core_steps:
+  - "Differentiate the numerator-over-denominator formula."
+  - "Rewrite the result as a covariance identity."
+  - "Use norm and Cauchy-Schwarz type bounds."
+  - "Insert conditional moment estimates."
+  - "Substitute into the velocity derivative formula."
+trigger_keywords:
+  - "conditional expectation"
+  - "covariance identity"
+  - "Lipschitz velocity"
+  - "temporal regularity"
+limitations:
+  - "Requires separate justification of smoothness and moment estimates."
+  - "Terminal-time singularities must be excluded or handled separately."
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 5
+  mathematical_risk: 3
+  total_score: 4.05

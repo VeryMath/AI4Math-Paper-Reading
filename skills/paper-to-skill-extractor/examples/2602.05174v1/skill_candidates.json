@@ -1,0 +1,443 @@
+[
+  {
+    "skill_name": "tv_transport_stability_identity",
+    "zh_name": "传输流的全变差稳定性恒等式",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 285,
+      "end_line": 595,
+      "source_blocks": [
+        "Lemma 5.1 gives a differential identity for d/dt TV(X_t,Y_t) in terms of div(tilde v - v) and <grad log p, tilde v - v>.",
+        "The proof writes both laws through the Riemannian continuity equation, differentiates the positive part of p - q, and integrates by parts."
+      ]
+    },
+    "source_span": "Lemma 5.1 and proof: TV derivative under two deterministic manifold transports.",
+    "why_reusable": "This is a portable stability lemma for comparing two ODE-driven probability flows in a strong distributional metric.",
+    "input": [
+      "Two time-dependent vector fields on a manifold",
+      "Laws p_t and q_t induced by the two ODEs",
+      "Continuity equation for both transported densities",
+      "Regularity sufficient for integration by parts"
+    ],
+    "output": [
+      "Differential identity or inequality for d TV(p_t,q_t) / dt",
+      "Two proof obligations: divergence mismatch and score-weighted vector mismatch"
+    ],
+    "assumptions": [
+      "The flows admit densities with enough smoothness",
+      "Boundary terms vanish or the test functions have compact support",
+      "The reference density p_t has a square-integrable score where used",
+      "Vector-field mismatch has integrable divergence"
+    ],
+    "core_steps": [
+      "Write the two density evolutions using the intrinsic continuity equation.",
+      "Differentiate the positive part integral defining TV.",
+      "Subtract the two continuity equations and isolate the mismatch vector field.",
+      "Integrate by parts on the region where p_t - q_t is positive.",
+      "Rewrite grad p as p grad log p.",
+      "Apply absolute values and Cauchy-Schwarz to obtain a usable inequality."
+    ],
+    "trigger_keywords": [
+      "total variation",
+      "continuity equation",
+      "transport stability",
+      "divergence mismatch",
+      "score term",
+      "ODE flow"
+    ],
+    "limitations": [
+      "Requires density regularity and careful handling of boundaries or noncompact support.",
+      "The inequality is only useful after separate score and divergence estimates.",
+      "Manifold versions require intrinsic divergence, gradient, and volume form conventions."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.9,
+    "status": "accepted_candidate",
+    "quality": {
+      "reusability": 5,
+      "clarity": 5,
+      "generality": 5,
+      "verifiability": 5,
+      "agent_callability": 5,
+      "mathematical_risk": 3,
+      "total_score": 4.6
+    }
+  },
+  {
+    "skill_name": "manifold_euler_parallel_transport_interpolation",
+    "zh_name": "流形欧拉格式的平行移动插值",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 313,
+      "end_line": 919,
+      "source_blocks": [
+        "Section 5.1 explains that a naive Euler interpolation freezes a velocity in T_{y_k}M, but an ODE needs a velocity in T_{y_t}M.",
+        "The remedy defines tilde v(t,y_t) by parallel-transporting the frozen velocity along the interpolation geodesic, then uses the inverse of F_{t,h} to express tilde v as a function of (t,x)."
+      ]
+    },
+    "source_span": "Continuous-time interpolation of manifold Euler steps using Exp, inverse footpoint recovery, and parallel transport.",
+    "why_reusable": "This pattern converts a discrete manifold integrator into a continuous ODE so flow-stability lemmas can be applied.",
+    "input": [
+      "Manifold Euler update x_{k+1} = Exp_{x_k}(h b(t_k,x_k))",
+      "Vector field values attached to changing tangent spaces",
+      "A step-size condition making the interpolation map invertible"
+    ],
+    "output": [
+      "A continuous-time interpolated path",
+      "An interpolated vector field tilde v(t,x) defined intrinsically on the manifold",
+      "A bridge from discrete Euler analysis to continuous transport stability"
+    ],
+    "assumptions": [
+      "The exponential-map step stays within an injectivity/invertibility regime",
+      "Parallel transport is defined along the interpolation geodesic",
+      "The vector field is bounded and has controlled covariant derivative",
+      "The manifold geometry admits the needed comparison estimates"
+    ],
+    "core_steps": [
+      "Represent each Euler segment as a geodesic from the previous grid point.",
+      "Parallel-transport the frozen velocity along that geodesic to the current tangent space.",
+      "Define F_{t,h}(x) = Exp_x(h b(t,x)).",
+      "Prove or assume F_{t,h} is invertible for the step-size range.",
+      "Recover the previous grid point by F^{-1} and define tilde v(t,x) using that preimage.",
+      "Apply continuous-time ODE stability tools to the interpolated process."
+    ],
+    "trigger_keywords": [
+      "Riemannian Euler",
+      "parallel transport",
+      "continuous interpolation",
+      "exponential map",
+      "footpoint inverse",
+      "manifold ODE"
+    ],
+    "limitations": [
+      "High risk if F_{t,h} is not injective.",
+      "Requires explicit parallel transport or a way to bound its derivatives.",
+      "Cut locus and conjugate points can invalidate the construction."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.84,
+    "status": "needs_review",
+    "quality": {
+      "reusability": 5,
+      "clarity": 4,
+      "generality": 5,
+      "verifiability": 5,
+      "agent_callability": 5,
+      "mathematical_risk": 4,
+      "total_score": 4.35
+    }
+  },
+  {
+    "skill_name": "jacobi_field_step_size_invertibility",
+    "zh_name": "Jacobi 场步长可逆性控制",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 337,
+      "end_line": 1116,
+      "source_blocks": [
+        "Lemma 5.2 gives step-size requirements that guarantee F_{t,h}(x) = Exp_x(h b(x)) is invertible.",
+        "The proof computes dF_h through a geodesic variation, identifies the variation field as a Jacobi field, parallel-transports it back, and lower-bounds ||dF_h(x)v|| using curvature comparison."
+      ]
+    },
+    "source_span": "Lemma 5.2 and proof: use Jacobi fields and curvature comparison to keep one-step manifold maps invertible.",
+    "why_reusable": "Many manifold discretization proofs require showing a numerical one-step map does not fold; this gives an operational proof skeleton.",
+    "input": [
+      "Map F_h(x) = Exp_x(h b(x))",
+      "Bound on ||b|| and covariant derivative of b",
+      "Injectivity radius and curvature bounds",
+      "Curvature operator bound"
+    ],
+    "output": [
+      "Step-size restriction ensuring dF_h is nonsingular",
+      "Invertibility of the local interpolation map",
+      "Curvature-dependent constants for positive, zero, or negative lower curvature"
+    ],
+    "assumptions": [
+      "The step remains inside the injectivity radius",
+      "The vector field b is bounded and covariantly Lipschitz",
+      "Jacobi comparison applies up to the relevant time",
+      "Curvature bounds are known"
+    ],
+    "core_steps": [
+      "Differentiate F_h by introducing a variation through geodesics.",
+      "Show the differential is the endpoint of a Jacobi field.",
+      "Parallel-transport the Jacobi field to a fixed tangent space.",
+      "Use the Jacobi equation and curvature bounds to control the deviation from v + h nabla_v b.",
+      "Lower-bound the endpoint norm by triangle inequality.",
+      "Choose h so the perturbation cannot cancel the original tangent vector."
+    ],
+    "trigger_keywords": [
+      "Jacobi field",
+      "step size",
+      "invertibility",
+      "exponential map",
+      "curvature comparison",
+      "injectivity radius"
+    ],
+    "limitations": [
+      "Technically delicate and geometry-dependent.",
+      "The sufficient step-size bound may be conservative.",
+      "Requires checking cut-locus and curvature assumptions."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.78,
+    "status": "needs_review",
+    "quality": {
+      "reusability": 5,
+      "clarity": 3,
+      "generality": 5,
+      "verifiability": 4,
+      "agent_callability": 4,
+      "mathematical_risk": 5,
+      "total_score": 3.8
+    }
+  },
+  {
+    "skill_name": "tv_rate_term_aggregation",
+    "zh_name": "TV 误差率逐项拼接",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 1121,
+      "end_line": 1190,
+      "source_blocks": [
+        "The proof of Theorem 1 integrates Lemma 5.1, bounds the score-vector mismatch and divergence mismatch, and uses sum_k int_{t_k}^{t_{k+1}} (t - t_k) dt = h^2/2 to isolate h and epsilon terms.",
+        "The resulting bound is TV(pi_T, pi_hat_T) <= h C_Lip + epsilon C_eps, with constants assembled from score, vector-field, divergence, and curvature regularity."
+      ]
+    },
+    "source_span": "Main theorem proof: integrate TV stability and aggregate local h and epsilon contributions into global rate constants.",
+    "why_reusable": "This is a compact recipe for turning local consistency, score, and divergence estimates into a global total-variation rate.",
+    "input": [
+      "Differential TV stability inequality",
+      "Bounds for score-weighted vector mismatch",
+      "Bounds for divergence mismatch",
+      "Step-size schedule and early stopping time"
+    ],
+    "output": [
+      "Global TV error bound",
+      "Separated numerical h and learning epsilon contributions",
+      "Definitions of aggregate constants"
+    ],
+    "assumptions": [
+      "Initial laws are coupled or equal",
+      "Local bounds hold uniformly or in expectation over the time interval",
+      "The time-step integral terms are summable",
+      "Early stopping avoids terminal singularity"
+    ],
+    "core_steps": [
+      "Start from the integrated TV stability inequality.",
+      "Insert vector-mismatch and divergence-mismatch bounds.",
+      "Compute the grid integral of local truncation terms.",
+      "Use Nh <= T to simplify accumulated constants.",
+      "Group h-dependent and epsilon-dependent terms.",
+      "Name aggregate constants for readability and theorem statement."
+    ],
+    "trigger_keywords": [
+      "TV rate",
+      "term aggregation",
+      "discretization error",
+      "learning error",
+      "early stopping"
+    ],
+    "limitations": [
+      "The quality of the result depends entirely on the local estimates.",
+      "May hide large constants in aggregate notation.",
+      "Nonconstant step schedules require recomputing the summation."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.88,
+    "status": "accepted_candidate",
+    "quality": {
+      "reusability": 5,
+      "clarity": 4,
+      "generality": 5,
+      "verifiability": 5,
+      "agent_callability": 5,
+      "mathematical_risk": 3,
+      "total_score": 4.4
+    }
+  },
+  {
+    "skill_name": "manifold_score_regularity_reduction",
+    "zh_name": "流形 score 正则性归约",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 375,
+      "end_line": 3272,
+      "source_blocks": [
+        "Section 5.2.1 identifies score regularity E||grad log p_t(X_t)||^2 <= L_t^score as a key input.",
+        "Proposition 5.3 handles compact manifolds, while Proposition 5.4 handles Hadamard manifolds using conditional density decompositions and moment controls."
+      ]
+    },
+    "source_span": "Score regularity reductions: isolate square-integrability of grad log p_t as a reusable proof obligation, then verify it by geometry-specific estimates.",
+    "why_reusable": "Many distributional stability proofs require score regularity; this pattern separates the abstract need from geometry-specific verification.",
+    "input": [
+      "Interpolating density p_t on a manifold",
+      "Formula or bounds for conditional densities",
+      "Geometry-specific smoothness or moment assumptions",
+      "Desired time-dependent score bound"
+    ],
+    "output": [
+      "Finite or explicit L_t^score bound",
+      "Conditions under which the TV stability proof is usable",
+      "A checklist for compact versus noncompact geometry"
+    ],
+    "assumptions": [
+      "p_t is positive and smooth enough for grad log p_t",
+      "Cut-locus issues are controlled or absent",
+      "Noncompact cases have sufficient moment/exponential moment control",
+      "Derivative bounds for Exp/Log/Jacobian terms are available"
+    ],
+    "core_steps": [
+      "Identify score square-integrability as a separate lemma.",
+      "For compact manifolds, use bounded geometry and density smoothness.",
+      "For Hadamard manifolds, use absence of cut points and moment-weighted bounds.",
+      "Decompose grad log p_t into conditional density or Jacobian terms.",
+      "Bound each term using comparison geometry and moment assumptions.",
+      "Feed L_t^score into the global TV estimate."
+    ],
+    "trigger_keywords": [
+      "score regularity",
+      "grad log p_t",
+      "compact manifold",
+      "Hadamard manifold",
+      "cut locus",
+      "moment control"
+    ],
+    "limitations": [
+      "Broad extraction spanning many technical lemmas; should be checked by a domain expert before reuse.",
+      "Concrete bounds are geometry-specific.",
+      "Failure of positivity or smoothness of p_t breaks the skill."
+    ],
+    "reusability_score": 4,
+    "confidence": 0.7,
+    "status": "needs_review",
+    "quality": {
+      "reusability": 4,
+      "clarity": 3,
+      "generality": 4,
+      "verifiability": 3,
+      "agent_callability": 4,
+      "mathematical_risk": 5,
+      "total_score": 3.2
+    }
+  },
+  {
+    "skill_name": "spd_curvature_moment_regularization",
+    "zh_name": "SPD 流形曲率矩正则化",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 1336,
+      "end_line": 3682,
+      "source_blocks": [
+        "Proposition B.6 imposes exponential moment conditions and a Riemannian Gaussian prior on SPD(n), then lists expected regularity bounds for v, grad v, time derivatives, and grad div v.",
+        "The proof of Proposition B.6 is reduced to Lemma E.4 and Lemma E.6, which control curvature-amplified terms by moment assumptions and comparison estimates."
+      ]
+    },
+    "source_span": "SPD specialization: exponential moment assumptions compensate for curvature growth and yield expected regularity constants.",
+    "why_reusable": "This gives a blueprint for proving noncompact manifold regularity by pairing curvature comparison with exponential moment assumptions.",
+    "input": [
+      "Hadamard or SPD manifold with curvature bounds",
+      "Riemannian Gaussian-like prior",
+      "Exponential moment condition on the target distribution",
+      "Regularity expressions involving Exp/Log/Jacobian derivatives"
+    ],
+    "output": [
+      "Expected regularity bounds for vector field and divergence terms",
+      "Polynomial dimension and curvature dependence",
+      "Iteration-complexity input constants"
+    ],
+    "assumptions": [
+      "Nonpositive curvature and comparison theorem bounds",
+      "Exponential moments of target distance are finite",
+      "The prior tail is strong enough to control curvature distortion",
+      "Derivative bounds for manifold Exp/Log and Jacobian terms are available"
+    ],
+    "core_steps": [
+      "Express problematic regularity terms through distance and model functions such as s_K(r).",
+      "Use comparison theorems to upper-bound curvature-amplified derivatives.",
+      "Impose exponential moment conditions that dominate the curvature growth.",
+      "Convert pointwise derivative growth into expectation bounds.",
+      "Insert these bounds into the abstract Hadamard TV theorem.",
+      "Simplify constants to obtain iteration complexity."
+    ],
+    "trigger_keywords": [
+      "SPD manifold",
+      "Hadamard manifold",
+      "exponential moment",
+      "curvature distortion",
+      "Riemannian Gaussian",
+      "regularity constants"
+    ],
+    "limitations": [
+      "Highly geometry-specific; the SPD proof cannot be copied blindly to arbitrary manifolds.",
+      "Requires strong moment assumptions.",
+      "Dimension exponents may be loose."
+    ],
+    "reusability_score": 4,
+    "confidence": 0.72,
+    "status": "needs_review",
+    "quality": {
+      "reusability": 4,
+      "clarity": 3,
+      "generality": 3,
+      "verifiability": 4,
+      "agent_callability": 4,
+      "mathematical_risk": 5,
+      "total_score": 3.15
+    }
+  },
+  {
+    "skill_name": "related_work_narrative",
+    "zh_name": "相关工作叙述",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 86,
+      "end_line": 98,
+      "source_blocks": [
+        "The related-work paragraphs compare Riemannian diffusion, sampling, and Euclidean flow-matching analyses."
+      ]
+    },
+    "source_span": "Introduction related-work discussion.",
+    "why_reusable": "Rejected: this is literature positioning, not an operational mathematical proof method.",
+    "input": [
+      "Prior literature"
+    ],
+    "output": [
+      "Research positioning"
+    ],
+    "assumptions": [
+      "Citation context"
+    ],
+    "core_steps": [
+      "Compare prior methods"
+    ],
+    "trigger_keywords": [
+      "related works",
+      "literature",
+      "prior work"
+    ],
+    "limitations": [
+      "No reusable proof steps",
+      "No checkable mathematical transformation"
+    ],
+    "reusability_score": 1,
+    "confidence": 0.96,
+    "status": "rejected",
+    "quality": {
+      "reusability": 1,
+      "clarity": 3,
+      "generality": 1,
+      "verifiability": 1,
+      "agent_callability": 1,
+      "mathematical_risk": 1,
+      "total_score": 1.3
+    }
+  }
+]

@@ -1,0 +1,98 @@
+{
+  "paper": {
+    "title": "Graphs with induced-saturation number zero",
+    "authors": ["Sarah Behrens", "Catherine Erbes", "Michael Santana", "Derrek Yager", "Elyse Yeager"],
+    "venue": "[UNKNOWN]",
+    "year": "[UNKNOWN]",
+    "arxiv_id": "[UNKNOWN]",
+    "source_file": "behrens.tex",
+    "language": "EN",
+    "analysis_date": "2026-05-15",
+    "skill_version": "4.2",
+    "paper_type": ["纯证明型", "构造型"],
+    "complexity_estimate": {
+      "entity_count_estimate": 30,
+      "proof_directions": 2,
+      "skill2_effort": "medium"
+    }
+  },
+  "section_map": [
+    {"section": "§1", "title": "Background and Introduction", "section_type": "引言", "core_action": "定义诱导饱和数 indsat 和 trigraph，概述已有结果和本文贡献", "key_labels": ["Definition trigraph", "Definition indsat", "Definition sis", "Theorem thm:sat", "Observation thm:complement"], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§2", "title": "The Paw", "section_type": "主要结果", "core_action": "构造 paw-诱导饱和图，证明 indsat(n,paw)=0 (n≥7)，刻画所有 paw-诱导饱和图，确定 sis(n,paw)", "key_labels": ["Construction cons:paw", "Proposition paw-prop", "Corollary indsat_paw", "Theorem paw_unique", "Corollary sis paw"], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§3", "title": "Stars", "section_type": "主要结果", "core_action": "构造星图 K_{1,k+1} 的诱导饱和图，证明 indsat(n,K_{1,k+1})=0 并给出 sis 的上下界", "key_labels": ["Construction cons:stars", "Proposition prop:stars2", "Corollary cor:stars", "Theorem bound:stars"], "skill2_action": "正常提取", "appendix": false},
+    {"section": "§4", "title": "The Claw", "section_type": "主要结果", "core_action": "确定 K_{1,3} (claw) 的 indsat 小 n 取值和 sis 的精度", "key_labels": [], "skill2_action": "正常提取", "appendix": false}
+  ],
+  "paper_summary": "研究图的诱导饱和数（induced saturation number）。Martin 和 Smith 引入了 trigraph 的概念来定义诱导饱和数 indsat(n,H)。本文证明了许多常见图的诱导饱和数为零——这意味着存在真正的图（而非 trigraph）是 H-诱导饱和的。对于这类图，引入新参数 sis(n,H) 表示最少边数。完全确定了 paw 的 sis，给出了星图 sis 的紧界，并研究了 claw、C₄、奇圈、匹配等图。",
+  "main_theorems": [
+    {
+      "label": "Theorem thm:sat",
+      "short_title": "Summary of prior indsat results",
+      "statement": "Let H be a graph. (i) For all n ≥ v(H), indsat(n,H) ≤ sat(n,H); in particular indsat(n,H) ∈ O(n). (ii) For all n ≥ m ≥ 3, indsat(n,K_m) = sat(n,K_m). (iii) For all n ≥ m ≥ 2, and for e ∈ E(K_m), indsat(n,K_m-e) = 0; in particular indsat(n,P_3)=0 for all n≥3. (iv) For all n≥4, indsat(n,P_4) = ⌈(n+1)/3⌉.",
+      "location": {"section": "§1", "page": "5"},
+      "proof_methods": [{"proof_variant": 1, "method": "引用 Martin-Smith 的结果并综合已知饱和数结论", "detail": "", "location": "§1"}],
+      "role": "supporting"
+    },
+    {
+      "label": "Corollary indsat_paw",
+      "short_title": "Induced saturation number of paw is 0",
+      "statement": "For n ≥ 7, indsat(n,paw) = 0.",
+      "location": {"section": "§2", "page": "9"},
+      "proof_methods": [{"proof_variant": 1, "method": "通过 Construction cons:paw 构造显式图", "detail": "构造由完全多部图组成的图，每分量至少三部且至多一部大小为 1，其余每部至少 3 个顶点", "location": "§2"}],
+      "role": "main"
+    },
+    {
+      "label": "Theorem paw_unique",
+      "short_title": "Characterization of paw-induced-saturated graphs",
+      "statement": "A graph is paw-induced-saturated if and only if it is as described in Construction 3.1: a graph with at most one trivial component, where each nontrivial component is complete multipartite with at least three parts, at most one part of size 1, and all other parts of size at least 3.",
+      "location": {"section": "§2", "page": "9"},
+      "proof_methods": [{"proof_variant": 1, "method": "结构分析 — 利用 paw-诱导饱和图的性质（每边在三角形中、邻域完全多部、所有非孤立顶点有相同的外部邻域集）逐步确定结构", "detail": "", "location": "§2"}],
+      "role": "main"
+    },
+    {
+      "label": "Corollary sis paw",
+      "short_title": "Exact formula for sis(n,paw)",
+      "statement": "For n ≥ 7, let n ≡ r (mod 7), 0 ≤ r ≤ 6. Then sis(n,paw) = 15n/7 if r=0, and 15⌊n/7⌋ + 4(r-1) if r≠0.",
+      "location": {"section": "§2", "page": "11"},
+      "proof_methods": [{"proof_variant": 1, "method": "由刻画定理导出最紧凑法是最优的 K_{1,3,3} 分量（7顶点15边）加一个至多一个孤立点", "detail": "", "location": "§2"}],
+      "role": "main"
+    },
+    {
+      "label": "Corollary cor:stars",
+      "short_title": "Stars have indsat zero",
+      "statement": "For fixed k ≥ 2 and n ≥ 3^k, indsat(n, K_{1,k+1}) = 0.",
+      "location": {"section": "§3", "page": "15"},
+      "proof_methods": [{"proof_variant": 1, "method": "构造 — 使用 k 个 K₃ 的 Cartesian 积作为基本构件，再调整余数部分", "detail": "", "location": "§3"}],
+      "role": "main"
+    },
+    {
+      "label": "Theorem bound:stars",
+      "short_title": "Bounds on sis for stars",
+      "statement": "For n ≥ 2·3^k and k ≥ 2, there exist constants c₁=c₁(k) and c₂=c₂(k) such that n·k/2 - c₁ ≤ sis(n,K_{1,k+1}) ≤ n·k + c₂.",
+      "location": {"section": "§3", "page": "15"},
+      "proof_methods": [{"proof_variant": 1, "method": "上界通过显式构造，下界通过度数和论证（度≤k-1的顶点数≤k）", "detail": "", "location": "§3"}],
+      "role": "main"
+    }
+  ],
+  "entities": [],
+  "proof_framework": {
+    "center_theorem": "Corollary indsat_paw / Corollary cor:stars",
+    "theorem_relation_map": "",
+    "dependency_tree": "",
+    "proof_strategies": [],
+    "timeline": [],
+    "strategy_summary": "本文主要策略是构造法：对于每个目标图 H，显式构造一个 H-诱导饱和的图 G（即 G 不含 H 为诱导子图，但增删任意一条边都会产生诱导的 H），从而证明 indsat(n,H)=0。对于 paw 和星图，进一步通过对构造的精细分析确定或界定了最小边数参数 sis(n,H)。"
+  },
+  "completeness_check": {
+    "dependency_integrity": [],
+    "self_containment": "high",
+    "external_deps": [],
+    "isolated_results": [],
+    "circular_deps": [],
+    "backquery_results": [],
+    "summary": "论文自包含度高，主要依赖图论基本定义和 Martin-Smith 的 trigraph 框架。对每个定理给出了构造性证明。"
+  },
+  "uncertain_log": [{"location": "paper metadata", "reason": "原文标题页未标注发表年份和期刊/会议信息", "severity": "LOW"}],
+  "merge_status": "complete",
+  "user_notes": "",
+  "user_edits": {}
+}

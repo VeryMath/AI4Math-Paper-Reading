@@ -1,0 +1,45 @@
+name: "manifold_euler_parallel_transport_interpolation"
+zh_name: "流形欧拉格式的平行移动插值"
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: "Total Variation Rates for Riemannian Flow Matching"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Section 5.1 explains that a naive Euler interpolation freezes a velocity in T_{y_k}M, but an ODE needs a velocity in T_{y_t}M."
+    - "The remedy defines tilde v(t,y_t) by parallel-transporting the frozen velocity along the interpolation geodesic, then uses the inverse of F_{t,h} to express tilde v as a function of (t,x)."
+  start_line: 313
+  end_line: 919
+description: "Turn a discrete manifold Euler method into a continuous-time ODE by parallel-transporting frozen velocities and recovering footpoints through an inverse Exp-step map."
+input:
+  - "Riemannian Euler update"
+  - "Exponential map and parallel transport"
+  - "Invertibility condition for the step map"
+output:
+  - "Continuous interpolated vector field"
+  - "ODE representation of the discrete method"
+assumptions:
+  - "Step map remains invertible"
+  - "Parallel transport is well defined along each interpolation geodesic"
+  - "Vector field has bounded size and covariant derivative"
+core_steps:
+  - "Write each Euler segment as an Exp geodesic."
+  - "Parallel-transport frozen velocity to the current tangent space."
+  - "Define F_{t,h} and recover the previous footpoint by inverse mapping."
+  - "Express the interpolated velocity as a function of current time and position."
+trigger_keywords:
+  - "manifold Euler"
+  - "parallel transport"
+  - "continuous interpolation"
+  - "Exp map"
+limitations:
+  - "Cut-locus and noninvertibility issues require expert checking."
+  - "Derivative bounds for the interpolated field may be difficult."
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 5
+  verifiability: 5
+  agent_callability: 5
+  mathematical_risk: 4
+  total_score: 4.35

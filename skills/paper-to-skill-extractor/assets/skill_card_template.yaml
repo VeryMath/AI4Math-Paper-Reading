@@ -1,0 +1,25 @@
+name: ""
+zh_name: ""
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: null
+  paper_md: "paper.md"
+  source_blocks: []
+  start_line: 0
+  end_line: 0
+description: ""
+input: []
+output: []
+assumptions: []
+core_steps: []
+trigger_keywords: []
+limitations: []
+quality:
+  reusability: 1
+  clarity: 1
+  generality: 1
+  verifiability: 1
+  agent_callability: 1
+  mathematical_risk: 5
+  total_score: 0.95
