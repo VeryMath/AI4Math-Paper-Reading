@@ -1,0 +1,45 @@
+name: "spd_curvature_moment_regularization"
+zh_name: "SPD 流形曲率矩正则化"
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: "Total Variation Rates for Riemannian Flow Matching"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Proposition B.6 imposes exponential moment conditions and a Riemannian Gaussian prior on SPD(n), then lists expected regularity bounds for v, grad v, time derivatives, and grad div v."
+    - "The proof of Proposition B.6 is reduced to Lemma E.4 and Lemma E.6, which control curvature-amplified terms by moment assumptions and comparison estimates."
+  start_line: 1336
+  end_line: 3682
+description: "Control noncompact SPD-manifold regularity by pairing curvature comparison estimates with exponential moment assumptions."
+input:
+  - "SPD or Hadamard geometry"
+  - "Riemannian Gaussian prior"
+  - "Exponential distance moment condition"
+output:
+  - "Expected regularity bounds"
+  - "Constants for noncompact TV-rate theorem"
+assumptions:
+  - "Nonpositive curvature and comparison estimates"
+  - "Exponential moments dominate curvature growth"
+  - "Exp/Log/Jacobian derivative bounds are available"
+core_steps:
+  - "Express derivative growth in terms of distance and curvature model functions."
+  - "Use comparison theorems to control geometric derivatives."
+  - "Use exponential moment assumptions to bound expectations."
+  - "Insert regularity constants into the abstract rate theorem."
+trigger_keywords:
+  - "SPD manifold"
+  - "exponential moment"
+  - "curvature distortion"
+  - "Riemannian Gaussian"
+limitations:
+  - "Highly geometry-specific."
+  - "Strong moment assumptions may not hold in applications."
+quality:
+  reusability: 4
+  clarity: 3
+  generality: 3
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 5
+  total_score: 3.15

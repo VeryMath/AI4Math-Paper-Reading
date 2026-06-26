@@ -1,0 +1,387 @@
+[
+  {
+    "skill_name": "regularized_barrier_tail_moment_transfer",
+    "zh_name": "正则化屏障映射的尾部矩控制",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 84,
+      "end_line": 515,
+      "source_blocks": [
+        "Proposition 2 states that a regularized log-barrier plus quadratic term gives W2(nu, mu) <= W_{2,Psi}(nu, mu), and converts boundary-layer mass P(K \\ K_delta) <= C_K delta^beta into a dual tail bound P(||grad Psi(X)|| >= R) <= C / R^{beta/kappa}.",
+        "The proof computes grad Psi and Hessian Psi, uses convexity to get Hessian Psi >= I, then bounds ||grad Psi(x)|| by C' / delta^kappa on K_delta and converts the boundary-layer probability into a polynomial tail bound."
+      ]
+    },
+    "source_span": "Proposition 2 and its proof: regularized barrier Hessian lower bound plus boundary-layer-to-tail conversion.",
+    "why_reusable": "This is a portable method for designing geometry-changing maps that preserve primal error control while guaranteeing finite moments after pushing a constrained distribution to an unconstrained space.",
+    "input": [
+      "Convex domain K = {phi_i(x) < 0} with smooth convex constraints",
+      "Barrier exponent kappa and mirror potential with quadratic regularization",
+      "Boundary-layer probability bound P(K \\ K_delta) <= C_K delta^beta",
+      "Target moment order p"
+    ],
+    "output": [
+      "Strong-convexity metric comparison W2 <= W_{2,Psi}",
+      "Polynomial tail bound for the pushed-forward dual distribution",
+      "Condition kappa < beta / p ensuring finite p-th dual moment"
+    ],
+    "assumptions": [
+      "Each phi_i is smooth and convex with bounded gradient on the domain",
+      "The distribution places at most polynomial mass near the boundary",
+      "The quadratic regularizer is included so Hessian Psi is bounded below by identity",
+      "The chosen kappa is small enough relative to the boundary-layer exponent"
+    ],
+    "core_steps": [
+      "Differentiate the proposed mirror potential and write its Hessian.",
+      "Use convexity of constraints and the quadratic term to prove Hessian Psi >= I.",
+      "Convert Hessian lower bound into Lipschitzness of the inverse mirror map and hence W2 <= W_{2,Psi}.",
+      "Bound ||grad Psi(x)|| on the delta-interior by C' / delta^kappa.",
+      "Use the contrapositive: large dual norm implies the primal point lies in the boundary layer.",
+      "Apply the boundary-layer probability bound and rewrite delta in terms of R to obtain a polynomial tail.",
+      "Choose kappa so the tail exponent exceeds the desired moment order."
+    ],
+    "trigger_keywords": [
+      "mirror map",
+      "log barrier",
+      "boundary layer",
+      "polynomial tail",
+      "finite moments",
+      "Wasserstein transfer",
+      "strong convexity"
+    ],
+    "limitations": [
+      "Requires a usable boundary-layer probability estimate.",
+      "The constants may depend on the domain geometry and constraint gradients.",
+      "The method applies cleanly to convex domains; nonconvex constraints need separate checks.",
+      "If gradients of constraints are unbounded, the tail conversion may fail."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.86,
+    "status": "accepted_candidate",
+    "quality": {
+      "reusability": 5,
+      "clarity": 4,
+      "generality": 5,
+      "verifiability": 4,
+      "agent_callability": 4,
+      "mathematical_risk": 3,
+      "total_score": 4.1
+    }
+  },
+  {
+    "skill_name": "conditional_density_region_split_moment_bound",
+    "zh_name": "条件密度分区矩估计",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 587,
+      "end_line": 681,
+      "source_blocks": [
+        "Proposition 12 bounds E_{p_{t,x}}[||z_1||^2] uniformly over x and t <= T by first lower-bounding the normalizing constant.",
+        "The proof splits R^d into regions near x/t, far with ||z_1|| >= 1, and far with ||z_1|| <= 1, deriving separate bounds and requiring alpha >= 2d + nu + 2."
+      ]
+    },
+    "source_span": "Proof of Proposition 12: normalize the conditional density, split the space into geometric regions, and integrate tail bounds.",
+    "why_reusable": "The proof pattern is useful whenever a conditional law mixes a heavy-tailed prior/interpolation kernel with a heavy-tailed target and one needs x-uniform moment control.",
+    "input": [
+      "Conditional density proportional to kernel_t,x(z) times target density p(z)",
+      "Lower bound on the normalizing constant",
+      "Target density polynomial tail and local boundedness assumptions",
+      "Moment order to control"
+    ],
+    "output": [
+      "Uniform conditional moment bound",
+      "Required tail exponent threshold",
+      "Constants independent of the conditioning location x"
+    ],
+    "assumptions": [
+      "The target density has a polynomial upper tail and is bounded near the origin",
+      "The interpolation kernel has explicit algebraic decay",
+      "The integration regions cover the whole space and are compatible with the conditioning geometry",
+      "The tail exponent is strong enough for the requested moment"
+    ],
+    "core_steps": [
+      "Lower-bound the conditional normalizer on a high-probability ball.",
+      "Define a near-conditioning region around x/t and complementary far regions.",
+      "In the near region, combine tail decay with the normalizer lower bound and check the power of ||x|| is nonpositive.",
+      "In the far large-norm region, extract an x-independent polynomial tail and verify integrability.",
+      "In the far bounded-norm region, use local boundedness of the target density.",
+      "Sum region-wise bounds to get the desired moment estimate."
+    ],
+    "trigger_keywords": [
+      "conditional density",
+      "normalizing constant",
+      "region split",
+      "polynomial tail",
+      "moment bound",
+      "heavy-tailed interpolation"
+    ],
+    "limitations": [
+      "Region choices are problem-specific and must match the interpolation geometry.",
+      "The bound is sensitive to exact tail exponents and dimension factors.",
+      "A weak normalizer lower bound can make the result too loose.",
+      "Needs review if the conditional density is not smooth or not absolutely continuous."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.78,
+    "status": "needs_review",
+    "quality": {
+      "reusability": 5,
+      "clarity": 3,
+      "generality": 4,
+      "verifiability": 4,
+      "agent_callability": 4,
+      "mathematical_risk": 4,
+      "total_score": 3.65
+    }
+  },
+  {
+    "skill_name": "covariance_identity_lipschitz_conditional_mean",
+    "zh_name": "协方差恒等式控制条件均值导数",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 683,
+      "end_line": 887,
+      "source_blocks": [
+        "Lemma 13 differentiates E[Z_1 | Z_t = x], rewrites the derivative as a covariance-like expression, and bounds it by a conditional first moment times a uniform score-kernel factor.",
+        "Proposition 6 then turns Lemma 13 and Lemma 14 into spatial Lipschitzness and temporal regularity of the flow-matching velocity field."
+      ]
+    },
+    "source_span": "Lemmas 13-14 and Proposition 6: derivative of conditional expectation -> covariance identity -> velocity regularity.",
+    "why_reusable": "This gives a transferable route for proving Lipschitzness of flow or score fields expressed through conditional expectations.",
+    "input": [
+      "A velocity field written as an affine term plus a conditional expectation",
+      "Differentiable conditional density with respect to the conditioning variable",
+      "Moment bounds for the conditional target variable",
+      "Uniform bound on the derivative of the log-kernel"
+    ],
+    "output": [
+      "Bound on the spatial derivative of a conditional expectation",
+      "Bound on the time derivative of the conditional expectation",
+      "Spatial Lipschitz and temporal regularity constants for the velocity field"
+    ],
+    "assumptions": [
+      "Differentiation under the integral sign is valid",
+      "Conditional first and second moments are finite and uniform over the time window",
+      "The kernel derivative admits a uniform supremum bound",
+      "The analysis stops before the singular terminal time"
+    ],
+    "core_steps": [
+      "Differentiate the ratio defining the conditional expectation.",
+      "Rewrite the derivative as E[XY^T] - E[X]E[Y]^T.",
+      "Apply the covariance identity E[(X-E X)(Y-E Y)^T].",
+      "Bound bilinear forms by products of norms and conditional moments.",
+      "Optimize or upper-bound the kernel derivative factor.",
+      "Substitute the derivative bounds into the velocity formula."
+    ],
+    "trigger_keywords": [
+      "conditional expectation",
+      "velocity field",
+      "covariance identity",
+      "Lipschitzness",
+      "temporal regularity",
+      "flow matching"
+    ],
+    "limitations": [
+      "Requires justification for differentiating through the conditional density.",
+      "The terminal-time singularity must be handled by early stopping or a separate argument.",
+      "Moment bounds are inherited from a separate proof and may be the main bottleneck."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.8,
+    "status": "accepted_candidate",
+    "quality": {
+      "reusability": 5,
+      "clarity": 4,
+      "generality": 4,
+      "verifiability": 4,
+      "agent_callability": 5,
+      "mathematical_risk": 3,
+      "total_score": 4.05
+    }
+  },
+  {
+    "skill_name": "flow_matching_euler_error_decomposition",
+    "zh_name": "Flow Matching 欧拉误差分解",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 893,
+      "end_line": 929,
+      "source_blocks": [
+        "The proof of Theorem 7 defines the exact ODE and Euler/learned approximation, differentiates ||Z_t - Ybar_t||^2, and splits the drift mismatch into temporal/spatial discretization and learned-field error.",
+        "Young's inequality bounds each inner product, using the Lipschitz constant, a local consistency bound, and the epsilon approximation assumption."
+      ]
+    },
+    "source_span": "Proof of Theorem 7: squared-error derivative, three-term decomposition, Young inequality, and Lipschitz substitution.",
+    "why_reusable": "This is a standard and portable proof skeleton for deterministic sampler error bounds when an exact ODE is approximated by Euler steps and a learned vector field.",
+    "input": [
+      "Exact ODE dZ_t = v(Z_t,t) dt",
+      "Euler or frozen-time approximation with learned field",
+      "Lipschitz bound for v",
+      "Local consistency bound for time/space drift variation",
+      "Mean-square learned-field approximation error"
+    ],
+    "output": [
+      "Differential inequality for mean squared trajectory error",
+      "Separated discretization and approximation error terms",
+      "Sampler distribution error bound after integration"
+    ],
+    "assumptions": [
+      "Exact and approximate trajectories are coupled from the same initial condition",
+      "The exact velocity is Lipschitz on the time interval",
+      "The local consistency term is square-integrable",
+      "The learned field has a stated mean-square error bound"
+    ],
+    "core_steps": [
+      "Couple exact and approximate processes at initialization.",
+      "Differentiate the squared distance between trajectories.",
+      "Add and subtract v at the previous grid point and v at the approximate grid point.",
+      "Split the inner product into consistency, stability, and learned-error terms.",
+      "Apply Young's inequality to each term with the Lipschitz constant.",
+      "Use the approximation error assumption and integrate or apply Gronwall."
+    ],
+    "trigger_keywords": [
+      "Euler discretization",
+      "flow matching",
+      "learned velocity",
+      "Young inequality",
+      "mean-square error",
+      "ODE sampler"
+    ],
+    "limitations": [
+      "Constants can grow exponentially when the underlying flow lacks contractivity.",
+      "The proof controls trajectory error; converting to a distribution metric requires a coupling argument.",
+      "Requires a valid local consistency bound for the exact velocity."
+    ],
+    "reusability_score": 5,
+    "confidence": 0.88,
+    "status": "accepted_candidate",
+    "quality": {
+      "reusability": 5,
+      "clarity": 4,
+      "generality": 5,
+      "verifiability": 5,
+      "agent_callability": 5,
+      "mathematical_risk": 3,
+      "total_score": 4.4
+    }
+  },
+  {
+    "skill_name": "dual_to_primal_metric_rate_transfer",
+    "zh_name": "对偶到原空间的度量误差转移",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 217,
+      "end_line": 1025,
+      "source_blocks": [
+        "Lemma 8 states that dual-space Lipschitzness transfers to the primal space under the squared Hessian metric.",
+        "Lemma 16 uses a change-of-variables argument and the determinant of Hessian Psi to convert a primal boundary density condition into a dual polynomial tail condition.",
+        "Theorem 9 then follows by combining the mirror-map tail result, Euclidean t-Flow bound, and metric transfer."
+      ]
+    },
+    "source_span": "Lemma 8, Lemma 16, and Theorem 9: import Euclidean flow bounds into constrained primal space through isometry and density transformation.",
+    "why_reusable": "The pattern helps move convergence rates from a transformed/unconstrained space back to a constrained or geometric original space.",
+    "input": [
+      "A geometry-changing map with an isometry or metric comparison",
+      "A convergence theorem in the transformed space",
+      "A source-space density or boundary condition implying transformed-space assumptions",
+      "A way to compare source and transformed distribution metrics"
+    ],
+    "output": [
+      "Original-space sampling or approximation guarantee",
+      "Parameter restrictions ensuring transformed-space assumptions",
+      "Explicit transfer of Lipschitz or metric constants"
+    ],
+    "assumptions": [
+      "The map is invertible on the relevant domain",
+      "The transformed metric is correctly related to the original metric",
+      "The change-of-variables density comparison is valid",
+      "Boundary-density decay is strong enough after transformation"
+    ],
+    "core_steps": [
+      "Prove the transformed and original dynamics are isometric or comparable in the chosen metric.",
+      "Transfer vector-field regularity through the metric relation.",
+      "Use change of variables to translate original-space density assumptions into transformed-space tail assumptions.",
+      "Choose map parameters so transformed assumptions meet the theorem threshold.",
+      "Apply the transformed-space convergence theorem.",
+      "Convert the resulting distribution metric bound back to the original space."
+    ],
+    "trigger_keywords": [
+      "dual space",
+      "primal space",
+      "change of variables",
+      "metric transfer",
+      "mirror map",
+      "Hessian metric",
+      "constrained sampling"
+    ],
+    "limitations": [
+      "The source span relies on several paper-specific geometric identities.",
+      "A wrong metric comparison can invalidate the transfer.",
+      "The result may only control the metric induced by the map, not the target metric, unless strong convexity is available."
+    ],
+    "reusability_score": 4,
+    "confidence": 0.74,
+    "status": "needs_review",
+    "quality": {
+      "reusability": 4,
+      "clarity": 4,
+      "generality": 4,
+      "verifiability": 4,
+      "agent_callability": 4,
+      "mathematical_risk": 4,
+      "total_score": 3.6
+    }
+  },
+  {
+    "skill_name": "experiment_result_comparison",
+    "zh_name": "实验结果对比",
+    "skill_type": "proof_pattern",
+    "source": {
+      "paper_md": "paper.md",
+      "start_line": 231,
+      "end_line": 299,
+      "source_blocks": [
+        "The experiments compare sample quality and constrained-generation behavior across baselines."
+      ]
+    },
+    "source_span": "Section 5 reports numerical and real-data experimental comparisons.",
+    "why_reusable": "Rejected: the section contains empirical evidence rather than a transferable mathematical proof method.",
+    "input": [
+      "Experiment setup and baselines"
+    ],
+    "output": [
+      "Empirical comparison tables and figures"
+    ],
+    "assumptions": [
+      "Task-specific datasets and model implementations"
+    ],
+    "core_steps": [
+      "Run experiments and compare metrics"
+    ],
+    "trigger_keywords": [
+      "experiments",
+      "sample quality",
+      "baseline comparison"
+    ],
+    "limitations": [
+      "Not a proof pattern",
+      "Not portable as a mathematical research skill"
+    ],
+    "reusability_score": 1,
+    "confidence": 0.95,
+    "status": "rejected",
+    "quality": {
+      "reusability": 1,
+      "clarity": 3,
+      "generality": 1,
+      "verifiability": 2,
+      "agent_callability": 1,
+      "mathematical_risk": 2,
+      "total_score": 1.4
+    }
+  }
+]

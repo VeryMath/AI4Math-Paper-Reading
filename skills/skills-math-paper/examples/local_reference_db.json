@@ -1,0 +1,27 @@
+{
+  "total_entries": 2,
+  "papers": [
+    {
+      "global_uri": "paper:arxiv:2311.05762",
+      "title": "On a conjecture of Marton",
+      "first_author": "W. T. Gowers",
+      "year": 2024,
+      "status": "待读",
+      "last_interacted": "2026-05-15",
+      "source_json": true,
+      "core_tags": ["#additive-combinatorics", "#PFR-conjecture", "#entropy-method"]
+    },
+    {
+      "global_uri": "paper:behrens_induced_saturation",
+      "title": "Graphs with induced-saturation number zero",
+      "first_author": "Sarah Behrens",
+      "year": "[UNKNOWN]",
+      "status": "待读",
+      "last_interacted": "2026-05-15",
+      "source_json": true,
+      "core_tags": ["#graph-theory", "#induced-saturation", "#extremal-combinatorics"]
+    }
+  ],
+  "conflicts_detected": [],
+  "overdue_review": []
+}

@@ -1,0 +1,47 @@
+name: "flow_matching_euler_error_decomposition"
+zh_name: "Flow Matching 欧拉误差分解"
+category: "proof_pattern"
+status: "accepted_candidate"
+source:
+  paper_title: "Mirror Flow Matching with Heavy-Tailed Priors for Generative Modeling on Convex Domains"
+  paper_md: "paper.md"
+  source_blocks:
+    - "The proof of Theorem 7 defines the exact ODE and Euler/learned approximation, differentiates ||Z_t - Ybar_t||^2, and splits the drift mismatch into temporal/spatial discretization and learned-field error."
+    - "Young's inequality bounds each inner product, using the Lipschitz constant, a local consistency bound, and the epsilon approximation assumption."
+  start_line: 893
+  end_line: 929
+description: "Prove deterministic flow sampler error by differentiating coupled trajectory distance and separating discretization, stability, and learned-field terms."
+input:
+  - "Exact flow ODE"
+  - "Euler or frozen-time approximation"
+  - "Learned-field approximation error"
+  - "Velocity Lipschitz and consistency bounds"
+output:
+  - "Differential inequality for trajectory error"
+  - "Discretization plus approximation error bound"
+assumptions:
+  - "Shared initial coupling"
+  - "Lipschitz exact velocity"
+  - "Mean-square approximation error"
+core_steps:
+  - "Differentiate squared trajectory error."
+  - "Add and subtract intermediate drift terms."
+  - "Apply Young's inequality to each inner product."
+  - "Use Lipschitzness and approximation assumptions."
+  - "Integrate the resulting inequality."
+trigger_keywords:
+  - "Euler discretization"
+  - "learned velocity"
+  - "Young inequality"
+  - "ODE sampler error"
+limitations:
+  - "May inherit exponential constants without contractivity."
+  - "Distribution metric conversion requires a valid coupling argument."
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 5
+  verifiability: 5
+  agent_callability: 5
+  mathematical_risk: 3
+  total_score: 4.4

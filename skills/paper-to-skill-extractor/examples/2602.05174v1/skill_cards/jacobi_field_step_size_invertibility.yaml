@@ -1,0 +1,47 @@
+name: "jacobi_field_step_size_invertibility"
+zh_name: "Jacobi 场步长可逆性控制"
+category: "proof_pattern"
+status: "needs_review"
+source:
+  paper_title: "Total Variation Rates for Riemannian Flow Matching"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Lemma 5.2 gives step-size requirements that guarantee F_{t,h}(x) = Exp_x(h b(x)) is invertible."
+    - "The proof computes dF_h through a geodesic variation, identifies the variation field as a Jacobi field, parallel-transports it back, and lower-bounds ||dF_h(x)v|| using curvature comparison."
+  start_line: 337
+  end_line: 1116
+description: "Prove a manifold one-step map is locally invertible by representing its differential with Jacobi fields and choosing a curvature-controlled step size."
+input:
+  - "Exp-step map F_h(x)"
+  - "Bounds on vector field and covariant derivative"
+  - "Curvature and injectivity-radius bounds"
+output:
+  - "Sufficient step-size condition"
+  - "Nonsingularity of dF_h"
+  - "Invertibility regime for Euler interpolation"
+assumptions:
+  - "Jacobi comparison theorem applies"
+  - "The step remains before cut-locus or injectivity failure"
+  - "Curvature bounds are known"
+core_steps:
+  - "Introduce a variation through geodesics."
+  - "Identify the differential as the endpoint of a Jacobi field."
+  - "Parallel-transport the Jacobi field back to a fixed tangent space."
+  - "Use curvature comparison to bound deviation from v + h nabla_v b."
+  - "Choose h so the lower bound remains positive."
+trigger_keywords:
+  - "Jacobi field"
+  - "invertibility"
+  - "step size"
+  - "curvature comparison"
+limitations:
+  - "Technically delicate; constants and curvature signs must be checked."
+  - "Sufficient conditions may be conservative."
+quality:
+  reusability: 5
+  clarity: 3
+  generality: 5
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 5
+  total_score: 3.8

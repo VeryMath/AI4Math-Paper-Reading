@@ -1,0 +1,46 @@
+name: "tv_transport_stability_identity"
+zh_name: "传输流的全变差稳定性恒等式"
+category: "proof_pattern"
+status: "accepted_candidate"
+source:
+  paper_title: "Total Variation Rates for Riemannian Flow Matching"
+  paper_md: "paper.md"
+  source_blocks:
+    - "Lemma 5.1 gives a differential identity for d/dt TV(X_t,Y_t) in terms of div(tilde v - v) and <grad log p, tilde v - v>."
+    - "The proof writes both laws through the Riemannian continuity equation, differentiates the positive part of p - q, and integrates by parts."
+  start_line: 285
+  end_line: 595
+description: "Compare two ODE-driven probability flows by differentiating total variation and reducing the bound to divergence and score-weighted vector-field mismatch."
+input:
+  - "Two transported densities"
+  - "Two vector fields"
+  - "Continuity equations"
+output:
+  - "Differential TV inequality"
+  - "Divergence and score mismatch proof obligations"
+assumptions:
+  - "Density and vector-field regularity"
+  - "Valid integration by parts"
+  - "Integrable score and divergence terms"
+core_steps:
+  - "Write both continuity equations."
+  - "Differentiate the positive-part TV representation."
+  - "Subtract equations and integrate by parts."
+  - "Rewrite grad p as p grad log p."
+  - "Apply absolute values and Cauchy-Schwarz."
+trigger_keywords:
+  - "total variation"
+  - "continuity equation"
+  - "transport stability"
+  - "score"
+limitations:
+  - "Requires smooth densities or an approximation argument."
+  - "Needs separate bounds for score and divergence terms."
+quality:
+  reusability: 5
+  clarity: 5
+  generality: 5
+  verifiability: 5
+  agent_callability: 5
+  mathematical_risk: 3
+  total_score: 4.6

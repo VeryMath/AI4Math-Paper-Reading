@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper to Skill Extractor"
+  short_description: "Extract reusable mathematical research skills from papers."
+  default_prompt: "Use this skill to read a Markdown math paper, extract reusable proof-pattern skills with source line evidence, and generate Skill Cards plus a report."
