@@ -13,7 +13,7 @@ workflows.
 - `skills/paper-to-skill-extractor/`: extract reusable AI4Math skills from
   Markdown papers. Read `SKILL.md` and `README.md` before use.
 - `skills/skills-math-paper/`: paper-reading assistant modules. Start with
-  `README.md` and `agent_router.md`.
+  `SKILL.md`, `README.md`, and `agent_router.md`.
 
 Prefer package-local instructions over this router when running a concrete
 workflow.

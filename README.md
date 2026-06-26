@@ -9,7 +9,7 @@ research-assistant routines.
 | Package | Purpose | Entry point |
 | --- | --- | --- |
 | `skills/paper-to-skill-extractor/` | Extract reusable AI4Math skills from Markdown papers. | `SKILL.md`, `README.md` |
-| `skills/skills-math-paper/` | Mathematical paper-reading assistant modules. | `README.md`, `agent_router.md` |
+| `skills/skills-math-paper/` | Mathematical paper-reading assistant modules. | `SKILL.md`, `README.md`, `agent_router.md` |
 
 ## Usage
 
