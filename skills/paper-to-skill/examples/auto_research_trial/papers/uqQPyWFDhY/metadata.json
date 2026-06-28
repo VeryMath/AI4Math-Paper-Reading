@@ -1,0 +1,19 @@
+{
+  "paper_id": "uqQPyWFDhY",
+  "title": "Error Bounds for Flow Matching Methods",
+  "authors": [
+    "Joe Benton",
+    "George Deligiannidis",
+    "Arnaud Doucet"
+  ],
+  "year": "2024",
+  "venue": "TMLR",
+  "source_url": "https://openreview.net/forum?id=uqQPyWFDhY",
+  "pdf_url": "https://openreview.net/pdf?id=uqQPyWFDhY",
+  "downloaded_at": "2026-05-04T07:01:43Z",
+  "status": "downloaded",
+  "paper_pdf": "paper.pdf",
+  "source_quality": "primary",
+  "download_warnings": [],
+  "next_step": "convert_to_markdown"
+}

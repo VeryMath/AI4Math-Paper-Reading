@@ -1,0 +1,22 @@
+schema_version: 1
+name: seed-paper-profiler
+version: 0.1.0
+scope: paper-to-skill
+description: Build a research-interest profile from seed papers, abstracts, notes, or existing extraction artifacts.
+entrypoint: SKILL.md
+requires_env: {}
+requires_tools:
+  - agent-native-read
+requires_skills: []
+input_artifacts:
+  - seed_papers
+  - abstracts_or_notes
+  - optional_human_feedback_state.json
+output_artifacts:
+  - research_profile.json
+  - profile_review.md
+  - optional_human_feedback_state.json
+approval_required_for:
+  - research_profile_direction_change
+  - human_feedback_state_update
+risk_level: low

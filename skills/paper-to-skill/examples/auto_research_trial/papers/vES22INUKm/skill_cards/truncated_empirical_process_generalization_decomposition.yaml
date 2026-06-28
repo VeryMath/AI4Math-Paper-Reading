@@ -1,0 +1,56 @@
+name: truncated_empirical_process_generalization_decomposition
+zh_name: 截断经验过程泛化误差分解
+category: proof_pattern
+status: needs_review
+source:
+  paper_title: "An Error Analysis of Flow Matching for Deep Generative Modeling"
+  paper_md: paper.md
+  source_blocks:
+    - lines 274-292
+    - lines 300-320
+    - lines 334-342
+  start_line: 274
+  end_line: 342
+description: "Bilingual: Decompose excess risk into ERM, approximation, bounded empirical-process, and truncation errors when the loss is unbounded. 中文：当损失含无界随机项时，先截断再用覆盖数控制统计误差，并单独处理尾部项。"
+input:
+  - population risk
+  - empirical risk
+  - ERM estimator
+  - covering-number bound
+  - unbounded loss component
+  - high-probability truncation event
+output:
+  - excess-risk decomposition
+  - bounded statistical error term
+  - two truncation error terms
+  - high-probability generalization bound
+assumptions:
+  - ERM comparison inequality holds
+  - loss is bounded on the truncation event
+  - tails make the complement event negligible
+  - sample sources and conditioning are handled correctly
+core_steps:
+  - Split risk into generalization and approximation components.
+  - Use ERM to remove the empirical comparison term.
+  - Decompose sample randomness by source.
+  - Define a truncated loss.
+  - Split unbounded empirical error into truncation I, statistical error, and truncation II.
+  - Apply covering-number concentration to the bounded statistical term.
+  - Use tail concentration for truncation terms.
+trigger_keywords:
+  - ERM
+  - covering number
+  - unbounded loss
+  - truncation error
+  - high probability
+limitations:
+  - Needs careful independence checks.
+  - Bounds can be loose when covering numbers are crude.
+quality:
+  reusability: 4
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 3.85

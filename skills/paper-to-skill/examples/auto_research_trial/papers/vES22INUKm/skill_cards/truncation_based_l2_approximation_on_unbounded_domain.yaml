@@ -1,0 +1,53 @@
+name: truncation_based_l2_approximation_on_unbounded_domain
+zh_name: 无界域上的截断式 L2 逼近证明
+category: proof_pattern
+status: accepted_candidate
+source:
+  paper_title: "An Error Analysis of Flow Matching for Deep Generative Modeling"
+  paper_md: paper.md
+  source_blocks:
+    - lines 204-212
+    - lines 531-619
+    - lines 632-662
+  start_line: 204
+  end_line: 212
+description: "Bilingual: Convert a compact-domain approximation guarantee into a full L2 guarantee on an unbounded domain by splitting the error into compact and tail pieces. 中文：通过截断半径把无界域 L2 误差拆成紧集内逼近误差和紧集外尾部误差。"
+input:
+  - target function on an unbounded domain
+  - distribution with moment or tail control
+  - compact-domain approximator
+  - truncation radius R
+  - desired tolerance epsilon
+output:
+  - full-domain L2 approximation bound
+  - tail-control proof obligation
+  - truncation-radius choice
+assumptions:
+  - compact-domain approximation is available
+  - target or sampling distribution has controlled tails
+  - outside-region extension is bounded or harmless
+core_steps:
+  - Choose a compact set K_R.
+  - Approximate uniformly on K_R.
+  - Extend or zero the approximator outside K_R.
+  - Split the L2 error into inside and outside terms.
+  - Bound the inside term by the uniform approximation error.
+  - Bound the outside term using moment and tail inequalities.
+  - Choose R so the outside term is below tolerance.
+trigger_keywords:
+  - unbounded domain
+  - truncation argument
+  - L2 approximation
+  - tail behavior
+  - compact approximation
+limitations:
+  - Tail constants may dominate the final rate.
+  - The extension outside K_R must not create discontinuity or large norm artifacts.
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 5
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 4.1

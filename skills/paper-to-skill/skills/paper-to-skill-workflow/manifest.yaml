@@ -1,0 +1,39 @@
+schema_version: 1
+name: paper-to-skill-workflow
+version: 1.0.0
+scope: paper-to-skill
+description: User-facing PDF-first workflow that converts papers when needed and extracts proof-pattern SkillCards.
+entrypoint: SKILL.md
+requires_env:
+  conda: ai4math
+  python: ">=3.10"
+requires_tools:
+  - agent-native-read
+  - agent-native-write
+  - python
+  - conda
+  - optional_mineru_api
+requires_skills:
+  - pdf-to-markdown-converter
+  - paper-to-skill-extractor
+  - cross-paper-skill-synthesizer
+input_artifacts:
+  - paper.pdf
+  - optional_paper.md
+  - optional_metadata.json
+  - optional_human_feedback_state.json
+output_artifacts:
+  - paper.pdf
+  - paper.md
+  - mineru/
+  - conversion_report.json
+  - skill_candidates.json
+  - skill_cards/*.yaml
+  - report.md
+approval_required_for:
+  - dependency_install
+  - external_conversion_api
+  - skill_card_acceptance
+  - unsafe_generalization
+  - skill_card_merge
+risk_level: medium

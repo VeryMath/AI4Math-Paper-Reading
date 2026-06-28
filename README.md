@@ -26,7 +26,7 @@ task.
 
 | Package | Use it for | Start here |
 | --- | --- | --- |
-| [`paper-to-skill-extractor`](skills/paper-to-skill-extractor/) | Extract reusable AI4Math skill cards from Markdown papers and proof sections. | [`README`](skills/paper-to-skill-extractor/README.md) · [`SKILL`](skills/paper-to-skill-extractor/SKILL.md) |
+| [`paper-to-skill`](skills/paper-to-skill/) | Run the full paper-to-skill workflow: PDF preparation, paper triage, proof-pattern extraction, and cross-paper synthesis. | [`README`](skills/paper-to-skill/README.md) · [`SKILL`](skills/paper-to-skill/SKILL.md) |
 | [`math-paper-reading`](skills/math-paper-reading/) | Read papers deeply, extract theorem dependencies, build proof pathways, and manage local reference notes. | [`README`](skills/math-paper-reading/README.md) · [`SKILL`](skills/math-paper-reading/SKILL.md) · [`router`](skills/math-paper-reading/agent_router.md) |
 
 ## Quick Start
@@ -41,7 +41,7 @@ cd AI4Math-Paper-Reading
 For reusable skill extraction, start with:
 
 ```text
-skills/paper-to-skill-extractor/SKILL.md
+skills/paper-to-skill/SKILL.md
 ```
 
 For structured paper reading, start with:
@@ -58,7 +58,7 @@ AI4Math-Paper-Reading/
 ├── README.zh-CN.md
 ├── SKILL.md
 └── skills/
-    ├── paper-to-skill-extractor/
+    ├── paper-to-skill/
     └── math-paper-reading/
 ```
 

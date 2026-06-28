@@ -1,0 +1,50 @@
+name: alekseev_grobner_ode_perturbation_wasserstein_bound
+zh_name: Alekseev-Grobner ODE 扰动型 Wasserstein 误差证明
+category: proof_pattern
+status: accepted_candidate
+source:
+  paper_title: "Error Bounds for Flow Matching Methods"
+  paper_md: paper.md
+  source_blocks:
+    - lines 101-125
+    - lines 127-171
+  start_line: 101
+  end_line: 171
+description: "Bilingual: Use the Alekseev-Grobner formula plus a Gronwall Jacobian bound to turn drift approximation error into endpoint Wasserstein error. 中文：用 Alekseev-Grobner 公式和流映射 Jacobian 的 Gronwall 控制，把漂移误差转为终点 W2 误差。"
+input:
+  - exact drift
+  - approximate drift
+  - L2 drift error along exact paths
+  - time-varying Lipschitz bound
+  - smooth flow existence
+output:
+  - endpoint path error bound
+  - Wasserstein law error bound
+  - exponential stability factor
+assumptions:
+  - smooth flow maps exist
+  - approximate drift is spatially Lipschitz
+  - the relevant L2 error is measured along the exact path distribution
+core_steps:
+  - Apply Alekseev-Grobner to compare exact and approximate ODE solutions.
+  - Bound the flow Jacobian using Gronwall.
+  - Integrate the drift mismatch along the exact path.
+  - Take expectation and use the L2 drift error.
+  - Convert the coupled endpoint bound to W2.
+trigger_keywords:
+  - Alekseev-Grobner
+  - ODE perturbation
+  - Wasserstein
+  - flow matching
+  - time-varying Lipschitz
+limitations:
+  - The argument is asymmetric in the exact and approximate paths.
+  - Exponential Lipschitz dependence may be loose.
+quality:
+  reusability: 5
+  clarity: 5
+  generality: 5
+  verifiability: 4
+  agent_callability: 5
+  mathematical_risk: 2
+  total_score: 4.6

@@ -1,0 +1,53 @@
+name: coupling_gronwall_wasserstein_flow_error_bound
+zh_name: 耦合与 Gronwall 的 Wasserstein 流误差证明
+category: proof_pattern
+status: accepted_candidate
+source:
+  paper_title: "An Error Analysis of Flow Matching for Deep Generative Modeling"
+  paper_md: paper.md
+  source_blocks:
+    - lines 354-402
+    - lines 412-434
+  start_line: 354
+  end_line: 402
+description: "Bilingual: Bound endpoint distribution error by coupling exact and approximate ODE flows, deriving a path discrepancy differential inequality, and applying Gronwall. 中文：把精确流和近似流放在同一起点耦合下，用路径差异的微分不等式和 Gronwall 得到 W2 误差。"
+input:
+  - exact ODE flow
+  - approximate ODE flow
+  - shared initial distribution
+  - velocity approximation error
+  - spatial Lipschitz constant
+output:
+  - Wasserstein endpoint error bound
+  - path-discrepancy differential inequality
+  - stability estimate for learned flow sampling
+assumptions:
+  - exact and approximate flows exist
+  - approximate velocity is spatially Lipschitz
+  - velocity error is controlled under the exact flow law
+  - initial coupling is shared
+core_steps:
+  - Couple exact and approximate paths by common initialization.
+  - Bound W2 by expected squared endpoint distance.
+  - Differentiate the expected squared path distance.
+  - Add and subtract velocity terms to isolate approximation error.
+  - Use Young or Cauchy-Schwarz for the cross term.
+  - Use Lipschitz continuity for the stability term.
+  - Apply Gronwall and substitute the L2 velocity error.
+trigger_keywords:
+  - Wasserstein
+  - coupling
+  - Gronwall
+  - ODE flow
+  - Lipschitz velocity
+limitations:
+  - Exponential dependence on Lipschitz constants may be loose.
+  - Does not by itself cover numerical discretization error.
+quality:
+  reusability: 5
+  clarity: 5
+  generality: 4
+  verifiability: 5
+  agent_callability: 5
+  mathematical_risk: 2
+  total_score: 4.55

@@ -1,0 +1,334 @@
+{
+  "research_project_id": "auto_research_trial",
+  "created_at": "2026-05-03",
+  "seed_inputs": [
+    {
+      "paper_id": "2510.08929v1",
+      "title": "Mirror Flow Matching with Heavy-Tailed Priors for Generative Modeling on Convex Domains",
+      "path_or_url": "outputs/auto_research_trial/seed_papers/2510.08929v1/paper.md",
+      "input_type": "paper_md",
+      "source_note": "Seed paper on mirror flow matching, convex-domain generation, heavy-tailed dual distributions, Student-t priors, and Wasserstein error bounds."
+    },
+    {
+      "paper_id": "2602.05174v1",
+      "title": "Total Variation Rates for Riemannian Flow Matching",
+      "path_or_url": "outputs/auto_research_trial/seed_papers/2602.05174v1/paper.md",
+      "input_type": "paper_md",
+      "source_note": "Seed paper on nonasymptotic TV rates for learned and discretized Riemannian flow matching on compact and Hadamard manifolds."
+    }
+  ],
+  "domain": [
+    "flow matching theory",
+    "geometric generative modeling",
+    "constrained-domain generative modeling",
+    "Riemannian generative modeling",
+    "nonasymptotic sampling error analysis",
+    "deterministic ODE samplers",
+    "mathematical foundations for learned generative samplers"
+  ],
+  "core_problems": [
+    {
+      "problem": "Establish nonasymptotic sampling error bounds for flow matching samplers when the learned velocity field is discretized by Euler-type ODE integration.",
+      "evidence": [
+        {
+          "paper_id": "2510.08929v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2510.08929v1/paper.md",
+          "start_line": 203,
+          "end_line": 209,
+          "note": "Theorem 7 decomposes Wasserstein error into discretization, learned velocity approximation, and early stopping terms."
+        },
+        {
+          "paper_id": "2602.05174v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2602.05174v1/paper.md",
+          "start_line": 220,
+          "end_line": 236,
+          "note": "Theorem 1 gives a TV bound separating step-size and estimation errors on compact manifolds."
+        }
+      ],
+      "confidence": 0.97
+    },
+    {
+      "problem": "Extend flow matching from Euclidean space to geometry-constrained domains such as convex bodies, manifolds, hyperspheres, and SPD manifolds while preserving feasible trajectories.",
+      "evidence": [
+        {
+          "paper_id": "2510.08929v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2510.08929v1/paper.md",
+          "start_line": 21,
+          "end_line": 25,
+          "note": "The paper frames constrained target support and mirror maps as the route to feasible flow matching."
+        },
+        {
+          "paper_id": "2602.05174v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2602.05174v1/paper.md",
+          "start_line": 140,
+          "end_line": 174,
+          "note": "The paper formulates RFM with tangent vector fields, geodesic interpolation, logarithm maps, and parallel transport."
+        }
+      ],
+      "confidence": 0.96
+    },
+    {
+      "problem": "Control velocity-field regularity near the terminal time and under heavy-tailed or noncompact target distributions.",
+      "evidence": [
+        {
+          "paper_id": "2510.08929v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2510.08929v1/paper.md",
+          "start_line": 29,
+          "end_line": 35,
+          "note": "The paper identifies heavy-tailed dual distributions, Gaussian-prior mismatch, and the need for spatial and temporal regularity."
+        },
+        {
+          "paper_id": "2602.05174v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2602.05174v1/paper.md",
+          "start_line": 188,
+          "end_line": 194,
+          "note": "The paper explains the fragile cancellation near t=1 and motivates early stopping."
+        }
+      ],
+      "confidence": 0.95
+    },
+    {
+      "problem": "Design geometry-aware transformations or priors that make constrained or noncompact flow matching analytically well posed.",
+      "evidence": [
+        {
+          "paper_id": "2510.08929v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2510.08929v1/paper.md",
+          "start_line": 76,
+          "end_line": 84,
+          "note": "The modified mirror map is designed to transform constrained distributions, preserve moments, and transfer dual guarantees to primal guarantees."
+        },
+        {
+          "paper_id": "2602.05174v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2602.05174v1/paper.md",
+          "start_line": 271,
+          "end_line": 281,
+          "note": "The SPD case uses a Riemannian Gaussian prior and exponential moment assumptions to obtain polynomial iteration complexity."
+        }
+      ],
+      "confidence": 0.9
+    },
+    {
+      "problem": "Find reusable proof frameworks that convert local vector-field, score, divergence, curvature, and moment bounds into global sampling guarantees.",
+      "evidence": [
+        {
+          "paper_id": "2510.08929v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2510.08929v1/paper.md",
+          "start_line": 895,
+          "end_line": 974,
+          "note": "Theorem 7 proof couples exact and discretized flows, uses Young's inequality, recurrence control, and an early-stopping term."
+        },
+        {
+          "paper_id": "2602.05174v1",
+          "paper_md": "outputs/auto_research_trial/seed_papers/2602.05174v1/paper.md",
+          "start_line": 283,
+          "end_line": 309,
+          "note": "The paper's proof sketch centers on a TV differential identity through divergence and score terms."
+        }
+      ],
+      "confidence": 0.98
+    }
+  ],
+  "methods": [
+    "mirror maps and mirror-descent geometry",
+    "regularized log-barrier construction",
+    "Student-t heavy-tailed priors",
+    "Riemannian flow matching with geodesic interpolation",
+    "early-stopped deterministic ODE sampling",
+    "Euler discretization analysis",
+    "coupling exact and numerical ODE flows",
+    "TV stability through continuity equations",
+    "Wasserstein error decomposition",
+    "score regularity bounds",
+    "divergence mismatch control",
+    "curvature comparison and Jacobi-field estimates",
+    "compact versus Hadamard manifold case splitting",
+    "moment and tail condition verification"
+  ],
+  "assumptions": [
+    "learned vector field is epsilon-accurate in value, and sometimes in derivative or divergence",
+    "early stopping time T is strictly less than 1 to avoid terminal-time stiffness",
+    "target distribution satisfies finite moment, polynomial tail, boundary layer, or exponential moment conditions depending on geometry",
+    "mirror map is strongly convex or has a dual metric that controls primal Wasserstein distance",
+    "Riemannian manifold has bounded curvature, positive injectivity radius or Hadamard/global chart structure as needed",
+    "population flow-matching vector field has spatial, temporal, divergence, and score regularity",
+    "Euler step size is small enough for exponential-map invertibility and controlled interpolation",
+    "for noncompact manifolds, uniform pointwise bounds may be replaced by expectation-level regularity"
+  ],
+  "proof_patterns": [
+    "transport-stability differential inequality: differentiate TV or distance between two flows and bound by vector-field mismatch terms",
+    "exact-vs-discretized flow coupling: initialize two processes together and track error accumulation under Euler discretization",
+    "Young inequality error splitting: convert inner products into squared flow error plus discretization or estimation residuals",
+    "Gronwall or recurrence unrolling: propagate one-step bounds into terminal nonasymptotic error rates",
+    "early stopping decomposition: split terminal sampling error into approximation-to-T error plus T-to-1 bias",
+    "conditional-expectation derivative control: bound derivatives of velocity fields expressed as conditional expectations",
+    "moment/tail-to-regularity transfer: turn tail, boundary layer, or exponential moment assumptions into finite regularity constants",
+    "dual-to-primal guarantee transfer: prove an error bound in a transformed space and pull it back through a metric or isometry",
+    "geometric Euler interpolation: turn a discrete manifold Euler method into a continuous-time ODE using parallel transport and inverse exponential maps",
+    "score-divergence decomposition: reduce TV error to score regularity, vector-field mismatch, and divergence mismatch",
+    "curvature comparison bound: use comparison theorems or Jacobi-field estimates to control derivatives of Exp/Log and parallel transport",
+    "case split by geometry: handle compact manifolds with uniform bounds and Hadamard/noncompact manifolds with expectation-level bounds"
+  ],
+  "technical_keywords": [
+    "flow matching",
+    "Riemannian flow matching",
+    "mirror flow matching",
+    "constrained generative modeling",
+    "convex domains",
+    "mirror map",
+    "regularized log barrier",
+    "Student-t prior",
+    "heavy-tailed target",
+    "velocity field regularity",
+    "temporal Lipschitzness",
+    "spatial Lipschitzness",
+    "Euler discretization",
+    "early stopping",
+    "Wasserstein convergence",
+    "total variation convergence",
+    "continuity equation",
+    "score regularity",
+    "divergence control",
+    "parallel transport",
+    "exponential map",
+    "logarithm map",
+    "Jacobi field",
+    "curvature comparison",
+    "Hadamard manifold",
+    "hypersphere",
+    "SPD manifold",
+    "polynomial iteration complexity"
+  ],
+  "user_interest_hypotheses": [
+    {
+      "hypothesis": "The user is likely interested in theoretical, proof-heavy work on generative samplers rather than empirical model-design papers.",
+      "why": "Both seed papers emphasize nonasymptotic convergence, velocity-field regularity, discretization, and proof machinery more than experiments.",
+      "confidence": 0.86
+    },
+    {
+      "hypothesis": "The user may want reusable proof-pattern skills for analyzing learned ODE samplers under geometry, tail, and discretization complications.",
+      "why": "The shared proof motifs are TV/Wasserstein stability, early stopping, coupling, regularity verification, and geometry-dependent bounds.",
+      "confidence": 0.92
+    },
+    {
+      "hypothesis": "The user's search should include adjacent work on probability-flow ODEs, stochastic interpolants, score-based generative modeling, Riemannian diffusion, and sampling on manifolds.",
+      "why": "The seed papers repeatedly position themselves against Euclidean FM, probability flow ODEs, Riemannian diffusion, and geometric sampling analyses.",
+      "confidence": 0.82
+    },
+    {
+      "hypothesis": "Potential innovation may come from improving exponential-in-Lipschitz or high-dimensional polynomial constants, weakening moment/tail assumptions, or extending the geometry classes.",
+      "why": "Both papers expose technical bottlenecks in constants, terminal-time singularity, moment assumptions, and curvature-induced growth.",
+      "confidence": 0.78
+    }
+  ],
+  "negative_preferences": [
+    "pure empirical generative modeling papers without convergence or regularity analysis",
+    "generic diffusion or flow matching surveys that do not provide reusable proof techniques",
+    "papers focused only on architecture or benchmark performance without mathematical guarantees",
+    "unconstrained Euclidean-only flow matching unless it introduces a proof method transferable to geometric or constrained domains",
+    "manifold learning applications that do not address sampling error, ODE discretization, or geometric regularity"
+  ],
+  "search_queries": [
+    {
+      "query": "\"flow matching\" \"Euler discretization\" \"Wasserstein\" convergence learned velocity field",
+      "search_route": "problem",
+      "purpose": "Find Euclidean flow-matching discretization analyses that may provide reusable coupling or Gronwall proof patterns."
+    },
+    {
+      "query": "\"Riemannian flow matching\" \"total variation\" convergence",
+      "search_route": "problem",
+      "purpose": "Find directly related RFM convergence papers and possible follow-ups to the second seed paper."
+    },
+    {
+      "query": "\"probability flow ODE\" \"total variation\" \"polynomial\" Lipschitz",
+      "search_route": "method",
+      "purpose": "Track TV-based proof frameworks for deterministic generative samplers with polynomial dependence."
+    },
+    {
+      "query": "\"flow matching\" \"heavy-tailed\" \"Student-t\" prior velocity field",
+      "search_route": "method",
+      "purpose": "Find work on prior choice, heavy-tailed targets, and velocity-field regularity in flow matching."
+    },
+    {
+      "query": "\"mirror map\" \"flow matching\" constrained generative modeling convergence",
+      "search_route": "method",
+      "purpose": "Find constrained-domain flow matching papers using mirror maps, barriers, or geometry-aware transformations."
+    },
+    {
+      "query": "\"Riemannian\" \"probability flow ODE\" \"Euler\" discretization error",
+      "search_route": "adjacent_domain",
+      "purpose": "Find adjacent Riemannian diffusion/probability-flow analyses with transferable discretization methods."
+    },
+    {
+      "query": "\"continuity equation\" \"total variation\" \"vector field mismatch\" generative models",
+      "search_route": "theorem",
+      "purpose": "Find TV stability lemmas similar to the divergence-score decomposition in the RFM paper."
+    },
+    {
+      "query": "\"score regularity\" \"flow matching\" \"manifold\"",
+      "search_route": "assumption",
+      "purpose": "Find papers that verify or weaken score regularity assumptions in geometric generative modeling."
+    },
+    {
+      "query": "\"Hadamard manifold\" \"generative modeling\" \"sampling error\"",
+      "search_route": "application",
+      "purpose": "Find noncompact manifold sampling analyses, especially for SPD manifolds."
+    },
+    {
+      "query": "\"early stopping\" \"flow matching\" \"terminal time\" singularity",
+      "search_route": "theorem",
+      "purpose": "Find treatments of terminal-time stiffness and early-stopping bias in deterministic generative ODEs."
+    },
+    {
+      "query": "\"Jacobi field\" \"Euler discretization\" \"Riemannian\" sampling",
+      "search_route": "method",
+      "purpose": "Find geometric proof tools for exponential-map invertibility, parallel transport, and curvature distortion."
+    },
+    {
+      "query": "\"SPD manifold\" \"flow matching\" \"Riemannian Gaussian\"",
+      "search_route": "application",
+      "purpose": "Find applications and theory around SPD manifold flow matching and moment assumptions."
+    }
+  ],
+  "open_questions": [
+    "Should retrieval prioritize flow matching theory specifically, or broader deterministic generative ODE samplers including probability-flow ODEs and stochastic interpolants?",
+    "Is the main target metric Wasserstein, total variation, KL, or a comparison among these metrics?",
+    "Should future reading emphasize constrained convex domains, Riemannian manifolds, or a unified geometric sampler theory?",
+    "Are weaker tail/moment assumptions more important than improving constants and dimension dependence?",
+    "Should we search for proof techniques that reduce exponential dependence on Lipschitz constants to polynomial dependence?",
+    "Is the intended downstream Skill library focused on proof patterns only, or also on implementable modeling patterns such as mirror-map/prior design?"
+  ],
+  "checkpoint_questions": [
+    "Does this profile correctly center your interest on theory-heavy flow matching and geometric/constrained generative sampling?",
+    "Should the next retrieval step emphasize related papers on Riemannian/manifold flow matching, or innovation papers from Euclidean probability-flow and stochastic-interpolant theory?",
+    "Do you want to include empirical constrained-generation papers if they introduce new geometric constructions, or exclude them unless they have proofs?",
+    "Which bottleneck matters most for the next round: terminal-time singularity, tail/moment assumptions, curvature effects, TV/Wasserstein proof framework, or dimension/constants?",
+    "Should `paper-to-skill-extractor` next mine proof patterns from both seed papers, or should we first retrieve and triage additional papers?"
+  ],
+  "checkpoint_questions_bilingual": [
+    {
+      "zh": "这个画像是否准确地把你的兴趣定位在理论型 flow matching、几何/约束生成建模和采样误差分析上？",
+      "en": "Does this profile correctly center your interest on theory-heavy flow matching, geometric/constrained generative modeling, and sampling error analysis?"
+    },
+    {
+      "zh": "下一步检索应该优先找 Riemannian/manifold flow matching 的直接相关论文，还是优先找 Euclidean probability-flow / stochastic-interpolant 理论中的创新 proof technique？",
+      "en": "Should the next retrieval step prioritize directly related Riemannian/manifold flow matching papers, or innovation-oriented proof techniques from Euclidean probability-flow and stochastic-interpolant theory?"
+    },
+    {
+      "zh": "如果经验型 constrained-generation 论文提出了新的几何构造，是否纳入候选？还是没有理论证明就先排除？",
+      "en": "Should empirical constrained-generation papers be included when they introduce new geometric constructions, or excluded unless they contain theoretical guarantees?"
+    },
+    {
+      "zh": "下一轮最重要的技术瓶颈是 terminal-time singularity、tail/moment assumptions、curvature effects、TV/Wasserstein proof framework，还是 dimension/constants？",
+      "en": "Which bottleneck matters most next: terminal-time singularity, tail/moment assumptions, curvature effects, TV/Wasserstein proof frameworks, or dimension/constants?"
+    },
+    {
+      "zh": "现在应该先从两篇种子论文抽取 proof-pattern SkillCards，还是先检索并筛选更多论文？",
+      "en": "Should we now extract proof-pattern SkillCards from the two seed papers, or retrieve and triage more papers first?"
+    }
+  ],
+  "language_policy": {
+    "user_facing_markdown": "zh_en_bilingual",
+    "json_keys": "english_stable",
+    "json_text": "english_with_bilingual_checkpoints"
+  }
+}

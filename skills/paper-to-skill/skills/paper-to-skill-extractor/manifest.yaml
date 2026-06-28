@@ -1,0 +1,25 @@
+schema_version: 1
+name: paper-to-skill-extractor
+version: 0.1.0
+scope: paper-to-skill
+description: Extract reusable proof-pattern SkillCandidates and SkillCards from Markdown papers with source line evidence.
+entrypoint: SKILL.md
+requires_env: {}
+requires_tools:
+  - agent-native-read
+  - agent-native-write
+requires_skills: []
+input_artifacts:
+  - paper.md
+  - optional_human_feedback_state.json
+output_artifacts:
+  - paper.md
+  - skill_candidates.json
+  - skill_cards/*.yaml
+  - report.md
+approval_required_for:
+  - skill_card_acceptance
+  - skill_card_rejection
+  - unsafe_generalization
+  - human_feedback_state_update
+risk_level: low

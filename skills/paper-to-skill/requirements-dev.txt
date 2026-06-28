@@ -1,0 +1,3 @@
+-r skills/pdf-to-markdown-converter/scripts/requirements.txt
+pytest>=9.0.0
+PyYAML>=6.0.0

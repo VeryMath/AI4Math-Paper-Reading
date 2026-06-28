@@ -1,0 +1,53 @@
+name: gaussian_smoothing_lipschitz_integral_control
+zh_name: 高斯平滑下的时间变 Lipschitz 积分控制
+category: proof_pattern
+status: accepted_candidate
+source:
+  paper_title: "Error Bounds for Flow Matching Methods"
+  paper_md: paper.md
+  source_blocks:
+    - lines 177-199
+    - lines 201-245
+    - lines 247-255
+  start_line: 177
+  end_line: 255
+description: "Bilingual: Derive an integrated, time-varying Lipschitz bound for a smoothed conditional velocity field via conditional covariance control. 中文：通过条件协方差控制，为带高斯平滑的条件速度场推出时间变 Lipschitz 积分界。"
+input:
+  - stochastic interpolant
+  - Gaussian smoothing schedule
+  - lambda-regularity condition
+  - bounded support radius
+  - velocity derivative identity
+output:
+  - time-dependent Lipschitz envelope
+  - integrated Lipschitz estimate
+  - schedule-design guidance
+assumptions:
+  - gamma_t stays positive on the interval
+  - interpolant coefficients are differentiable
+  - conditional covariance regularity holds
+  - supports are bounded
+core_steps:
+  - Add small endpoint smoothing to avoid singular gamma_t.
+  - Differentiate the conditional expected velocity.
+  - Express the derivative through conditional covariance terms.
+  - Bound those terms using lambda-regularity and Cauchy-Schwarz.
+  - Integrate the resulting Lipschitz envelope.
+  - Pick a schedule where the dominant integral is logarithmic.
+trigger_keywords:
+  - Gaussian smoothing
+  - conditional covariance
+  - lambda-regular
+  - Lipschitz velocity
+  - smoothing schedule
+limitations:
+  - Endpoint smoothing introduces bias.
+  - Lambda-regularity is not automatic for arbitrary data distributions.
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 4.1

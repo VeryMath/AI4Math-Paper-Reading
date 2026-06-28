@@ -1,0 +1,4 @@
+interface:
+  display_name: "Cross Paper Skill Synthesizer"
+  short_description: "Merge extracted proof-pattern skills across papers."
+  default_prompt: "Use this skill to cluster and generalize SkillCandidates from multiple papers into a domain method map, merged SkillCards, and a synthesis report."

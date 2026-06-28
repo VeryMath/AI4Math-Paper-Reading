@@ -1,0 +1,4 @@
+interface:
+  display_name: "Related Paper Retriever"
+  short_description: "Find and structure related papers from a research profile."
+  default_prompt: "Use this skill with Codex search to find related papers from my research_profile.json, explain relevance, record open PDF status, and produce candidate_papers.json."

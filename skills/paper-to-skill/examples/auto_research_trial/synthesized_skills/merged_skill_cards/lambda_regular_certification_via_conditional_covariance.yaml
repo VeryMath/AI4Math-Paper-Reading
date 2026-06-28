@@ -1,0 +1,55 @@
+id: lambda_regular_certification_via_conditional_covariance
+name: Lambda-regular certification by conditional covariance
+zh_name: 通过条件协方差认证 lambda-regular 条件
+type: proof_pattern
+category: proof_pattern
+summary: "EN: Certify a covariance regularity assumption by bounding the conditional covariance of Gaussian noise after observing a noisy random variable. ZH: 通过观测加噪随机变量后的高斯噪声条件协方差上界，认证 lambda-regular 正则性。"
+status: needs_human_review
+source:
+  paper_md: see synthesis.source_papers
+  start_line: 0
+  end_line: 0
+inputs:
+  - candidate distribution
+  - Gaussian observation noise
+  - structural distribution class
+  - target regularity parameter
+outputs:
+  - lambda-regularity certificate
+  - conditional covariance operator-norm bound
+  - examples where the assumption holds
+assumptions:
+  - Conditioning is well-defined.
+  - The distribution is log-concave, subspace Gaussian, or bounded Gaussian-smoothed.
+  - Brascamp-Lieb or variance decomposition applies.
+core_steps:
+  - Write the conditional density of the Gaussian noise after observation.
+  - Bound directional conditional variance.
+  - Use Brascamp-Lieb for log-concave distributions when applicable.
+  - Use orthogonal decomposition for subspace Gaussian distributions.
+  - Use total variance decomposition for bounded Gaussian mixtures.
+  - Convert directional variance bounds into operator-norm covariance bounds.
+trigger_keywords:
+  - lambda-regular
+  - conditional covariance
+  - Brascamp-Lieb
+  - Gaussian mixture
+  - log-concave
+limitations:
+  - Specialized to Gaussian observation noise.
+  - The condition is nonstandard and should be reviewed before library promotion.
+synthesis:
+  cluster_id: C06
+  source_skill_ids:
+    - uqQPyWFDhY:lambda_regular_certification_via_conditional_covariance
+  source_papers:
+    - paper_id: uqQPyWFDhY
+      paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
+      start_line: 413
+      end_line: 499
+  merge_status: needs_human_review
+  generalization_notes:
+    - This card is currently best treated as an assumption-certification checklist.
+  conflicts_or_risks:
+    - The source paper's lambda-regular condition is specialized and may not transfer broadly.
+review_status: needs_human_review

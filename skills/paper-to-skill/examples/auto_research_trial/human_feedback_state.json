@@ -1,0 +1,132 @@
+{
+  "research_project_id": "auto_research_trial",
+  "version": "0.1.1",
+  "created_at": "2026-05-05",
+  "updated_at": "2026-05-05",
+  "purpose": "Record human feedback that redirects the Codex-native paper-to-skill workflow.",
+  "focus_updates": [
+    {
+      "focus_id": "wasserstein_error_and_coupling_bias",
+      "stage": "profile_review",
+      "priority": "high",
+      "user_feedback_zh": "强化 Wasserstein error、coupling bias 和可复用 proof pattern。",
+      "user_feedback_en": "Prioritize Wasserstein error, coupling bias, and reusable proof patterns.",
+      "effect_on_workflow": "Retrieval, triage, extraction, and synthesis should prefer theory papers with transferable error-analysis or coupling arguments."
+    },
+    {
+      "focus_id": "proof_pattern_over_application",
+      "stage": "triage_review",
+      "priority": "high",
+      "user_feedback_zh": "阅读优先级应更多看 proof-pattern value，而不是只看主题相关。",
+      "user_feedback_en": "Reading priority should weigh proof-pattern value more heavily than topical similarity alone.",
+      "effect_on_workflow": "Triage should rank papers with reusable proof techniques above papers that are merely adjacent applications."
+    }
+  ],
+  "negative_preferences": [
+    {
+      "preference_id": "downrank_heavy_tailed_prior_as_standalone_topic",
+      "stage": "profile_review",
+      "user_feedback_zh": "弱化 heavy-tailed prior 本身，不把它作为独立主线。",
+      "user_feedback_en": "Down-rank heavy-tailed priors as a standalone research line.",
+      "effect_on_workflow": "Retriever should keep heavy-tailed prior papers only when they contribute useful error-analysis or proof techniques."
+    },
+    {
+      "preference_id": "downrank_pure_empirical_flow_matching",
+      "stage": "retrieval_review",
+      "user_feedback_zh": "不要找太多纯实验型 flow matching paper。",
+      "user_feedback_en": "Avoid over-selecting purely empirical flow matching papers.",
+      "effect_on_workflow": "Retriever and triage should down-rank benchmark-only or application-only papers unless they are needed for positioning."
+    }
+  ],
+  "paper_decisions": [
+    {
+      "paper_id": "vES22INUKm",
+      "title": "An Error Analysis of Flow Matching for Deep Generative Modeling",
+      "decision": "download_and_extract",
+      "stage": "triage_review",
+      "reason": "High proof-pattern value for Wasserstein error bounds and learned-flow error propagation."
+    },
+    {
+      "paper_id": "uqQPyWFDhY",
+      "title": "Error Bounds for Flow Matching Methods",
+      "decision": "download_and_extract",
+      "stage": "triage_review",
+      "reason": "Core theory paper for approximation-error-to-sampling-error proof patterns."
+    },
+    {
+      "paper_id": "pure_empirical_flow_matching_placeholder",
+      "title": "Purely empirical flow matching papers",
+      "decision": "downrank",
+      "stage": "retrieval_review",
+      "reason": "Keep only if needed for positioning; do not prioritize for Skill extraction."
+    }
+  ],
+  "skill_decisions": [
+    {
+      "skill_id": "ode_flow_stability_to_wasserstein_error",
+      "decision": "accept",
+      "stage": "synthesis_review",
+      "reason": "Central reusable proof pattern for converting flow or velocity-field error into Wasserstein error."
+    },
+    {
+      "skill_id": "truncated_empirical_process_generalization_decomposition",
+      "decision": "needs_review",
+      "stage": "synthesis_review",
+      "reason": "Useful but should be checked for assumptions before being promoted to a library Skill."
+    }
+  ],
+  "next_step_directives": [
+    {
+      "target_skill": "related-paper-retriever",
+      "directive": "Use proof-technique and Wasserstein-error queries before broad flow-matching application queries."
+    },
+    {
+      "target_skill": "innovation-paper-finder",
+      "directive": "Search for transferable error-analysis, coupling, lower-bound, and regularity techniques."
+    },
+    {
+      "target_skill": "paper-triage-ranker",
+      "directive": "Let proof-pattern value and source evidence quality dominate recency or application proximity."
+    },
+    {
+      "target_skill": "paper-to-skill-extractor",
+      "directive": "Prioritize proof spans that turn approximation, coupling, or velocity-field errors into Wasserstein or total-variation guarantees."
+    },
+    {
+      "target_skill": "cross-paper-skill-synthesizer",
+      "directive": "Merge around reusable proof mechanisms, not around paper-specific model families."
+    }
+  ],
+  "stage_feedback_log": [
+    {
+      "stage": "profile_review",
+      "artifact": "profile_review.md",
+      "human_feedback_summary_zh": "研究兴趣应从具体 prior 设定转向 Wasserstein error、coupling bias 和证明套路。",
+      "human_feedback_summary_en": "The research interest should shift from a specific prior setting toward Wasserstein error, coupling bias, and proof patterns.",
+      "applied_to_next_stage": [
+        "related-paper-retriever",
+        "innovation-paper-finder"
+      ]
+    },
+    {
+      "stage": "triage_review",
+      "artifact": "reading_plan.json",
+      "human_feedback_summary_zh": "优先下载和抽取两篇高 proof-pattern value 的 error-bound paper。",
+      "human_feedback_summary_en": "Prioritize downloading and extracting two error-bound papers with high proof-pattern value.",
+      "applied_to_next_stage": [
+        "paper-pdf-downloader",
+        "pdf-to-markdown-converter",
+        "paper-to-skill-extractor"
+      ]
+    },
+    {
+      "stage": "synthesis_review",
+      "artifact": "synthesized_skills/synthesis_report.md",
+      "human_feedback_summary_zh": "优先保留可泛化到 Wasserstein / flow stability 的 Skill，其他经验过程类 Skill 先标记复核。",
+      "human_feedback_summary_en": "Keep skills generalizing to Wasserstein or flow-stability arguments first; mark empirical-process skills for review.",
+      "applied_to_next_stage": [
+        "future_skill_library_review"
+      ]
+    }
+  ]
+}

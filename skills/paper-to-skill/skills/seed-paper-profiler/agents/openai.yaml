@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seed Paper Profiler"
+  short_description: "Infer a research-interest profile from seed papers."
+  default_prompt: "Use this skill to read my seed papers or notes, infer a research profile with evidence and search directions, and produce research_profile.json plus bilingual Chinese-English profile_review.md and checkpoint questions."

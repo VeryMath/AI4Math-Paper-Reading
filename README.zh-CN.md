@@ -22,7 +22,7 @@
 
 | 包 | 适用任务 | 入口 |
 | --- | --- | --- |
-| [`paper-to-skill-extractor`](skills/paper-to-skill-extractor/) | 从 Markdown 论文和证明段落中提取可复用的 AI4Math 技能卡。 | [`README`](skills/paper-to-skill-extractor/README.md) · [`SKILL`](skills/paper-to-skill-extractor/SKILL.md) |
+| [`paper-to-skill`](skills/paper-to-skill/) | 运行完整 paper-to-skill 工作流：PDF 预处理、论文筛选、证明模式抽取和跨论文综合。 | [`README`](skills/paper-to-skill/README.md) · [`SKILL`](skills/paper-to-skill/SKILL.md) |
 | [`math-paper-reading`](skills/math-paper-reading/) | 深度阅读论文、提取定理依赖、生成证明路径、维护本地文献笔记。 | [`README`](skills/math-paper-reading/README.md) · [`SKILL`](skills/math-paper-reading/SKILL.md) · [`router`](skills/math-paper-reading/agent_router.md) |
 
 ## 快速开始
@@ -37,7 +37,7 @@ cd AI4Math-Paper-Reading
 如果目标是从论文中提取可复用技能，请从这里开始：
 
 ```text
-skills/paper-to-skill-extractor/SKILL.md
+skills/paper-to-skill/SKILL.md
 ```
 
 如果目标是结构化精读论文，请从这里开始：
@@ -54,7 +54,7 @@ AI4Math-Paper-Reading/
 ├── README.zh-CN.md
 ├── SKILL.md
 └── skills/
-    ├── paper-to-skill-extractor/
+    ├── paper-to-skill/
     └── math-paper-reading/
 ```
 

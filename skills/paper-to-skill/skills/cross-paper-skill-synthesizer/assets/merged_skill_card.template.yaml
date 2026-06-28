@@ -1,0 +1,22 @@
+id: ""
+name: ""
+type: "proof_pattern"
+summary: ""
+inputs: []
+outputs: []
+assumptions: []
+core_steps: []
+trigger_keywords: []
+limitations: []
+source:
+  paper_md: ""
+  start_line: 0
+  end_line: 0
+synthesis:
+  cluster_id: ""
+  source_skill_ids: []
+  source_papers: []
+  merge_status: ""
+  generalization_notes: []
+  conflicts_or_risks: []
+review_status: "needs_human_review"

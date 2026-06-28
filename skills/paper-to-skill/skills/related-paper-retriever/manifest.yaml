@@ -1,0 +1,23 @@
+schema_version: 1
+name: related-paper-retriever
+version: 0.1.0
+scope: paper-to-skill
+description: Retrieve and structure directly related math research papers from a research profile and user feedback state.
+entrypoint: SKILL.md
+requires_env: {}
+requires_tools:
+  - agent-native-search
+  - agent-native-read
+requires_skills:
+  - seed-paper-profiler
+input_artifacts:
+  - research_profile.json
+  - optional_human_feedback_state.json
+  - optional_seed_metadata
+output_artifacts:
+  - candidate_papers.json
+  - retrieval_report.md
+approval_required_for:
+  - external_search_expansion
+  - human_feedback_state_update
+risk_level: low

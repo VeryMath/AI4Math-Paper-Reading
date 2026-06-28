@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper PDF Downloader"
+  short_description: "Download selected open-access paper PDFs."
+  default_prompt: "Use this skill to read my reading plan or candidate papers, download only confirmed open-access PDFs into papers/<paper_id>/paper.pdf, save metadata.json, and write a bilingual download report."

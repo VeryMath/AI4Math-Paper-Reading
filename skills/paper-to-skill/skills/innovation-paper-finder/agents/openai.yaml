@@ -1,0 +1,4 @@
+interface:
+  display_name: "Innovation Paper Finder"
+  short_description: "Find papers that may create new research angles."
+  default_prompt: "Use this skill with Codex search to find papers with transferable methods, proof techniques, bounds, assumptions, or cross-domain ideas, then produce innovation_candidates.json."

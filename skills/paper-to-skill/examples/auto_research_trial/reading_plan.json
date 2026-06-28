@@ -1,0 +1,446 @@
+{
+  "research_project_id": "auto_research_trial",
+  "created_at": "2026-05-04",
+  "sources": [
+    "candidate_papers.json",
+    "innovation_candidates.json",
+    "research_profile.json"
+  ],
+  "deduplication_notes": [
+    "Merged duplicate 2604.06065 from candidate_papers.json and innovation_candidates.json.",
+    "Merged duplicate 2305.11798 from candidate_papers.json and innovation_candidates.json.",
+    "Merged duplicate 2601.02499 from candidate_papers.json and innovation_candidates.json.",
+    "Merged duplicate 2406.12816 from candidate_papers.json and innovation_candidates.json.",
+    "Merged duplicate openreview_vxq1OnaAMq from candidate_papers.json and innovation_candidates.json.",
+    "Merged duplicate VTaO5BXDxV from candidate_papers.json and innovation_candidates.json.",
+    "After deduplication, 16 unique candidate papers remain."
+  ],
+  "papers": [
+    {
+      "paper_id": "vES22INUKm",
+      "title": "An Error Analysis of Flow Matching for Deep Generative Modeling",
+      "url": "https://openreview.net/forum?id=vES22INUKm",
+      "pdf_url": "https://openreview.net/pdf?id=vES22INUKm",
+      "group": "must_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 2,
+        "proof_pattern_value": 3,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is a direct Euclidean flow-matching error-analysis baseline for the seed profile's learned-velocity and Wasserstein convergence questions. It is likely to yield reusable proof patterns for epsilon-accurate velocity fields and W2 sampling guarantees.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs",
+        "related_work"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Read before or alongside the seed Wasserstein proof to compare assumptions and proof decompositions."
+    },
+    {
+      "paper_id": "uqQPyWFDhY",
+      "title": "Error Bounds for Flow Matching Methods",
+      "url": "https://openreview.net/forum?id=uqQPyWFDhY",
+      "pdf_url": "https://openreview.net/pdf?id=uqQPyWFDhY",
+      "group": "must_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 2,
+        "proof_pattern_value": 3,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is a core flow-matching error-bound paper and should anchor the general proof framework before reading geometric extensions. It likely contains reusable approximation-error-to-sampling-error arguments.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs",
+        "related_work"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "High value for paper-to-skill extraction because it is proof-centered and close to the seed assumptions."
+    },
+    {
+      "paper_id": "2302.03660",
+      "title": "Flow Matching on General Geometries",
+      "url": "https://arxiv.org/abs/2302.03660",
+      "pdf_url": "https://arxiv.org/pdf/2302.03660",
+      "group": "must_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 2,
+        "proof_pattern_value": 2,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is the foundational Riemannian/geometric flow matching method paper. Even if it is less proof-heavy on sampling rates, it is essential for definitions, geometry, and positioning.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "related_work"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Use it to map definitions and method lineage before extracting proof-patterns from later RFM theory papers."
+    },
+    {
+      "paper_id": "VTaO5BXDxV",
+      "title": "Geometry-Grounded Flow Matching on Compact Manifolds",
+      "url": "https://openreview.net/forum?id=VTaO5BXDxV",
+      "pdf_url": "https://openreview.net/pdf?id=VTaO5BXDxV",
+      "group": "must_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 3,
+        "proof_pattern_value": 3,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is very close to the Riemannian TV seed paper but emphasizes Wasserstein and end-to-end compact-manifold guarantees. It is a strong candidate for cross-paper synthesis with the seed RFM paper.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs",
+        "appendix"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Potentially high-value for extracting geometric FM proof patterns."
+    },
+    {
+      "paper_id": "2604.06065",
+      "title": "Lipschitz regularity in Flow Matching and Diffusion Models: sharp sampling rates and functional inequalities",
+      "url": "https://arxiv.org/abs/2604.06065",
+      "pdf_url": "https://arxiv.org/pdf/2604.06065",
+      "group": "must_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 3,
+        "proof_pattern_value": 3,
+        "positioning_value": 2,
+        "access_readiness": 3,
+        "reading_cost": 1
+      },
+      "decision_reason": "This paper directly targets the seed profile's bottleneck around velocity-field Lipschitz regularity, terminal-time behavior, and discretization rates. It is likely harder to read but has the highest innovation potential.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs",
+        "appendix"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Read for innovation and possible weakening/sharpening of regularity assumptions."
+    },
+    {
+      "paper_id": "openreview_vxq1OnaAMq",
+      "title": "Gauge Flow Matching: Efficient Constrained Generative Modeling over General Convex Set and Beyond",
+      "url": "https://openreview.net/forum?id=vxq1OnaAMq",
+      "pdf_url": "https://openreview.net/pdf?id=vxq1OnaAMq",
+      "group": "must_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 3,
+        "proof_pattern_value": 2,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is the strongest alternative constrained-domain method to mirror/reflected flow matching. It is important for positioning and may suggest a different transformation-based route for constrained FM.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs",
+        "related_work"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Read to compare gauge maps with regularized mirror maps."
+    },
+    {
+      "paper_id": "2310.01236",
+      "title": "Mirror Diffusion Models for Constrained and Watermarked Generation",
+      "url": "https://arxiv.org/abs/2310.01236",
+      "pdf_url": "https://arxiv.org/pdf/2310.01236",
+      "group": "should_read",
+      "scores": {
+        "relevance": 2,
+        "innovation_potential": 2,
+        "proof_pattern_value": 2,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is essential mirror-map constrained-generation background, but it is diffusion-focused rather than flow-matching error analysis. It should be read for method lineage and assumptions.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "related_work"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Useful context before writing related-work or comparing constrained generation approaches."
+    },
+    {
+      "paper_id": "2405.16577",
+      "title": "Reflected Flow Matching",
+      "url": "https://arxiv.org/abs/2405.16577",
+      "pdf_url": "https://arxiv.org/pdf/2405.16577",
+      "group": "should_read",
+      "scores": {
+        "relevance": 3,
+        "innovation_potential": 2,
+        "proof_pattern_value": 1,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This paper addresses the same constrained-domain problem with reflection rather than mirror maps or gauge maps. It is important for method comparison, though likely less central for proof-pattern extraction.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "related_work",
+        "experiments"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Read after Gauge Flow Matching unless the focus shifts toward constraint-satisfaction mechanisms."
+    },
+    {
+      "paper_id": "qKKxzTucgy",
+      "title": "On the Convergence and Straightness of Rectified Flow",
+      "url": "https://openreview.net/forum?id=qKKxzTucgy",
+      "pdf_url": "https://openreview.net/pdf?id=qKKxzTucgy",
+      "group": "should_read",
+      "scores": {
+        "relevance": 2,
+        "innovation_potential": 3,
+        "proof_pattern_value": 2,
+        "positioning_value": 2,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "The straightness abstraction may reframe discretization error as path geometry, which is a promising innovation direction. It is not as directly related as RFM/constrained FM papers, so it belongs in should_read.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs"
+      ],
+      "recommended_next_step": "download_and_convert",
+      "notes": "Read if the goal is to find new theoretical angles rather than only map related work."
+    },
+    {
+      "paper_id": "2305.11798",
+      "title": "The probability flow ODE is provably fast",
+      "url": "https://arxiv.org/abs/2305.11798",
+      "pdf_url": "https://arxiv.org/pdf/2305.11798",
+      "group": "should_read",
+      "scores": {
+        "relevance": 2,
+        "innovation_potential": 3,
+        "proof_pattern_value": 2,
+        "positioning_value": 2,
+        "access_readiness": 3,
+        "reading_cost": 1
+      },
+      "decision_reason": "This adjacent deterministic ODE sampler paper may provide proof techniques for polynomial-time convergence under noncontractive dynamics. It is not flow matching, so read selectively for transferable proof moves.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Skim first; download if the proof architecture looks transferable."
+    },
+    {
+      "paper_id": "2601.02499",
+      "title": "Polynomial Convergence of Riemannian Diffusion Models",
+      "url": "https://arxiv.org/abs/2601.02499",
+      "pdf_url": "https://arxiv.org/pdf/2601.02499",
+      "group": "should_read",
+      "scores": {
+        "relevance": 2,
+        "innovation_potential": 2,
+        "proof_pattern_value": 3,
+        "positioning_value": 2,
+        "access_readiness": 3,
+        "reading_cost": 1
+      },
+      "decision_reason": "This is diffusion rather than flow matching, but its Riemannian TV and curvature proof techniques are close to the RFM TV seed. It should be read selectively for proof-method transfer.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements",
+        "proofs",
+        "appendix"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Useful for cross-domain proof patterns, especially curvature and TV control."
+    },
+    {
+      "paper_id": "2202.02763",
+      "title": "Riemannian Score-Based Generative Modelling",
+      "url": "https://arxiv.org/abs/2202.02763",
+      "pdf_url": "https://arxiv.org/pdf/2202.02763",
+      "group": "maybe_read",
+      "scores": {
+        "relevance": 2,
+        "innovation_potential": 1,
+        "proof_pattern_value": 1,
+        "positioning_value": 3,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is important background for manifold generative modeling, but it is less directly aligned with deterministic RFM proof-pattern extraction. Read if related-work context is needed.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "related_work"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Keep as background unless the project expands to diffusion comparisons."
+    },
+    {
+      "paper_id": "2406.12816",
+      "title": "Neural Approximate Mirror Maps for Constrained Diffusion Models",
+      "url": "https://arxiv.org/abs/2406.12816",
+      "pdf_url": "https://arxiv.org/pdf/2406.12816",
+      "group": "maybe_read",
+      "scores": {
+        "relevance": 2,
+        "innovation_potential": 2,
+        "proof_pattern_value": 1,
+        "positioning_value": 2,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "Learned mirror maps are conceptually relevant, but this is diffusion-oriented and may not provide immediate sampler-theory proof patterns. Save for later method-design exploration.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Potential future direction if mirror flow matching needs learned transformations."
+    },
+    {
+      "paper_id": "JEn5B8JC5n",
+      "title": "Flow Matching Generalizes Through Discretization Bias",
+      "url": "https://openreview.net/forum?id=JEn5B8JC5n",
+      "pdf_url": "https://openreview.net/pdf?id=JEn5B8JC5n",
+      "group": "maybe_read",
+      "scores": {
+        "relevance": 1,
+        "innovation_potential": 3,
+        "proof_pattern_value": 1,
+        "positioning_value": 1,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "The idea that discretization bias can help generalization is interesting, but it is speculative relative to the seed profile's rigorous geometric sampler guarantees. Keep it as an innovation note.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Do not prioritize unless exploring conceptual reframing of discretization."
+    },
+    {
+      "paper_id": "oBc4oWAlcs",
+      "title": "Generative Modeling with Continuous Flows: Sample Complexity of Flow Matching",
+      "url": "https://openreview.net/forum?id=oBc4oWAlcs",
+      "pdf_url": "https://openreview.net/pdf?id=oBc4oWAlcs",
+      "group": "maybe_read",
+      "scores": {
+        "relevance": 1,
+        "innovation_potential": 2,
+        "proof_pattern_value": 2,
+        "positioning_value": 1,
+        "access_readiness": 3,
+        "reading_cost": 1
+      },
+      "decision_reason": "This could replace the assumed epsilon-accurate velocity field with sample/optimization complexity, but that is one layer upstream of the current sampler-theory focus.",
+      "reading_focus": [
+        "abstract",
+        "introduction",
+        "theorem_statements"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Save until after core sampler-discretization papers are processed."
+    },
+    {
+      "paper_id": "KwGec9703J",
+      "title": "Are We Really Learning the Score Function? Reinterpreting Diffusion Models Through Wasserstein Gradient Flow Matching",
+      "url": "https://openreview.net/forum?id=KwGec9703J",
+      "pdf_url": "https://openreview.net/pdf?id=KwGec9703J",
+      "group": "maybe_read",
+      "scores": {
+        "relevance": 1,
+        "innovation_potential": 2,
+        "proof_pattern_value": 1,
+        "positioning_value": 1,
+        "access_readiness": 3,
+        "reading_cost": 2
+      },
+      "decision_reason": "This is a conceptual diffusion reinterpretation and only indirectly related to geometric flow matching error bounds. It is useful only if the project broadens to score-vs-velocity abstractions.",
+      "reading_focus": [
+        "abstract",
+        "introduction"
+      ],
+      "recommended_next_step": "skim_only",
+      "notes": "Low priority for the current proof-pattern mining workflow."
+    }
+  ],
+  "reading_sequence": [
+    "vES22INUKm",
+    "uqQPyWFDhY",
+    "2302.03660",
+    "VTaO5BXDxV",
+    "2604.06065",
+    "openreview_vxq1OnaAMq",
+    "2310.01236",
+    "2405.16577",
+    "qKKxzTucgy",
+    "2305.11798",
+    "2601.02499",
+    "2202.02763",
+    "2406.12816",
+    "JEn5B8JC5n",
+    "oBc4oWAlcs",
+    "KwGec9703J"
+  ],
+  "download_queue": [
+    "vES22INUKm",
+    "uqQPyWFDhY",
+    "2302.03660",
+    "VTaO5BXDxV",
+    "2604.06065",
+    "openreview_vxq1OnaAMq",
+    "2310.01236",
+    "2405.16577",
+    "qKKxzTucgy"
+  ],
+  "extraction_queue": [
+    "vES22INUKm",
+    "uqQPyWFDhY",
+    "VTaO5BXDxV",
+    "2604.06065",
+    "openreview_vxq1OnaAMq"
+  ],
+  "checkpoint_questions": [
+    "Should I download and convert all six must_read papers, or start with only vES22INUKm and uqQPyWFDhY to test extraction quality?",
+    "Should should_read papers be downloaded now, or only skimmed from metadata/abstract first?",
+    "Should paper-to-skill-extractor target proof-patterns from the Euclidean FM error papers first, or from the geometric/Riemannian papers first?"
+  ]
+}

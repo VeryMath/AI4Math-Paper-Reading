@@ -1,0 +1,16 @@
+.env
+.DS_Store
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.pdf
+*.tar.gz
+outputs/
+outputs_markdown/
+**/mineru/
+**/paper.pdf
+dist/
+
+# Keep the public trial example reproducible from PDF inputs.
+!examples/auto_research_trial/seed_papers/*/paper.pdf
+!examples/auto_research_trial/papers/*/paper.pdf

@@ -1,0 +1,225 @@
+{
+  "research_project_id": "auto_research_trial",
+  "created_at": "2026-05-04",
+  "source_profile": "research_profile.json",
+  "queries": [
+    {
+      "query": "\"Lipschitz regularity in Flow Matching and Diffusion Models\" arxiv",
+      "innovation_route": "sharper_bound",
+      "notes": "Searched for recent work on sharp velocity-field regularity and discretization rates."
+    },
+    {
+      "query": "\"The probability flow ODE is provably fast\" arxiv",
+      "innovation_route": "proof_technique",
+      "notes": "Searched deterministic ODE sampler theory with polynomial-time guarantees."
+    },
+    {
+      "query": "\"On the convergence and straightness of Rectified Flow\" OpenReview",
+      "innovation_route": "abstraction",
+      "notes": "Searched path-geometry views of flow discretization error."
+    },
+    {
+      "query": "\"Flow Matching Generalizes Through Discretization Bias\" OpenReview",
+      "innovation_route": "alternative_formulation",
+      "notes": "Searched papers that reinterpret discretization as a mechanism rather than only an error."
+    },
+    {
+      "query": "\"Polynomial Convergence of Riemannian Diffusion Models\" arxiv",
+      "innovation_route": "cross_domain",
+      "notes": "Searched Riemannian diffusion proof techniques transferable to Riemannian FM TV analysis."
+    },
+    {
+      "query": "\"Neural Approximate Mirror Maps\" constrained diffusion models arxiv",
+      "innovation_route": "abstraction",
+      "notes": "Searched flexible mirror-map construction that may transfer to mirror flow matching."
+    }
+  ],
+  "candidates": [
+    {
+      "paper_id": "2604.06065",
+      "title": "Lipschitz regularity in Flow Matching and Diffusion Models: sharp sampling rates and functional inequalities",
+      "authors": ["Arthur Stephanovitch"],
+      "year": "2026",
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2604.06065",
+      "pdf_url": "https://arxiv.org/pdf/2604.06065",
+      "abstract_summary": "Establishes sharp Lipschitz regularity for FM vector fields and diffusion scores, with optimal time/dimension dependence and Euler sampler rates around sqrt(d)/N up to logs.",
+      "innovation_signal": "sharper_bound",
+      "why_it_may_help": "The seed profile explicitly cares about velocity regularity, terminal-time behavior, dimension dependence, and avoiding bad Lipschitz constants.",
+      "possible_research_angle": "Try to transfer one-sided/sharp Lipschitz regularity arguments to Student-t priors, mirror-map dual spaces, or Riemannian FM.",
+      "risk": "May rely on Euclidean or Gaussian assumptions that do not survive mirror or manifold transformations.",
+      "recommended_action": "read_now",
+      "download_status": "open_pdf_found",
+      "notes": "Strongest innovation lead for constants and sharp discretization rates."
+    },
+    {
+      "paper_id": "2305.11798",
+      "title": "The probability flow ODE is provably fast",
+      "authors": ["Sitan Chen", "Sinho Chewi", "Holden Lee", "Yuanzhi Li", "Jianfeng Lu", "Adil Salim"],
+      "year": "2023",
+      "venue": "NeurIPS 2023 / arXiv",
+      "url": "https://arxiv.org/abs/2305.11798",
+      "pdf_url": "https://arxiv.org/pdf/2305.11798",
+      "abstract_summary": "Proves polynomial-time guarantees for probability-flow ODE sampling, using deterministic dynamics plus a corrector step to handle noncontractive behavior.",
+      "innovation_signal": "new_proof_technique",
+      "why_it_may_help": "It attacks deterministic generative ODE convergence without simple contractivity, which is also a core bottleneck in FM sampler theory.",
+      "possible_research_angle": "Investigate whether a corrector or hybrid step can reduce exponential dependence in FM/mirror/RFM discretization analysis.",
+      "risk": "The corrector step changes the algorithm and may conflict with purely deterministic flow matching goals.",
+      "recommended_action": "skim",
+      "download_status": "open_pdf_found",
+      "notes": "Important proof-method transfer candidate."
+    },
+    {
+      "paper_id": "qKKxzTucgy",
+      "title": "On the Convergence and Straightness of Rectified Flow",
+      "authors": ["Vansh Bansal", "Saptarshi Roy", "Alessandro Rinaldo", "Purnamrita Sarkar"],
+      "year": "2026",
+      "venue": "AISTATS 2026",
+      "url": "https://openreview.net/forum?id=qKKxzTucgy",
+      "pdf_url": "https://openreview.net/pdf?id=qKKxzTucgy",
+      "abstract_summary": "Introduces a piecewise-straightness parameter linking path geometry to Wasserstein discretization error and one-step sampling behavior.",
+      "innovation_signal": "new_abstraction",
+      "why_it_may_help": "The seed papers analyze discretization via regularity constants; this suggests an alternative path-geometry quantity that may better explain solver efficiency.",
+      "possible_research_angle": "Define a geometry-aware straightness or curvature-of-path parameter for mirror/Riemannian flow matching.",
+      "risk": "Rectified Flow assumptions may not transfer directly to manifold geodesic interpolation or constrained mirror spaces.",
+      "recommended_action": "read_now",
+      "download_status": "open_pdf_found",
+      "notes": "Strong abstraction lead for reframing discretization error."
+    },
+    {
+      "paper_id": "JEn5B8JC5n",
+      "title": "Flow Matching Generalizes Through Discretization Bias",
+      "authors": ["Zhixin Zhou", "Zhi Zhang", "Arash A. Amini"],
+      "year": "2026",
+      "venue": "ICLR 2026 submission / OpenReview",
+      "url": "https://openreview.net/forum?id=JEn5B8JC5n",
+      "pdf_url": "https://openreview.net/pdf?id=JEn5B8JC5n",
+      "abstract_summary": "Argues that discretization error itself can induce useful projection-like generalization effects in flow matching, particularly for empirical velocity fields.",
+      "innovation_signal": "alternative_formulation",
+      "why_it_may_help": "The seed profile treats discretization as error; this paper suggests discretization may also be an implicit regularizer or projection mechanism.",
+      "possible_research_angle": "Ask whether constrained/geometric FM can exploit discretization bias to improve feasibility or manifold concentration rather than only minimize it.",
+      "risk": "Under-review status and empirical-velocity setup make transfer speculative.",
+      "recommended_action": "skim",
+      "download_status": "open_pdf_found",
+      "notes": "Speculative but potentially conceptually useful."
+    },
+    {
+      "paper_id": "2601.02499",
+      "title": "Polynomial Convergence of Riemannian Diffusion Models",
+      "authors": ["Xingyu Xu", "Ziyi Zhang", "Yorie Nakahira", "Guannan Qu", "Yuejie Chi"],
+      "year": "2026",
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2601.02499",
+      "pdf_url": "https://arxiv.org/pdf/2601.02499",
+      "abstract_summary": "Strengthens Riemannian diffusion theory by proving polynomial step-size guarantees in TV under L2 score accuracy and mild curvature assumptions.",
+      "innovation_signal": "cross_domain_transfer",
+      "why_it_may_help": "Its TV, curvature, and L2-accuracy machinery may transfer to Riemannian flow matching or provide a benchmark for assumptions.",
+      "possible_research_angle": "Compare TV proof tools for Riemannian diffusion and RFM, especially heat-kernel/log-gradient methods versus continuity-equation methods.",
+      "risk": "Diffusion proofs use heat-kernel machinery not present in deterministic FM.",
+      "recommended_action": "skim",
+      "download_status": "open_pdf_found",
+      "notes": "Good adjacent proof-technique lead."
+    },
+    {
+      "paper_id": "2406.12816",
+      "title": "Neural Approximate Mirror Maps for Constrained Diffusion Models",
+      "authors": ["Berthy T. Feng", "Ricardo Baptista", "Katherine L. Bouman"],
+      "year": "2024",
+      "venue": "arXiv",
+      "url": "https://arxiv.org/abs/2406.12816",
+      "pdf_url": "https://arxiv.org/pdf/2406.12816",
+      "abstract_summary": "Learns approximate mirror maps and inverse maps from differentiable distance functions, making mirror-space constrained generation flexible across constraint types.",
+      "innovation_signal": "new_abstraction",
+      "why_it_may_help": "The mirror FM seed relies on an analytic regularized mirror map; learned mirror maps could widen the constraint classes.",
+      "possible_research_angle": "Develop mirror flow matching with neural approximate mirror maps and analyze how approximation error enters dual-to-primal guarantees.",
+      "risk": "Theory may become difficult because learned maps may not preserve strong convexity, tail control, or clean metric transfer.",
+      "recommended_action": "save_for_later",
+      "download_status": "open_pdf_found",
+      "notes": "Useful if the project moves from proof-pattern mining to method design."
+    },
+    {
+      "paper_id": "openreview_vxq1OnaAMq",
+      "title": "Gauge Flow Matching: Efficient Constrained Generative Modeling over General Convex Set and Beyond",
+      "authors": ["Xinpeng Li", "Enming Liang", "Minghua Chen"],
+      "year": "2026",
+      "venue": "ICLR 2026",
+      "url": "https://openreview.net/forum?id=vxq1OnaAMq",
+      "pdf_url": "https://openreview.net/pdf?id=vxq1OnaAMq",
+      "abstract_summary": "Uses bijective gauge mappings to reduce generation on compact convex sets to generation on the unit ball, with strict constraint satisfaction and bounded approximation errors.",
+      "innovation_signal": "alternative_formulation",
+      "why_it_may_help": "Offers an alternative to mirror maps and reflection for constrained generation, potentially avoiding some heavy-tail dual-space pathologies.",
+      "possible_research_angle": "Compare gauge maps and regularized mirror maps as two transformation-based routes; look for a unifying dual-space guarantee.",
+      "risk": "May be more algorithmic than proof-pattern rich; bounded approximation errors need careful reading.",
+      "recommended_action": "read_now",
+      "download_status": "open_pdf_found",
+      "notes": "Strong method innovation lead for constrained domains."
+    },
+    {
+      "paper_id": "VTaO5BXDxV",
+      "title": "Geometry-Grounded Flow Matching on Compact Manifolds",
+      "authors": ["Ali Baheri"],
+      "year": "2026",
+      "venue": "ICLR 2026 Workshop GRaM",
+      "url": "https://openreview.net/forum?id=VTaO5BXDxV",
+      "pdf_url": "https://openreview.net/pdf?id=VTaO5BXDxV",
+      "abstract_summary": "Gives end-to-end Wasserstein guarantees for RFM on compact manifolds, separating statistical, approximation/optimization, and solver errors with intrinsic-dimension learning rates.",
+      "innovation_signal": "sharper_bound",
+      "why_it_may_help": "Complements the seed TV-rate paper by adding statistical learning and intrinsic dimension components.",
+      "possible_research_angle": "Synthesize TV-rate and Wasserstein/statistical-rate frameworks into a fuller RFM error decomposition.",
+      "risk": "Workshop paper; compact-manifold focus may not address Hadamard/SPD or heavy-tail issues.",
+      "recommended_action": "read_now",
+      "download_status": "open_pdf_found",
+      "notes": "Strong direct lead for cross-paper skill synthesis."
+    },
+    {
+      "paper_id": "oBc4oWAlcs",
+      "title": "Generative Modeling with Continuous Flows: Sample Complexity of Flow Matching",
+      "authors": ["TMLR Paper7104 Authors"],
+      "year": "2026",
+      "venue": "TMLR under review / OpenReview",
+      "url": "https://openreview.net/forum?id=oBc4oWAlcs",
+      "pdf_url": "https://openreview.net/pdf?id=oBc4oWAlcs",
+      "abstract_summary": "Analyzes sample complexity for flow matching without assuming access to an ERM, decomposing velocity estimation into neural approximation, statistical, and optimization errors.",
+      "innovation_signal": "new_proof_technique",
+      "why_it_may_help": "The seed profile assumes epsilon-accurate learned fields; this paper studies how that epsilon may arise from learning.",
+      "possible_research_angle": "Attach a learning-theoretic front-end to geometric FM error bounds, replacing assumed epsilon accuracy with sample/optimization complexity.",
+      "risk": "Under review and bounded-distribution assumptions may limit direct applicability.",
+      "recommended_action": "skim",
+      "download_status": "open_pdf_found",
+      "notes": "Useful if extending beyond sampler analysis into full end-to-end learning guarantees."
+    },
+    {
+      "paper_id": "KwGec9703J",
+      "title": "Are We Really Learning the Score Function? Reinterpreting Diffusion Models Through Wasserstein Gradient Flow Matching",
+      "authors": ["An Vuong", "Michael Thompson McCann", "Javier E. Santos", "Yen Ting Lin"],
+      "year": "2025",
+      "venue": "SPIGM @ NeurIPS / OpenReview",
+      "url": "https://openreview.net/forum?id=KwGec9703J",
+      "pdf_url": "https://openreview.net/pdf?id=KwGec9703J",
+      "abstract_summary": "Reinterprets diffusion training as flow matching to a Wasserstein gradient-flow velocity field rather than exact score learning, emphasizing non-conservative neural fields.",
+      "innovation_signal": "new_abstraction",
+      "why_it_may_help": "May broaden the conceptual frame from score accuracy to velocity-field transport accuracy, relevant to both diffusion and FM analyses.",
+      "possible_research_angle": "Use Wasserstein-gradient-flow language to compare FM, probability-flow ODEs, and Riemannian/geometric samplers.",
+      "risk": "May be more conceptual and less directly tied to nonasymptotic discretization proofs.",
+      "recommended_action": "save_for_later",
+      "download_status": "open_pdf_found",
+      "notes": "Lower-priority abstraction lead."
+    }
+  ],
+  "strong_leads": [
+    "2604.06065",
+    "qKKxzTucgy",
+    "openreview_vxq1OnaAMq",
+    "VTaO5BXDxV"
+  ],
+  "speculative_leads": [
+    "JEn5B8JC5n",
+    "2406.12816",
+    "KwGec9703J"
+  ],
+  "checkpoint_questions": [
+    "Should the innovation track prioritize sharper rates/constants, alternative geometry mappings, or conceptual reframing of discretization?",
+    "Should speculative OpenReview submissions be included in triage, or kept separate until after must-read accepted/arXiv papers?",
+    "Do you want to download and convert the strong leads next, or run paper-triage-ranker first?"
+  ]
+}

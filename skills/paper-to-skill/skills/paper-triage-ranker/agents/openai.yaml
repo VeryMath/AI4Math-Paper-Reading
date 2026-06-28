@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Triage Ranker"
+  short_description: "Rank candidate papers into a reading plan."
+  default_prompt: "Use this skill to merge candidate paper lists, rank them into must_read, should_read, maybe_read, and skip, and produce reading_plan.json with next actions."

@@ -1,0 +1,57 @@
+id: gaussian_smoothing_lipschitz_integral_control
+name: Gaussian smoothing Lipschitz integral control
+zh_name: 高斯平滑下的时间变 Lipschitz 积分控制
+type: proof_pattern
+category: proof_pattern
+summary: "EN: Bound the integrated spatial Lipschitz constant of a smoothed conditional velocity field through derivative identities and conditional covariance control. ZH: 通过速度场导数公式与条件协方差控制，证明高斯平滑条件速度场的时间积分 Lipschitz 界。"
+status: ready_for_library
+source:
+  paper_md: see synthesis.source_papers
+  start_line: 0
+  end_line: 0
+inputs:
+  - stochastic interpolant
+  - Gaussian smoothing schedule
+  - conditional covariance regularity parameter
+  - bounded support radius
+  - differentiable interpolant coefficients
+outputs:
+  - time-dependent Lipschitz envelope
+  - integrated Lipschitz estimate
+  - smoothing-schedule design constraint
+assumptions:
+  - The smoothing scale is positive on the analysis interval.
+  - Conditional covariance regularity holds.
+  - Interpolant coefficients are differentiable.
+  - Support or moment radius is controlled.
+core_steps:
+  - Add enough Gaussian smoothing to avoid singular endpoints.
+  - Differentiate the conditional expected velocity field.
+  - Rewrite derivative terms as conditional covariance operators.
+  - Bound covariance operators using regularity and Cauchy-Schwarz.
+  - Integrate the resulting time-varying Lipschitz envelope.
+  - Choose a smoothing schedule with logarithmic dominant integral.
+trigger_keywords:
+  - Gaussian smoothing
+  - conditional covariance
+  - Lipschitz velocity
+  - lambda-regular
+  - smoothing schedule
+limitations:
+  - Endpoint smoothing introduces bias.
+  - Nonstandard regularity must be checked separately.
+synthesis:
+  cluster_id: C04
+  source_skill_ids:
+    - uqQPyWFDhY:gaussian_smoothing_lipschitz_integral_control
+  source_papers:
+    - paper_id: uqQPyWFDhY
+      paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
+      start_line: 177
+      end_line: 255
+  merge_status: ready_for_library
+  generalization_notes:
+    - This card should usually be paired with a separate smoothing-bias card.
+  conflicts_or_risks:
+    - Lambda-regularity is not automatic for arbitrary distributions.
+review_status: ready_for_library

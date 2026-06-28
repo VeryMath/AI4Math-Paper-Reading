@@ -1,0 +1,60 @@
+id: truncated_empirical_process_generalization_decomposition
+name: Truncated empirical-process generalization decomposition
+zh_name: 截断经验过程泛化误差分解
+type: proof_pattern
+category: proof_pattern
+summary: "EN: Decompose excess risk with unbounded losses into ERM, approximation, bounded empirical-process, and truncation terms. ZH: 对含无界损失的学习问题，将超额风险分解为 ERM、逼近、截断后经验过程和尾部误差项。"
+status: needs_human_review
+source:
+  paper_md: see synthesis.source_papers
+  start_line: 0
+  end_line: 0
+inputs:
+  - population risk
+  - empirical risk
+  - ERM estimator
+  - unbounded loss term
+  - truncation event
+  - covering-number estimate
+outputs:
+  - excess-risk decomposition
+  - bounded statistical error term
+  - truncation error terms
+  - high-probability generalization bound
+assumptions:
+  - ERM comparison inequality holds.
+  - Loss is bounded on the truncation event.
+  - The complement event is tail-controlled.
+  - The function class admits a usable covering-number bound.
+core_steps:
+  - Split the excess risk into estimation and approximation pieces.
+  - Use ERM to cancel the empirical comparison term.
+  - Decompose sample randomness by source.
+  - Define a truncated loss.
+  - Split unbounded empirical error into two truncation terms and one bounded statistical term.
+  - Apply covering-number concentration to the bounded term.
+  - Bound truncation terms by tail probability and moments.
+trigger_keywords:
+  - ERM
+  - covering number
+  - unbounded loss
+  - truncation error
+  - generalization bound
+limitations:
+  - Independence and conditioning details are easy to misuse.
+  - Covering-number constants can make the result weak.
+synthesis:
+  cluster_id: C03
+  source_skill_ids:
+    - vES22INUKm:truncated_empirical_process_generalization_decomposition
+  source_papers:
+    - paper_id: vES22INUKm
+      paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
+      start_line: 274
+      end_line: 342
+  merge_status: needs_human_review
+  generalization_notes:
+    - Keep as a review card because the proof depends on sample-source decomposition and truncation definitions.
+  conflicts_or_risks:
+    - Needs verification of sample independence and boundedness after truncation.
+review_status: needs_human_review

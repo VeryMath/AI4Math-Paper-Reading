@@ -1,0 +1,10 @@
+{
+  "input_pdf": "examples/auto_research_trial/papers/vES22INUKm/paper.pdf",
+  "output_md": "examples/auto_research_trial/papers/vES22INUKm/paper.md",
+  "artifacts_dir": "examples/auto_research_trial/papers/vES22INUKm/mineru",
+  "converter": "MinerU",
+  "conda_env": "ai4math",
+  "markdown_chars": 140645,
+  "status": "success",
+  "warnings": []
+}
