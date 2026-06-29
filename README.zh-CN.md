@@ -4,7 +4,7 @@
 
 面向数学论文精读、证明依赖拆解与 paper-to-skill 提取的 AI4Math 技能集合。
 
-[English](README.md) · [贡献者](CONTRIBUTORS.md) · [技能包](#技能包) · [快速开始](#快速开始) · [安全边界](#安全边界)
+[English](README.md) · [贡献者](CONTRIBUTORS.md) · [技能包](#技能包) · [安装](#安装) · [快速开始](#快速开始) · [安全边界](#安全边界)
 
 ![version](https://img.shields.io/badge/version-0.1.0-blue)
 ![skills](https://img.shields.io/badge/skills-2-2ea44f)
@@ -24,6 +24,40 @@
 | --- | --- | --- |
 | [`paper-to-skill`](skills/paper-to-skill/) | 运行完整 paper-to-skill 工作流：PDF 预处理、论文筛选、证明模式抽取和跨论文综合。 | [`README`](skills/paper-to-skill/README.md) · [`SKILL`](skills/paper-to-skill/SKILL.md) |
 | [`math-paper-reading`](skills/math-paper-reading/) | 深度阅读论文、提取定理依赖、生成证明路径、维护本地文献笔记。 | [`README`](skills/math-paper-reading/README.md) · [`SKILL`](skills/math-paper-reading/SKILL.md) · [`router`](skills/math-paper-reading/agent_router.md) |
+
+## 安装
+
+推荐方式是 AI 自动安装：让你的 coding agent 自己 clone 或更新仓库、读取 Skill 说明、安装入口并验证 discovery。
+
+```text
+请帮我安装这些 AI4Math Skills。
+
+仓库：https://github.com/VeryMath/AI4Math-Paper-Reading.git
+分支：main
+Skill 路径：
+- skills/paper-to-skill
+- skills/math-paper-reading
+
+请执行：
+1. 本地 clone 或更新仓库。
+2. 读取 README.md、SKILL.md、AGENTS.md（如果存在）以及每个目标 Skill 入口。
+3. 如果当前环境支持本地 Skill discovery，把每个包含 SKILL.md 的目录链接到本地 skills 目录。
+4. 如果某个 Skill 依赖相邻的共享支持目录，请保留这些 sibling 目录。
+5. 验证安装后的 Skills 是否可被发现。
+6. 告诉我安装路径、是否需要重启 agent，并给我一个测试 prompt。
+```
+
+Codex 风格本地 discovery 的手工 fallback：
+
+```bash
+git clone https://github.com/VeryMath/AI4Math-Paper-Reading.git
+cd AI4Math-Paper-Reading
+mkdir -p ~/.codex/skills
+ln -s "$PWD/skills/paper-to-skill" ~/.codex/skills/paper-to-skill
+ln -s "$PWD/skills/math-paper-reading" ~/.codex/skills/math-paper-reading
+```
+
+如果你的 agent 使用别的本地 Skill 目录，把 `~/.codex/skills` 替换成对应配置路径。
 
 ## 快速开始
 
