@@ -4,7 +4,7 @@
 
 面向数学论文精读、证明依赖拆解与 paper-to-skill 提取的 AI4Math 技能集合。
 
-[English](README.md) · [技能包](#技能包) · [快速开始](#快速开始) · [贡献致谢](ACKNOWLEDGEMENTS.md) · [安全边界](#安全边界)
+[English](README.md) · [贡献者](CONTRIBUTORS.md) · [技能包](#技能包) · [快速开始](#快速开始) · [安全边界](#安全边界)
 
 ![version](https://img.shields.io/badge/version-0.1.0-blue)
 ![skills](https://img.shields.io/badge/skills-2-2ea44f)
