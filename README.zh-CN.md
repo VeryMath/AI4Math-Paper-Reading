@@ -12,6 +12,11 @@
 
 </div>
 
+<p align="center">
+  如果这个项目对你有帮助，欢迎为仓库点 Star ⭐
+  <a href="https://github.com/VeryMath/AI4Math-Paper-Reading"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/VeryMath/AI4Math-Paper-Reading?style=social"></a>
+</p>
+
 ## 这个仓库是什么
 
 这个仓库是 AI4Math 论文阅读方向的技能入口。它不是一个巨大的单体 Agent，而是把不同工作流拆成独立技能包：每个包都有自己的 README、`SKILL.md` 和必要的路由文件。
