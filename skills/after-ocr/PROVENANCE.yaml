@@ -1,0 +1,12 @@
+schema_version: 1
+course:
+  id: 2026-summer-ai-research-practice-math
+  name_zh: 人工智能赋能科研实践（数学）
+contributor:
+  display_name: Dong Yuan
+source:
+  submission_id: course-2026-after-ocr
+  sha256: df5110e2bdf2271cd373542bb094e63a0ce24770d1e56c19991de817dbf58b4c
+license: MIT
+license_decision: course-maintainer-approved
+normalization_record: NORMALIZATION.md

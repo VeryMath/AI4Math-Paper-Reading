@@ -1,0 +1,4 @@
+interface:
+  display_name: "After OCR 数学审校"
+  short_description: "审校公式密集型 OCR Markdown 的公式、结构与 LaTeX 排版"
+  default_prompt: "使用 $after-ocr 通篇审校这份数学 OCR Markdown，修复公式、环境、结构和排版错误并记录校对日志。"

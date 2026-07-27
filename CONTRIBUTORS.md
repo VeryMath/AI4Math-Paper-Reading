@@ -18,6 +18,8 @@ attribution ledger.
 | Root repository router | Current `VeryMath/AI4Math-Paper-Reading` repository | [Conan Xu](https://github.com/ConanXu-math), conanxu <1845830029@qq.com> | Root README, bilingual repository map, package routing layer, and public repository structure. | Preserved through repository commit history. |
 | `skills/paper-to-skill` | Archived `VeryMath/paper-to-skill-extractor` repository and subsequent AI4Math package work | [Conan Xu](https://github.com/ConanXu-math), conanxu <1845830029@qq.com> | Paper-to-skill extraction workflow, PDF-first pipeline, registry, subskills, examples, and package normalization. | Preserved through repository commit history and package documentation. |
 | `skills/math-paper-reading` | Archived `VeryMath/skills_math_paper` repository | [IsRivulet](https://github.com/IsRivulet) | Original mathematical paper-reading workflow, router-style prompts, examples, and bilingual documentation baseline. | Recorded here and in attribution commits. |
+| `skills/after-ocr` | 2026 summer course contribution | Dong Yuan | Formula-heavy OCR Markdown review workflow, candidate scanner, audit schema, multi-pass log merger, and regression tests. | Recorded in package provenance and normalization files. |
+| `skills/graph-theory-paper-reading` | 2026 summer course contribution | Zhuojie Tu | Six-dimension graph-theory paper reading, LaTeX report contract, and proof-tree workflow. | Recorded in package provenance and normalization files. |
 
 ## Policy
 
