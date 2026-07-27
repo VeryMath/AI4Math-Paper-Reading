@@ -1,0 +1,12 @@
+schema_version: 1
+course:
+  id: 2026-summer-ai-research-practice-math
+  name_zh: 人工智能赋能科研实践（数学）
+contributor:
+  display_name: Zhuojie Tu
+source:
+  submission_id: course-2026-graph-theory-paper-reading
+  sha256: e66fe2d8f3074a2dc5b6a51605f6a29a8be826278b76eefec3369c7a86f52208
+license: MIT
+license_decision: course-maintainer-approved
+normalization_record: NORMALIZATION.md

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Graph Theory Paper Reading"
+  short_description: "Deep-read graph theory papers and build proof trees"
+  default_prompt: "Use $graph-theory-paper-reading to analyze this graph theory paper and produce a source-grounded LaTeX report with proof trees."

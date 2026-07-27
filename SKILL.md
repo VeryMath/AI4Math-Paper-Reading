@@ -15,6 +15,10 @@ workflows.
   `README.md` before use.
 - `skills/math-paper-reading/`: paper-reading assistant modules. Start with
   `SKILL.md`, `README.md`, and `agent_router.md`.
+- `skills/after-ocr/`: review formula-heavy OCR Markdown, apply evidence-backed
+  local repairs, and maintain complete coverage and audit logs.
+- `skills/graph-theory-paper-reading/`: deep-read graph theory papers and
+  build structured LaTeX reports and proof trees.
 
 Prefer package-local instructions over this router when running a concrete
 workflow.

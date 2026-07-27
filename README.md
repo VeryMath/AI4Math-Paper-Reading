@@ -8,7 +8,7 @@ dependencies, and turning papers into reusable AI4Math skills.
 [中文说明](README.zh-CN.md) · [Contributors](CONTRIBUTORS.md) · [Skill packages](#skill-packages) · [Installation](#installation) · [Quick start](#quick-start) · [Security model](#security-and-scope)
 
 ![version](https://img.shields.io/badge/version-0.1.0-blue)
-![skills](https://img.shields.io/badge/skills-2-2ea44f)
+![skills](https://img.shields.io/badge/skills-4-2ea44f)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
 </div>
@@ -33,6 +33,8 @@ task.
 | --- | --- | --- |
 | [`paper-to-skill`](skills/paper-to-skill/) | Run the full paper-to-skill workflow: PDF preparation, paper triage, proof-pattern extraction, and cross-paper synthesis. | [`README`](skills/paper-to-skill/README.md) · [`SKILL`](skills/paper-to-skill/SKILL.md) |
 | [`math-paper-reading`](skills/math-paper-reading/) | Read papers deeply, extract theorem dependencies, build proof pathways, and manage local reference notes. | [`README`](skills/math-paper-reading/README.md) · [`SKILL`](skills/math-paper-reading/SKILL.md) · [`router`](skills/math-paper-reading/agent_router.md) |
+| [`after-ocr`](skills/after-ocr/) | Audit and repair formula-heavy OCR Markdown with continuous coverage, evidence logs, and multi-pass reconciliation. | [`README`](skills/after-ocr/README.md) · [`SKILL`](skills/after-ocr/SKILL.md) |
+| [`graph-theory-paper-reading`](skills/graph-theory-paper-reading/) | Deep-read graph theory papers and produce structured LaTeX reports with proof-tree artifacts. | [`README`](skills/graph-theory-paper-reading/README.md) · [`SKILL`](skills/graph-theory-paper-reading/SKILL.md) |
 
 ## Installation
 
@@ -46,6 +48,8 @@ Branch: main
 Skill paths:
 - skills/paper-to-skill
 - skills/math-paper-reading
+- skills/after-ocr
+- skills/graph-theory-paper-reading
 
 Steps:
 1. Clone or update the repository locally.
@@ -64,6 +68,8 @@ cd AI4Math-Paper-Reading
 mkdir -p ~/.codex/skills
 ln -s "$PWD/skills/paper-to-skill" ~/.codex/skills/paper-to-skill
 ln -s "$PWD/skills/math-paper-reading" ~/.codex/skills/math-paper-reading
+ln -s "$PWD/skills/after-ocr" ~/.codex/skills/after-ocr
+ln -s "$PWD/skills/graph-theory-paper-reading" ~/.codex/skills/graph-theory-paper-reading
 ```
 
 If your agent uses a different local Skill directory, replace `~/.codex/skills` with that configured path.
@@ -89,6 +95,13 @@ For structured paper reading, start with:
 skills/math-paper-reading/agent_router.md
 ```
 
+For OCR cleanup or graph-theory-specific reading, start with:
+
+```text
+skills/after-ocr/SKILL.md
+skills/graph-theory-paper-reading/SKILL.md
+```
+
 ## Repository Layout
 
 ```text
@@ -98,7 +111,9 @@ AI4Math-Paper-Reading/
 ├── SKILL.md
 └── skills/
     ├── paper-to-skill/
-    └── math-paper-reading/
+    ├── math-paper-reading/
+    ├── after-ocr/
+    └── graph-theory-paper-reading/
 ```
 
 Package-local examples are illustrative fixtures. Derived outputs from private
@@ -106,10 +121,15 @@ papers should stay outside git unless they are intentionally sanitized examples.
 
 ## Validation
 
-There is no root build step. When changing a package, validate its `SKILL.md`
-and README links, then run any package-local tests or scripts described by that
-package. If you use Codex's local skill validator, run it against the changed
-package directory.
+Run the repository tests and any changed package's own checks:
+
+```bash
+python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s skills/after-ocr/tests -v
+```
+
+If you use Codex's local skill validator, run it against every changed package
+directory.
 
 ## Security and Scope
 
