@@ -34,8 +34,16 @@ seed papers
 - `synthesized_skills/domain_method_map.yaml`: cross-paper method map.
 - `synthesized_skills/merged_skill_cards/`: merged library-ready or review-worthy Skill Cards.
 - `synthesized_skills/synthesis_report.md`: bilingual synthesis report.
+- `flow_stability_validation.md`: source-condition comparison, separate mathematical derivation, actual cross-problem reuse, and failed generalizations checked on 2026-10-22.
+- `flow_stability_check.py`: direct standard-library computation of the exact ODE examples and bounds in that report.
+
+Only the revised continuous-flow stability card currently has the complete verification and reuse record. Other cards have `promotion.status: candidate`; their extraction status follows the current score rubric. Earlier library-readiness labels are not evidence of mathematical verification.
 
 ## Excluded From GitHub
 
 - MinerU `mineru/` folders.
 - Local `.env` files and API tokens.
+
+2026-10-22：六张旧单篇卡的 `total_score` 已按既有加权公式和原分项评分重新计算。这只是算术修正，没有新增数学复核，也没有改变验证状态或晋级结论。
+
+后续一致性修正：候选索引同步单篇卡分数；3.9 分高斯平滑卡及报告调整为 `needs_review`。五张单来源合成卡保留来源抽取评分，并明确未重新评分；没有新增数学验证或晋级。

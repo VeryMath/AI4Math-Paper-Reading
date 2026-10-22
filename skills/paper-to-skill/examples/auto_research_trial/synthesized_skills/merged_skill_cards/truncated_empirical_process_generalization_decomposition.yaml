@@ -1,22 +1,25 @@
-id: truncated_empirical_process_generalization_decomposition
-name: Truncated empirical-process generalization decomposition
+name: truncated_empirical_process_generalization_decomposition
 zh_name: 截断经验过程泛化误差分解
-type: proof_pattern
 category: proof_pattern
-summary: "EN: Decompose excess risk with unbounded losses into ERM, approximation, bounded empirical-process, and truncation terms. ZH: 对含无界损失的学习问题，将超额风险分解为 ERM、逼近、截断后经验过程和尾部误差项。"
-status: needs_human_review
+description: "EN: Decompose excess risk with unbounded losses into ERM, approximation, bounded empirical-process, and truncation terms. ZH: 对含无界损失的学习问题，将超额风险分解为 ERM、逼近、截断后经验过程和尾部误差项。"
+status: needs_review
 source:
-  paper_md: see synthesis.source_papers
-  start_line: 0
-  end_line: 0
-inputs:
+  paper_title: null
+  paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
+  source_blocks:
+    - lines 274-292
+    - lines 300-320
+    - lines 334-342
+  start_line: 274
+  end_line: 342
+input:
   - population risk
   - empirical risk
   - ERM estimator
   - unbounded loss term
   - truncation event
   - covering-number estimate
-outputs:
+output:
   - excess-risk decomposition
   - bounded statistical error term
   - truncation error terms
@@ -26,6 +29,7 @@ assumptions:
   - Loss is bounded on the truncation event.
   - The complement event is tail-controlled.
   - The function class admits a usable covering-number bound.
+  - Sample-source independence and conditioning required by the concentration step are checked explicitly.
 core_steps:
   - Split the excess risk into estimation and approximation pieces.
   - Use ERM to cancel the empirical comparison term.
@@ -43,6 +47,28 @@ trigger_keywords:
 limitations:
   - Independence and conditioning details are easy to misuse.
   - Covering-number constants can make the result weak.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
+quality:
+  reusability: 4
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 3.65
 synthesis:
   cluster_id: C03
   source_skill_ids:
@@ -55,6 +81,7 @@ synthesis:
   merge_status: needs_human_review
   generalization_notes:
     - Keep as a review card because the proof depends on sample-source decomposition and truncation definitions.
+    - Quality scores are inherited from the single source card and have not been reassessed for synthesis.
   conflicts_or_risks:
     - Needs verification of sample independence and boundedness after truncation.
-review_status: needs_human_review
+  conflict_resolutions: []

@@ -1,7 +1,7 @@
 name: gaussian_smoothing_lipschitz_integral_control
 zh_name: 高斯平滑下的时间变 Lipschitz 积分控制
 category: proof_pattern
-status: accepted_candidate
+status: needs_review
 source:
   paper_title: "Error Bounds for Flow Matching Methods"
   paper_md: paper.md
@@ -43,6 +43,20 @@ trigger_keywords:
 limitations:
   - Endpoint smoothing introduces bias.
   - Lambda-regularity is not automatic for arbitrary data distributions.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
 quality:
   reusability: 5
   clarity: 4
@@ -50,4 +64,4 @@ quality:
   verifiability: 4
   agent_callability: 4
   mathematical_risk: 3
-  total_score: 4.1
+  total_score: 3.9

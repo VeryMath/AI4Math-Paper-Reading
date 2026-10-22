@@ -38,6 +38,20 @@ trigger_keywords:
 limitations:
   - Rate depends strongly on the regularity parameter.
   - Requires a correct bias estimate for the chosen smoothing scheme.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
 quality:
   reusability: 5
   clarity: 5
@@ -45,4 +59,4 @@ quality:
   verifiability: 4
   agent_callability: 5
   mathematical_risk: 3
-  total_score: 4.35
+  total_score: 4.25

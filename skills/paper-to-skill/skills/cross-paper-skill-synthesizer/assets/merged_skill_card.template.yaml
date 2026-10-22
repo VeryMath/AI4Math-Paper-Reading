@@ -1,22 +1,47 @@
-id: ""
 name: ""
-type: "proof_pattern"
-summary: ""
-inputs: []
-outputs: []
+zh_name: ""
+category: proof_pattern
+status: needs_review
+source:
+  paper_title: null
+  paper_md: ""
+  source_blocks: []
+  start_line: 0
+  end_line: 0
+description: ""
+input: []
+output: []
 assumptions: []
 core_steps: []
 trigger_keywords: []
 limitations: []
-source:
-  paper_md: ""
-  start_line: 0
-  end_line: 0
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: "The merged statement needs mathematical verification and actual reuse."
+  unmet_requirements:
+    - Resolve material assumption or conclusion conflicts.
+    - Check the merged statement, reuse, and failure boundary.
+quality:
+  reusability: 1
+  clarity: 1
+  generality: 1
+  verifiability: 1
+  agent_callability: 1
+  mathematical_risk: 5
+  total_score: 0.7
 synthesis:
   cluster_id: ""
   source_skill_ids: []
   source_papers: []
-  merge_status: ""
+  merge_status: needs_human_review
   generalization_notes: []
   conflicts_or_risks: []
-review_status: "needs_human_review"
+  conflict_resolutions: []

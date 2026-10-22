@@ -6,6 +6,10 @@
 
 它不是论文摘要器：核心目标是保留 source material，抽取可迁移推理模式，并让 source references 可 review。
 
+VeryMath 的正式维护位置是 [AI4Math-Paper-Reading](https://github.com/VeryMath/AI4Math-Paper-Reading/tree/main/skills/paper-to-skill)。AI4Math-Skill-Library 同时收录此包；改进在 VeryMath 包维护，原个人仓库保留作历史参考。
+
+SkillCard 现在记录数学依赖、独立检查、失败案例和跨问题复用。抽取分数只表示候选质量；入库还需要核对假设、独立数学论证、成功复用和失败边界。已有卡片缺少这些记录时，只能算未验证候选。可参考[流稳定性实际检查](examples/auto_research_trial/flow_stability_validation.md)。
+
 ## 适合什么任务
 
 当你有这些输入或需求时使用：

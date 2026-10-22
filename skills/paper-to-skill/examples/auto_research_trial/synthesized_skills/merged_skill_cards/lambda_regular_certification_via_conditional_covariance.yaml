@@ -1,20 +1,23 @@
-id: lambda_regular_certification_via_conditional_covariance
-name: Lambda-regular certification by conditional covariance
+name: lambda_regular_certification_via_conditional_covariance
 zh_name: 通过条件协方差认证 lambda-regular 条件
-type: proof_pattern
 category: proof_pattern
-summary: "EN: Certify a covariance regularity assumption by bounding the conditional covariance of Gaussian noise after observing a noisy random variable. ZH: 通过观测加噪随机变量后的高斯噪声条件协方差上界，认证 lambda-regular 正则性。"
-status: needs_human_review
+description: "EN: Certify a covariance regularity assumption by bounding the conditional covariance of Gaussian noise after observing a noisy random variable. ZH: 通过观测加噪随机变量后的高斯噪声条件协方差上界，认证 lambda-regular 正则性。"
+status: needs_review
 source:
-  paper_md: see synthesis.source_papers
-  start_line: 0
-  end_line: 0
-inputs:
+  paper_title: null
+  paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
+  source_blocks:
+    - lines 413-447
+    - lines 453-457
+    - lines 461-499
+  start_line: 413
+  end_line: 499
+input:
   - candidate distribution
   - Gaussian observation noise
   - structural distribution class
   - target regularity parameter
-outputs:
+output:
   - lambda-regularity certificate
   - conditional covariance operator-norm bound
   - examples where the assumption holds
@@ -38,6 +41,28 @@ trigger_keywords:
 limitations:
   - Specialized to Gaussian observation noise.
   - The condition is nonstandard and should be reviewed before library promotion.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
+quality:
+  reusability: 4
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 3
+  mathematical_risk: 4
+  total_score: 3.45
 synthesis:
   cluster_id: C06
   source_skill_ids:
@@ -50,6 +75,7 @@ synthesis:
   merge_status: needs_human_review
   generalization_notes:
     - This card is currently best treated as an assumption-certification checklist.
+    - Quality scores are inherited from the single source card and have not been reassessed for synthesis.
   conflicts_or_risks:
     - The source paper's lambda-regular condition is specialized and may not transfer broadly.
-review_status: needs_human_review
+  conflict_resolutions: []

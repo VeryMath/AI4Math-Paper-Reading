@@ -1,21 +1,24 @@
-id: gaussian_smoothing_lipschitz_integral_control
-name: Gaussian smoothing Lipschitz integral control
+name: gaussian_smoothing_lipschitz_integral_control
 zh_name: 高斯平滑下的时间变 Lipschitz 积分控制
-type: proof_pattern
 category: proof_pattern
-summary: "EN: Bound the integrated spatial Lipschitz constant of a smoothed conditional velocity field through derivative identities and conditional covariance control. ZH: 通过速度场导数公式与条件协方差控制，证明高斯平滑条件速度场的时间积分 Lipschitz 界。"
-status: ready_for_library
+description: "EN: Bound the integrated spatial Lipschitz constant of a smoothed conditional velocity field through derivative identities and conditional covariance control. ZH: 通过速度场导数公式与条件协方差控制，证明高斯平滑条件速度场的时间积分 Lipschitz 界。"
+status: needs_review
 source:
-  paper_md: see synthesis.source_papers
-  start_line: 0
-  end_line: 0
-inputs:
+  paper_title: null
+  paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
+  source_blocks:
+    - lines 177-199
+    - lines 201-245
+    - lines 247-255
+  start_line: 177
+  end_line: 255
+input:
   - stochastic interpolant
   - Gaussian smoothing schedule
   - conditional covariance regularity parameter
   - bounded support radius
   - differentiable interpolant coefficients
-outputs:
+output:
   - time-dependent Lipschitz envelope
   - integrated Lipschitz estimate
   - smoothing-schedule design constraint
@@ -23,7 +26,7 @@ assumptions:
   - The smoothing scale is positive on the analysis interval.
   - Conditional covariance regularity holds.
   - Interpolant coefficients are differentiable.
-  - Support or moment radius is controlled.
+  - Both endpoint distributions have bounded support contained in a ball of the stated radius.
 core_steps:
   - Add enough Gaussian smoothing to avoid singular endpoints.
   - Differentiate the conditional expected velocity field.
@@ -40,6 +43,28 @@ trigger_keywords:
 limitations:
   - Endpoint smoothing introduces bias.
   - Nonstandard regularity must be checked separately.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 4
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 3.9
 synthesis:
   cluster_id: C04
   source_skill_ids:
@@ -49,9 +74,10 @@ synthesis:
       paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
       start_line: 177
       end_line: 255
-  merge_status: ready_for_library
+  merge_status: needs_human_review
   generalization_notes:
     - This card should usually be paired with a separate smoothing-bias card.
+    - Quality scores are inherited from the single source card and have not been reassessed for synthesis.
   conflicts_or_risks:
     - Lambda-regularity is not automatic for arbitrary distributions.
-review_status: ready_for_library
+  conflict_resolutions: []

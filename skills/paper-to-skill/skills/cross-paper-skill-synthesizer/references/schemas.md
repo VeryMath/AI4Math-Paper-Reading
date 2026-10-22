@@ -22,6 +22,9 @@ clusters:
       - string
     conflicts_or_risks:
       - string
+    verification_status: not_run | passed | failed | inconclusive
+    reuse_status: not_run | checked_examples | failed | inconclusive
+    promotion_status: candidate | ready_for_library | needs_human_review | rejected
     merged_skill_card: merged_skill_cards/<skill_name>.yaml
 review_queue:
   - cluster_id: string
@@ -30,7 +33,7 @@ review_queue:
 
 ## Merged SkillCard additions
 
-Merged SkillCards should preserve the existing `paper-to-skill-extractor` SkillCard shape and add:
+Merged SkillCards use the complete `paper-to-skill-extractor` SkillCard fields, including dependencies, independent verification, failure cases, reuse evidence, and promotion. Use `description`, `input`, and `output`; do not introduce parallel `summary`, `inputs`, or `outputs` fields. Add:
 
 ```yaml
 synthesis:
@@ -47,4 +50,12 @@ synthesis:
     - string
   conflicts_or_risks:
     - string
+  conflict_resolutions:
+    - issue: string
+      source_conditions: [string]
+      decision: string
+      evidence: string
+      status: resolved | unresolved
 ```
+
+`synthesis.merge_status` and the method map's readiness must agree with `promotion.status`. Only `ready_for_library` maps to ready; all pending or unresolved cases map to `needs_human_review`. Keep `status` for extraction quality. Use real positive line ranges from a representative source in `source`, and preserve all source ranges in `synthesis.source_papers`; `0` and `see synthesis` are not usable line references.

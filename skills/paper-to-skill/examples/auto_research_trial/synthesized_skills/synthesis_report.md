@@ -9,36 +9,35 @@ Inputs:
 
 ## Result / 结果
 
-EN: The seven single-paper Skill Cards were clustered into six reusable proof-pattern families. One cross-paper merge was strong enough for a library-ready generalized card: ODE flow stability to Wasserstein error.
+EN: The seven single-paper extractions form six proof-pattern families. The 2026-10-22 revision independently derives the continuous-flow stability statement, checks three new exact-solution problems, and records four failed generalizations. Only that bounded statement currently meets the revised library criteria.
 
-ZH: 7 张单论文 Skill Card 被聚类成 6 个可复用证明模式族。其中 1 个跨论文合并最稳定，适合作为可入库泛化卡：ODE 流稳定性到 Wasserstein 误差。
+ZH: 7 张单篇卡组成 6 个证明模式族。2026-10-22 修订对连续流稳定性结论另作推导，完成三个新问题的精确解复用，并检查四种失败边界。当前只有这个明确范围内的结论满足新的入库标准。详见[实际数学检查](../flow_stability_validation.md)。
+
+EN: Five single-source cards preserve their source extraction scores, without a new synthesis assessment. The Gaussian smoothing score is 3.9 and its extraction status is `needs_review`. These scores do not change mathematical verification or promotion. The Gaussian-support and empirical-process independence conditions remain explicit.
+
+ZH: 五张单来源合成卡保留来源抽取评分，没有重新评价合成质量。高斯平滑卡分数为 3.9，抽取状态为 `needs_review`；评分不改变数学验证或晋级结论。有界支撑及样本独立性条件均需显式保留。
 
 ## Ready For Library / 可入库
 
-- `ode_flow_stability_to_wasserstein_error`  
-  EN: Cross-paper synthesis of coupling/Gronwall and Alekseev-Grobner routes.  
-  ZH: 合并了“耦合 + Gronwall”和 “Alekseev-Grobner + Jacobian 控制”两条路线。
-
-- `truncation_based_l2_approximation_on_unbounded_domain`  
-  EN: Single-source but standard, operational, and broadly reusable.  
-  ZH: 单论文来源，但模式标准、步骤清楚、复用性强。
-
-- `gaussian_smoothing_lipschitz_integral_control`  
-  EN: Useful for replacing uniform Lipschitz assumptions by schedule-dependent integral bounds.  
-  ZH: 可用于把统一 Lipschitz 假设替换为依赖平滑日程的积分型 Lipschitz 控制。
-
-- `smoothing_bias_variance_balance_for_polynomial_wasserstein_rate`  
-  EN: Captures the bias-stability tradeoff induced by endpoint smoothing.  
-  ZH: 抽象出端点平滑带来的“稳定性收益 vs 平滑偏差”平衡套路。
+- `ode_flow_stability_to_wasserstein_error`
+  EN: Uses an integral Gronwall argument with explicit path law, finite moments, integrable Lipschitz envelope, and final-time factor.
+  ZH: 采用积分 Gronwall 论证，明确路径分布、有限矩、可积 Lipschitz 常数和时间长度因子。独立检查指不同数学论证，不代表独立研究者或形式化系统复核。
 
 ## Needs Human Review / 需要人工复核
 
-- `truncated_empirical_process_generalization_decomposition`  
-  EN: The proof pattern is useful, but reuse depends on independence, truncation event design, and covering-number constants.  
+- `truncation_based_l2_approximation_on_unbounded_domain`
+- `gaussian_smoothing_lipschitz_integral_control`
+- `smoothing_bias_variance_balance_for_polynomial_wasserstein_rate`
+
+  EN: These remain candidates until their mathematical dependencies, reusable statement, actual reuse, and failure boundaries have been checked. Earlier readiness labels relied only on extraction and are withdrawn.
+  ZH: 三张卡尚缺数学依赖检查、独立论证、实际复用和失败边界，保留候选状态；旧报告仅凭抽取质量作出的入库判断已撤回。
+
+- `truncated_empirical_process_generalization_decomposition`
+  EN: The proof pattern is useful, but reuse depends on independence, truncation event design, and covering-number constants.
   ZH: 模式有价值，但复用前必须检查独立性、截断事件设计和覆盖数常数。
 
-- `lambda_regular_certification_via_conditional_covariance`  
-  EN: Best treated as a certification checklist for now because lambda-regularity is nonstandard.  
+- `lambda_regular_certification_via_conditional_covariance`
+  EN: Best treated as a certification checklist for now because lambda-regularity is nonstandard.
   ZH: 目前更适合作为假设认证清单，因为 lambda-regular 条件并非常规假设。
 
 ## Method Map / 方法论地图
@@ -63,8 +62,8 @@ ZH:
 
 ## Conflicts And Risks / 冲突与风险
 
-- EN: The two flow-stability sources use different proof routes. The synthesized card preserves both rather than over-generalizing them into one formal proof.
-- ZH: 两个流稳定性来源使用不同证明路线；合成卡保留两条路线，避免强行合并为单一形式。
+- EN: The two flow-stability sources use different proof routes. Their references are preserved; the merged procedure uses the separately derived integral argument, with Jacobian control retained only as source context.
+- ZH: 两个来源的证明路线均保留引用；合成卡的通用步骤采用另行推导的积分论证，Jacobian 路线只保留为来源说明。
 
 - EN: Several cards rely on nontrivial regularity assumptions: spatial Lipschitz bounds, positive smoothing schedules, covariance regularity, and correct path-law L2 errors.
 - ZH: 多张卡依赖较强正则性条件：空间 Lipschitz、正的平滑日程、条件协方差正则性，以及沿正确路径分布的 L2 误差。

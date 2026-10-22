@@ -47,7 +47,7 @@ paper.md
 4. Treat the full `paper.md` as the source for line-referenced extraction evidence.
 5. If `human_feedback_state.json` exists, pass it through to the extraction step.
 6. Use `paper-to-skill-extractor` to produce `skill_candidates.json`, `skill_cards/*.yaml`, and `report.md`.
-7. In the final response, tell the user which artifacts were written and whether any candidates need review.
+7. In the final response, report source checking, independent mathematics, reuse, and promotion separately. Missing verification fields in an older card mean unchecked; a high extraction score does not imply readiness.
 8. If the user asks to synthesize across papers, route accepted or review-worthy SkillCards to `cross-paper-skill-synthesizer`.
 
 ## Review Gates

@@ -25,10 +25,12 @@ Accept:
 5. For each span, decide whether it contains a reusable `proof_pattern`. Reject paper-specific conclusions, background exposition, related work, and experiment results.
 6. Extract `SkillCandidate` objects with source evidence, reusable intent, inputs, outputs, assumptions, core steps, trigger keywords, limitations, score, and confidence.
 7. Generalize away paper-specific names such as "our algorithm", "Assumption 2", "Theorem 3", and local notation while preserving necessary mathematical conditions.
-8. Score each candidate with the rubric. Mark it as `accepted_candidate`, `needs_review`, or `rejected`.
+8. Name the mathematical dependencies, state their conditions, and distinguish those established in the source from those still unchecked. Score each candidate with the rubric; `accepted_candidate` means extraction quality, not verified correctness.
 9. Write one Skill Card YAML per accepted or review-worthy candidate, plus `skill_candidates.json` and `report.md`.
 10. In `report.md`, explain how human feedback changed evidence selection, scoring, or rejection decisions.
-11. Verify every generated skill has source line references back to `paper.md`.
+11. Check the proposed statement by a separate derivation, formal proof, or analytic solution. Record the method, result, evidence, and its exact scope; a second paraphrase or YAML parse is not independent mathematical verification.
+12. Attempt reuse on a problem with a changed equation, distribution, or target. Check every assumption again and record adaptations, result, and a failure or rejected application. Use `not_run` for work not done.
+13. Apply the promotion criteria in `references/quality_rubric.md`. Keep source line references and verification status in the card and report.
 
 ## Required References
 
@@ -91,3 +93,5 @@ Before finishing, confirm:
 - Each Skill Card has `source.paper_md`, `source.start_line`, and `source.end_line`.
 - The report separates accepted, needs-review, and rejected candidates.
 - At least one note explains any mathematical risk or uncertainty.
+- Every card has `mathematical_dependencies`, `independent_verification`, `failure_cases`, `cross_problem_reuse`, and `promotion`; incomplete work is recorded explicitly.
+- Source checking, independent mathematical checking, reuse, and library readiness are reported separately.
