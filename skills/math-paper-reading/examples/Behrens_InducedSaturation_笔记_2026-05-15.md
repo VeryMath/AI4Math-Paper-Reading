@@ -9,6 +9,8 @@ status: [待读]
 tags: ["#graph-theory", "#induced-saturation", "#extremal-combinatorics", "#paw", "#claw"]
 ---
 
+> 2026-10-22 核对说明：这是既有长笔记，尚未全部按原文复核；已核对范围、现有局部图和纠错候选见 [source-checks.md](source-checks.md)。当前 JSON 标为 partial。
+
 ## 文献笔记：Graphs with induced-saturation number zero
 
 ### L1 基础视图
@@ -17,20 +19,22 @@ tags: ["#graph-theory", "#induced-saturation", "#extremal-combinatorics", "#paw"
 
 ### 核心结论
 
-**逐字原文（Corollary indsat_paw）**：
+以下为整理符号后的陈述摘要，不是连续逐字引文；对应原文行号见 [source-checks.md](source-checks.md)。
+
+**陈述摘要（Corollary indsat_paw）**：
 > For $n \geq 7$, $\operatorname{indsat}(n,K_{1,3}^+) = 0$.
 
-**逐字原文（Theorem paw_unique — paw 的刻画定理）**：
-> A graph is paw-induced-saturated if and only if it is as described in Construction 3.1: a graph with at most one trivial component, where each nontrivial component is complete multipartite with at least three parts, at most one part of size 1, and all other parts of size at least 3.
+**陈述摘要（Theorem paw_unique — paw 的刻画定理）**：
+> A graph is paw-induced-saturated if and only if it is as described in Construction cons:paw（原文第 346–349 行）: a graph with at most one trivial component, where each nontrivial component is complete multipartite with at least three parts, at most one part of size 1, and all other parts of size at least 3.
 
-**逐字原文（Corollary sis paw — paw 的最小边数公式）**：
+**陈述摘要（Corollary sis paw — paw 的最小边数公式）**：
 > For $n \geq 7$, let $n \equiv r \pmod{7}$, $0 \leq r \leq 6$. Then
 > $$\operatorname{indsat}^*(n,\text{paw}) = \begin{cases} 15n/7 & \text{if } r=0 \\ 15\lfloor n/7\rfloor + 4(r-1) & \text{if } r \neq 0 \end{cases}.$$
 
-**逐字原文（Corollary cor:stars — 星图的诱导饱和数为零）**：
+**陈述摘要（Corollary cor:stars — 星图的诱导饱和数为零）**：
 > For fixed $k \geq 2$ and $n \geq 3^k$, $\operatorname{indsat}(n, K_{1,k+1}) = 0$.
 
-**逐字原文（Theorem bound:stars — 星图 sis 的上下界）**：
+**陈述摘要（Theorem bound:stars — 星图 sis 的上下界）**：
 > For $n \geq 2\cdot 3^k$ and $k \geq 2$, there exist constants $c_1=c_1(k)$ and $c_2=c_2(k)$ such that $n\cdot k/2 - c_1 \leq \operatorname{indsat}^*(n,K_{1,k+1}) \leq n\cdot k + c_2$.
 
 **用我的话复述**：

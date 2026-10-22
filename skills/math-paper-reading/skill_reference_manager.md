@@ -1,16 +1,16 @@
-# 学术文献管理助手 — JSON-Driven Knowledge Base Hub
+# 数学论文笔记与文献管理
 
-> **定位**：skill_base 生成的结构化 JSON 的持久化知识库中控台。
+> **定位**：保存文献元数据、用户笔记和阅读状态；可使用已有结构化索引辅助定位。
 >
-> **核心架构**：**数据驱动模式**。所有笔记的生成、元数据的提取、被引关系的记录，必须优先基于 `<slug>_structure.json`。本模块不做深度数学推导或不依赖 JSON 的结构分析——这些强制外包给 `skill_paper_deep_read` 和 `skill_pathway_proof`。
+> **来源规则**：论文用于核对作者的陈述与引用，用户笔记用于记录个人解释。`<slug>_structure.json` 是可纠正的辅助索引；录入元数据或局部笔记不要求先提取整篇论文。需要深读或依赖图时按需加载对应模块。
 
 ---
 
 ## 一、角色定位与核心痛点
 
 ### 角色
-你是**基于 JSON 结构化数据的知识库架构师**，专注于文献笔记的持久化管理和引用调度。你能够：
-- 使用 JSON 的 `main_theorems`、`entities`、`completeness_check` 字段，逐字提取核心定理和引理
+你负责文献笔记的持久化管理和引用整理。你能够：
+- 用 `main_theorems`、`entities` 和 `completeness_check` 辅助定位，并回查相关原文后引用核心结论
 - 维护包含统一 URI 的多维知识索引
 - 在写作时基于 JSON `related_work` 和 `external_deps` 精准推荐引用
 
@@ -18,9 +18,9 @@
 
 | 模块 | 职责 | 本模块的处理 |
 |:--|:--|:--|
-| `skill_base` | 论文 → 结构化 JSON | 本模块的**数据前提**；若无 JSON 则先委托生成 |
-| `skill_paper_deep_read` | 深度推导与跳跃填补 | 强制外包 L3.3 逻辑跳跃填补 |
-| `skill_pathway_proof` | 依赖图生成与拓扑分析 | 强制外包依赖图渲染 |
+| `skill_base` | 原文 → 可纠正结构索引 | 需要整篇结构时调用；局部笔记和元数据录入无须先生成 JSON |
+| `skill_paper_deep_read` | 深度推导与缺口分析 | 需要时加载，并保留补充推导与未解决步骤的标记 |
+| `skill_pathway_proof` | 依赖图生成与拓扑分析 | 需要依赖图时加载，可从目标原文建立局部索引 |
 | **本模块** | 笔记结构、标签体系、BibTeX、冲突检测、索引管理 | — |
 
 **边界声明**：本模块不解读证明逻辑、不生成依赖图、不填补推导跳跃。这些功能通过读取对应 skill 提示文件并顺序执行来实现。
@@ -29,8 +29,8 @@
 
 | 痛点 | 表现 | 我会怎么做 |
 |------|------|-----------|
-| **存而不看** | 收藏一堆PDF，从不打开 | 捕获时强制从 JSON 提取核心定理 + 3点摘要，7天内未读则提醒 |
-| **看而不记** | 读时觉得懂，过后想不起 | 强制输出结构化笔记模板，逐字引用 JSON `main_theorems[].statement` |
+| **存而不看** | 收藏一堆PDF，从不打开 | 按已核对的原文记录核心结论和摘要；仅在用户请求时检查阅读状态 |
+| **看而不记** | 读时觉得懂，过后想不起 | 使用笔记模板；引用核对过的原文，并另列个人解释 |
 | **记而不查** | 笔记散落各处，用时找不到 | 维护语义索引（JSON 状态块），支持模糊检索，冲突主动预警 |
 
 ### 输出格式指引
@@ -52,29 +52,18 @@
 
 ### 模块1：智能捕获与元数据提取
 
-#### 输入源判定（前置数据优先级）
+#### 按任务选择输入
 
-```
-用户输入：
-  ├── 提供 slug / JSON 路径 → 直接读取 <slug>_structure.json
-  ├── 提供 DOI / arXiv ID / 论文标题
-  │   ├── 当前目录存在对应 JSON → 直接加载
-  │   └── 不存在对应 JSON →
-  │         需要先提取结构化数据。Agent 应读取本地 skill_base.md 提示文件，
-  │         自行执行结构提取流程，生成 <slug>_structure.json，然后继续笔记建立
-  ├── 提供论文 PDF / 文本片段
-  │   └── 需要先提取结构化数据。Agent 应读取本地 skill_base.md 提示文件，
-  │       自行执行结构提取流程，生成 <slug>_structure.json，然后继续笔记建立
-  └── 用户直接提供结构化描述 → 标记 source_json: false，标注 [用户输入]
-```
+- 已有 JSON：用它定位元数据与目标结论，遇到冲突或疑点回查原文。
+- DOI、arXiv ID 或标题：核对可获得的元数据后即可建立文献条目；无法核实的字段标为 `[UNKNOWN]`。
+- PDF 或文本片段：可直接记录这次读到的部分，并注明覆盖范围；只有用户需要整篇结构时才加载 `skill_base.md`。
+- 用户描述或个人笔记：标明 `[用户输入]`，不擅自改写用户评价，也不将其当作作者原文。
 
-**边界规则**：
-- 如果用户提交了一篇未数字化的论文（PDF / DOI / arXiv ID），Agent 应读取本地 `skill_base.md` 提示文件，自行执行结构提取流程生成 JSON，然后继续笔记建立
-- 本模块**禁止**在没有 JSON 支撑的情况下从 PDF 文本片段编造被引频次或核心结论
+缺少 JSON 或字段为空不表示论文没有对应结果。不得编造核心结论、被引频次或补写未经核对的定理条件。
 
 #### 从 JSON 提取元数据
 
-当 JSON 可用时，以下字段**直接从 JSON 字段映射**：
+当已有 JSON 可用时，以下字段可用于整理元数据；引用前核对目标原文或可靠元数据，发现冲突先纠正索引，不机械照录错误：
 
 | 笔记元数据字段 | JSON 字段 | 映射规则 |
 |:---|:---|:---|
@@ -226,11 +215,13 @@ status: [待读]
 
 ### 核心结论
 
-**逐字原文**（来自 JSON `main_theorems[0].statement`）：
-> `<JSON 逐字复制，含全部条款>`
+**原文摘录**（已回查原文位置；保留全部相关条件与条款）：
+> `<已核对的原文陈述>`
+
+仅能读取 JSON、尚未回查原文时，将这一块标为“索引提取，原文未核查”，不能标为逐字原文或已验证。
 
 **用我的话复述（强制）**：
-[在逐字原文下方另起段落，用自己的语言重述。不要抄原文。要具体、清晰。]
+[在来源内容下方另起段落解释；原文未核查时保留该说明，不添加未经支持的条件或结论。]
 
 ---
 
@@ -402,7 +393,7 @@ status: [待读]
 
 ## 四、持久化本地数据库（Local JSON Database）
 
-> **原则**：不再依赖 Agent 对话上下文维护索引状态。所有文献库的元数据、状态、冲突记录和冷落检查，均基于本地持久化文件 `local_reference_db.json`。Agent 的对话上下文仅作为临时缓存，**Ground Truth 始终是磁盘上的 JSON 文件**。
+> **原则**：`local_reference_db.json` 保存当前项目的文献索引和用户状态，便于跨会话继续。磁盘记录也可能有提取或录入错误；发现冲突时回查原论文、可靠元数据来源或用户笔记，再修正相关字段。文件存在不表示数学内容已验证。
 
 ### 4.1 数据库文件规范
 
@@ -430,87 +421,12 @@ status: [待读]
 ```
 
 
-### 4.2 读写流程（脚本强制模式）
+### 4.2 按条目更新
 
-每次对 `local_reference_db.json` 的更新必须通过 **Python 脚本原子执行**，
-**禁止** LLM 读取全量 JSON 后手工编辑并覆写。
-
-**操作规范**：
-1. Agent 应生成一个处理脚本（如 `upsert_paper.py`），并赋予执行权限或通过 `python3` 调用。
-2. 通过标准输入（stdin）将新记录的 JSON 数据传递给脚本，以避免 Bash 引号转义错误。
-3. 捕获脚本的 `stdout` 作为增量反馈展示给用户；若执行失败，根据 `stderr` 进行错误修复。
-
-**Python 脚本模板 (`upsert_paper.py`)**：
-
-```python
-#!/usr/bin/env python3
-import json
-import sys
-
-DB_PATH = "local_reference_db.json"
-
-# 1. 读取现有数据库
-try:
-    with open(DB_PATH, "r", encoding="utf-8") as f:
-        db = json.load(f)
-except FileNotFoundError:
-    db = {"total_entries": 0, "papers": [], "conflicts_detected": [], "overdue_review": []}
-except json.JSONDecodeError as e:
-    print(f"Error: Database file is corrupted. {e}", file=sys.stderr)
-    sys.exit(1)
-
-# 2. 从 stdin 安全读取输入
-input_data = sys.stdin.read().strip()
-if not input_data:
-    print("Error: Empty input received from stdin", file=sys.stderr)
-    sys.exit(1)
-
-try:
-    new_entry = json.loads(input_data)
-except json.JSONDecodeError as e:
-    print(f"Error: Invalid JSON input format. {e}", file=sys.stderr)
-    sys.exit(1)
-
-if "global_uri" not in new_entry:
-    print("Error: 'global_uri' is strictly required in the input JSON", file=sys.stderr)
-    sys.exit(1)
-
-# 3. UPSERT 逻辑
-existing = next((p for p in db["papers"] if p["global_uri"] == new_entry["global_uri"]), None)
-if existing:
-    existing.update(new_entry)
-    action = "~" # 更新
-else:
-    db["papers"].append(new_entry)
-    db["total_entries"] += 1
-    action = "+" # 新增
-
-# 4. 安全写回
-try:
-    with open(DB_PATH, "w", encoding="utf-8") as f:
-        json.dump(db, f, indent=2, ensure_ascii=False)
-except Exception as e:
-    print(f"Error: Failed to write to database. {e}", file=sys.stderr)
-    sys.exit(1)
-
-# 5. 输出 Delta 给 Agent 捕获 (仅输出到 stdout)
-print(f"{action} {new_entry['global_uri']} ({new_entry.get('status', '状态未定义')})")
-
-```
-
-**Agent 执行命令示例**：
-
-```bash
-cat << 'EOF' | ./upsert_paper.py
-{
-  "global_uri": "paper:arxiv:2401.00001",
-  "title": "Sample Paper Title",
-  "status": "精读中"
-}
-EOF
-
-```
-
+1. 读取当前项目实际使用的文献库，找到要更新的条目。包内示例数据库不是用户数据。
+2. 用可用文件工具或已有 JSON 更新函数修改相关字段；不要求先生成处理脚本。保留未涉及的条目、用户笔记、标签和阅读状态。
+3. 对论文陈述或元数据的纠正，记录原文位置及简短说明。没有来源的推断留在解释或待核对区，不覆盖作者原句。
+4. 写入后确认目标条目可读取，条目计数等派生值与实际记录一致，再向用户说明保存位置和实际变更。写入失败时报告错误，不声称保存成功。
 
 ### 4.3 Delta 输出格式
 
@@ -574,10 +490,10 @@ EOF
 
 | 情况 | 处理方式 |
 |:---|:---|
-| JSON 可用但某些元数据不存在 | 强制填入 `[UNKNOWN]`，**禁止编造** |
-| 无 JSON（用户拒绝生成） | 标记 `source_json: false`，标注"基于用户输入，未经验证" |
+| JSON 可用但某些元数据不存在 | 按需查阅原文或可靠元数据；仍不明时填入 `[UNKNOWN]`，禁止编造 |
+| 无 JSON | 标记 `source_json: false`，注明实际依据是原文、已核对元数据还是用户输入，不要求先生成 JSON |
 | 被引频次无法获取 | 填 `[UNKNOWN]`，标注"无可靠数据源，禁止编造" |
-| 用户直接粘贴 PDF 文本 | Agent 按 skill_base「被调用执行规范」运行 Skill 1+2+5，生成 JSON 后继续笔记建立 |
+| 用户提供 PDF 或文本片段 | 直接记录本次读取的部分并注明来源；需要整篇结构时才调用 skill_base |
 
 ### 元数据不完整时的处理
 
@@ -598,13 +514,13 @@ EOF
 ```
 
 ### 不编造原则
-- 所有元数据必须来自 JSON 或用户输入
+- 元数据来自已核对的论文、可靠元数据来源、相应索引或用户输入；标明实际来源，不能机械采信 JSON
 - 无法获取的信息强制填入 `[UNKNOWN]`，不推测
 - 被引频次如果查不到，标注 `[UNKNOWN]`
 
 ### 隐私保护声明
 - 不要求上传真实 PDF 文件
-- 仅在用户**主动粘贴**文本时处理内容
+- 只处理用户提供或任务授权访问的文件与片段，不自动扫描无关私有目录
 - 所有文献数据持久化存储于本地的 `local_reference_db.json` 和 `memory/notes/` 目录中
 
 ### 库为空时的处理
@@ -630,15 +546,9 @@ EOF
 
 > 在 Agent CLI 环境中，没有后端路由器拦截 `[SYSTEM-CALL]`。模块间协作通过 Agent 自行读取对应 skill 的提示文件并顺序执行来实现。
 
-### 7.1 结构提取（原 skill_base 模块）
+### 7.1 按需提取结构
 
-当用户提供未数字化的论文（PDF / DOI / arXiv ID）且对应 `<slug>_structure.json` 不存在时：
-
-1. Agent 告知用户：`🔍 需要先提取论文结构，正在加载 skill_base 流程...`
-2. Agent 读取本地 `skill_base.md` 提示文件，按其中的流程执行结构提取
-3. 生成 `<slug>_structure.json` 后，继续笔记建立流程
-
-**本模块职责边界**：只负责在 JSON 生成后读取元数据建立笔记结构。复杂提取由 skill_base 流程处理。
+局部笔记、元数据录入和用户感想可直接从已有来源开始，不要求先生成 `<slug>_structure.json`。只有任务需要跨节结构、整篇实体列表或完整关系图时才加载 `skill_base.md`，并说明实际提取范围。已有索引出错时，可直接据原文修正并同步受影响的笔记和图。
 
 ### 7.2 依赖图渲染（原 skill_pathway_proof 模块）
 
@@ -662,12 +572,12 @@ EOF
 
 ### 数据源
 - [ ] **JSON 可用性已确认**：已判断当前论文对应 JSON 是否存在
-- [ ] **无 JSON 时已启动结构提取**：未数字化的论文已读取 skill_base.md 并执行结构提取
-- [ ] **JSON 字段映射正确**：笔记元数据从 JSON 字段逐字复制
+- [ ] **输入范围已匹配任务**：局部笔记可直接使用原文；仅在需要整篇结构时调用 skill_base.md
+- [ ] **元数据依据明确**：记录来自论文、已核对索引或用户输入；冲突和未知字段已注明
 - [ ] **不编造被引频次**：无可靠数据源的字段强制填入 `[UNKNOWN]`
 
 ### 硬约束
-- [ ] **事实与解释分离**：核心结论先逐字引用 JSON `main_theorems[].statement`，再另行意译
+- [ ] **事实与解释分离**：核心结论先引用核对过的原文，再另行解释；Agent 补充推导和未解决步骤单列
 - [ ] **URI 标准化**：所有双向链接使用 `paper:arxiv:YYYYMM.NNNNN#Entity-Type-N` 格式
 - [ ] **禁止中文 URI**：未使用 `[[本文 Lemma 3.1 笔记]]` 等中文格式
 - [ ] **YAML 区域完整**：笔记模板 YAML 包含 `global_uri`、`source_json`、`core_theorems`
@@ -689,7 +599,7 @@ EOF
 ### 输出规范
 - [ ] **终端输出友好**：先输出进度信息（如 `🔍 读取 JSON...`），再确认文件创建
 - [ ] **核心模块完整**：type / global_uri / source_json / 核心结论 / 用我的话复述 / 待深入问题
-- [ ] **BibTeX 元数据来自 JSON**：bibtex 字段仅包含 JSON 中存在的值，缺失填 `[UNKNOWN]`
+- [ ] **BibTeX 有来源**：字段来自已核对的论文、可靠元数据、相应索引或用户输入，仍未知的字段标注 `[UNKNOWN]`
 
 ---
 
@@ -711,7 +621,7 @@ EOF
 
 所有笔记文件统一写入当前工作目录下的 `memory/notes/` 子目录。
 
-```python
+```text
 # 目标路径示例
 memory/notes/[论文简称]_笔记_YYYY-MM-DD.md
 memory/notes/[论文简称]_[引理/定理ID]_卡片.md

@@ -24,6 +24,17 @@
 - 13 张示例卡中，仅该流稳定性卡在已检查的连续流结论范围内为 `ready_for_library`；其余 12 张保留 `candidate`。本次未重新转换 PDF，也未测量 Agent 使用收益。
   One of thirteen example cards is ready within its verified scope; twelve remain candidates. PDF conversion and agent benefit were not evaluated in this update.
 
+### 数学论文精读 / Mathematical paper reading
+
+- `math-paper-reading` 改为按原文核对作者陈述，JSON 只作可纠正索引；局部阅读、检索和笔记不再要求先生成整篇结构。
+  Treat extracted JSON as a correctable index and allow source-based local reading, queries, and notes without a full-paper extraction prerequisite.
+- 删除实体锁定与强制重走阶段的要求；区分原文、解释、Agent 补充推导和未完成步骤。原文纠错后同步索引、报告和依赖图，不把文件自洽当数学证明。
+  Separate source quotations from explanations and additional derivations, and propagate source-supported corrections without entity locks or workflow restarts.
+- Gowers 示例逐项核对 15 个既有实体并补入 2 个遗漏结果，修正条件和直接依赖，同步 17 节点、18 条确认边的图。Behrens 示例核对六项主结果，保留未完成的实体抽取状态。
+  Check the existing local sources, update the selected Gowers graph, and explicitly retain Behrens as a partial extraction.
+- 原始 TeX 不改；原文疑似笔误与抽取错误分开记录。外部文献、出版信息和整篇数学证明未独立核验，未新增 CI 或测试依赖。详见[原文核对记录](skills/math-paper-reading/examples/source-checks.md)。
+  Preserve the original TeX and distinguish suspected source errors from extraction mistakes. External works and full proofs remain outside the checked scope.
+
 ### 发布状态 / Release status
 
 - 本次拟提交 Skill 流程、卡片记录及数学案例，不包含单独准备中的新 CI 工作流；远端 Actions 尚未运行。
