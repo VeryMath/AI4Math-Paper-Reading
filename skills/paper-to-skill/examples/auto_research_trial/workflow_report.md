@@ -200,6 +200,8 @@ Human feedback state used:
 
 ## Preserved Artifacts
 
+2026-10-22 状态说明：上面的 accepted 指历史抽取决定。当前仅连续流稳定性卡在明确范围内完成独立推导、精确解复用和失败边界检查；其余合成卡保持候选。最新分数及抽取复核状态以 SkillCards、候选索引和当前合成报告为准；本次没有重跑 PDF 转换。
+
 This example preserves:
 
 - seed papers as PDFs;

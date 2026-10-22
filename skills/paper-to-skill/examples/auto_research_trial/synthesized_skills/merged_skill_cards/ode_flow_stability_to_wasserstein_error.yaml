@@ -1,36 +1,38 @@
-id: ode_flow_stability_to_wasserstein_error
-name: ODE flow stability to Wasserstein error
+name: ode_flow_stability_to_wasserstein_error
 zh_name: ODE 流稳定性到 Wasserstein 误差
-type: proof_pattern
 category: proof_pattern
-summary: "EN: Bound endpoint distribution error by comparing exact and approximate ODE flows through a shared coupling, a flow-stability estimate, and an L2 drift error. ZH: 通过同一起点耦合、流稳定性估计和 L2 漂移误差，将 ODE 终点分布误差控制在 Wasserstein 距离下。"
-status: ready_for_library
+description: "共同初始化下，用积分 Gronwall 将沿精确路径的 L2 漂移误差转为终点 W2 误差。结论限于连续流。"
+status: accepted_candidate
 source:
-  paper_md: see synthesis.source_papers
-  start_line: 0
-  end_line: 0
-inputs:
+  paper_title: An Error Analysis of Flow Matching for Deep Generative Modeling
+  paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
+  source_blocks:
+    - lines 354-402
+  start_line: 354
+  end_line: 402
+input:
   - exact ODE flow or velocity field
   - approximate ODE flow or velocity field
   - shared initial coupling
   - L2 drift or velocity error along the correct path law
   - spatial or time-varying Lipschitz bound
-outputs:
-  - endpoint Wasserstein error bound
+output:
+  - "W2 <= sqrt(integral_0^T exp(2 integral_s^T L(r)dr) ds) * epsilon, where epsilon²=integral_0^T eta(s)²ds."
+  - "Coarser bound W2 <= sqrt(T) exp(integral_0^T L(r)dr) * epsilon."
   - path discrepancy bound
   - stability factor depending on Lipschitz constants
 assumptions:
-  - Exact and approximate flows exist and are unique.
-  - The approximate field is differentiable or Lipschitz enough to control flow stability.
-  - The L2 error is measured along the distribution used in the comparison formula.
-  - The initial coupling is valid for the target Wasserstein comparison.
+  - Exact and approximate flows exist uniquely on [0,T] with absolutely continuous paths and common initialization.
+  - Initial and endpoint laws have finite second moments.
+  - The approximate field is globally spatially Lipschitz with a nonnegative measurable L(t) integrable on [0,T].
+  - "eta(t)²=E||w(X_t,t)-v(X_t,t)||² is measured along the exact flow and has a finite time integral."
 core_steps:
   - Couple exact and approximate paths through a shared initialization.
   - Bound W2 by expected squared endpoint discrepancy.
-  - Use either a direct discrepancy differential inequality or the Alekseev-Grobner formula.
-  - Bound the flow Jacobian or stability term by Gronwall.
-  - Insert the L2 drift mismatch under the exact path law.
-  - Take square roots or optimize constants to obtain the endpoint W2 estimate.
+  - Add and subtract the approximate drift evaluated along the exact path.
+  - Apply integral Gronwall to the pathwise difference; this route does not require a flow-map Jacobian.
+  - Apply the L2 Minkowski integral inequality and time Cauchy-Schwarz under the exact path law.
+  - Retain the time-dependent kernel factor; sqrt(T) is needed when using the coarse bound.
 trigger_keywords:
   - Wasserstein
   - ODE perturbation
@@ -42,6 +44,96 @@ limitations:
   - Exponential dependence on Lipschitz constants can be loose.
   - The argument is sensitive to which path law the L2 error is measured under.
   - Numerical discretization error needs a separate bound.
+mathematical_dependencies:
+  - name: Wasserstein coupling bound
+    required_statement: W2 of the two laws is bounded by the L2 distance of any valid coupled endpoints.
+    conditions: [Common initialization, Finite second moments]
+    role: Convert path discrepancy to law error.
+    evidence: examples/auto_research_trial/flow_stability_validation.md section 2
+    status: checked
+  - name: Integral Gronwall inequality
+    required_statement: A path difference with integrable Lipschitz envelope is bounded by its exponentially weighted forcing.
+    conditions: [Absolutely continuous paths, Integrable nonnegative Lipschitz envelope, Integrable drift mismatch]
+    role: Derive the stability kernel without differentiating the flow map.
+    evidence: examples/auto_research_trial/flow_stability_validation.md section 2
+    status: checked
+  - name: Minkowski and Cauchy-Schwarz inequalities
+    required_statement: The L2 norm of the time integral is at most the integral of L2 norms, then at most the product of time L2 norms.
+    conditions: [Finite integrated squared drift error, Finite stability kernel integral]
+    role: Obtain the explicit endpoint bound from eta and epsilon.
+    evidence: examples/auto_research_trial/flow_stability_validation.md section 2
+    status: checked
+independent_verification:
+  status: passed
+  checks:
+    - method: separate_derivation
+      performed_by: Active coding agent using integral Gronwall, separate from the source Jacobian argument.
+      claim_checked: The stated continuous-flow bound for arbitrary T with the correct path law.
+      assumptions_checked: [Existence and uniqueness assumed explicitly, Integrable L, Finite second moments, Integrated L2 drift error]
+      result: The bound follows by pathwise integral Gronwall, L2 Minkowski, and Cauchy-Schwarz.
+      evidence: examples/auto_research_trial/flow_stability_validation.md sections 1-3
+      scope_and_limits: No independent researcher review or formal proof; does not verify source statistical rates or flow existence.
+    - method: exact_solution
+      performed_by: Python standard-library calculation of analytic ODE solutions.
+      claim_checked: Three cross-problem applications and four failed generalizations.
+      assumptions_checked: [Global Lipschitz and unique explicit solutions for positive cases, Correct time interval and path law]
+      result: All nine recorded inequality comparisons agree with the analytic solutions.
+      evidence: examples/auto_research_trial/flow_stability_check.py
+      scope_and_limits: Exact-solution examples evaluated in floating point; general validity comes from the separate derivation.
+failure_cases:
+  - problem: X'=3X and Y'=3Y+0.1 at T=1.
+    violated_assumption: Attempted removal of the stability amplification from the conclusion.
+    result: W2=0.636184564106 exceeds epsilon=0.1.
+    evidence: examples/auto_research_trial/flow_stability_validation.md sections 4-6
+    response: restrict_claim
+  - problem: X'=0 and Y'=0.2 at T=4.
+    violated_assumption: Attempted reuse of the unit-interval conclusion at arbitrary T without its time factor.
+    result: W2=0.8 exceeds epsilon=0.4; the sqrt(T) factor restores equality.
+    evidence: examples/auto_research_trial/flow_stability_validation.md sections 4-6
+    response: restrict_claim
+  - problem: X'=0 and Y'=Y initialized at 1, with error measured under delta_0.
+    violated_assumption: Drift error must be measured along the exact path law, here delta_1.
+    result: Unrelated-law error is zero while W2=e-1.
+    evidence: examples/auto_research_trial/flow_stability_validation.md sections 4-6
+    response: reject_application
+  - problem: X'=0 and Y'=2sqrt(abs(Y)) initialized at 0.
+    violated_assumption: Uniqueness and Lipschitz control fail.
+    result: Y=t² is a valid solution with W2=1 at T=1 despite zero error along X.
+    evidence: examples/auto_research_trial/flow_stability_validation.md sections 4-6
+    response: reject_application
+cross_problem_reuse:
+  status: checked_examples
+  cases:
+    - problem: Affine Gaussian drift perturbation at T=1.
+      difference_from_source: Analytic linear ODEs replace learned flow-matching drifts.
+      assumptions_checked: [Shared Gaussian initialization, Unique linear flows, L=1, Finite moments, Constant path error]
+      adaptations: [Compute W2 from the translation of equal-variance Gaussians]
+      result: Exact W2=0.171828182846 is below 0.178732427093.
+      evidence: examples/auto_research_trial/flow_stability_check.py
+    - problem: Contracting ODE with time-dependent forcing at T=2.
+      difference_from_source: Non-unit time interval and time-varying drift mismatch.
+      assumptions_checked: [Shared Gaussian initialization, Unique linear flows, L=2, Finite moments, eta(t)=0.1t]
+      adaptations: [Solve the inhomogeneous linear ODE, "Integrate eta squared on [0,2]"]
+      result: Exact W2=0.0754578909722 is below 4.45717248716; bound is loose.
+      evidence: examples/auto_research_trial/flow_stability_check.py
+    - problem: Nondifferentiable Lipschitz drift abs(y)+0.2 from a Dirac initial law.
+      difference_from_source: Flow-map differentiability required by the source perturbation formula is unavailable as a general assumption.
+      assumptions_checked: [Global Lipschitz constant 1, Unique solution, Common origin, Finite moments, Constant exact-path mismatch]
+      adaptations: [Use the integral proof, Use nonnegative solution Y=0.2(exp(t)-1)]
+      result: Exact W2=0.343656365692 is below 0.357464854187.
+      evidence: examples/auto_research_trial/flow_stability_check.py
+promotion:
+  status: ready_for_library
+  rationale: Source conditions were compared, the stated bound was separately derived, three new problems were checked, and four failure boundaries were examined.
+  unmet_requirements: []
+quality:
+  reusability: 5
+  clarity: 5
+  generality: 5
+  verifiability: 5
+  agent_callability: 5
+  mathematical_risk: 2
+  total_score: 4.65
 synthesis:
   cluster_id: C01
   source_skill_ids:
@@ -58,9 +150,19 @@ synthesis:
       end_line: 171
   merge_status: ready_for_library
   generalization_notes:
-    - The two source cards share the same transferable target: drift or velocity error implies endpoint W2 error through ODE stability.
-    - The merged card keeps both proof routes instead of forcing one formalism.
+    - "The two source cards share the same transferable target: drift or velocity error implies endpoint W2 error through ODE stability."
+    - The source references preserve both original routes; the reusable steps use the separately derived integral Gronwall argument.
   conflicts_or_risks:
     - Direct coupling and Alekseev-Grobner use different technical assumptions.
     - Reuse must check that the L2 error is evaluated under the correct path distribution.
-review_status: ready_for_library
+  conflict_resolutions:
+    - issue: Direct discrepancy and Jacobian routes have different smoothness requirements.
+      source_conditions: [First source uses a Lipschitz discrepancy estimate, Second source assumes continuously differentiable flows]
+      decision: Use the independently derived integral route under explicit Lipschitz and flow-existence conditions.
+      evidence: examples/auto_research_trial/flow_stability_validation.md sections 2-3
+      status: resolved
+    - issue: Unit-interval constants do not directly extend to arbitrary final time.
+      source_conditions: [Both source bounds use time at most one]
+      decision: Retain the kernel integral and the sqrt(T) factor in its coarse bound.
+      evidence: examples/auto_research_trial/flow_stability_validation.md sections 2-4
+      status: resolved

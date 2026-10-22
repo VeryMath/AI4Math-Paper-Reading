@@ -1,21 +1,23 @@
-id: smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
-name: Smoothing-bias and stability-error balance
+name: smoothing_bias_variance_balance_for_polynomial_wasserstein_rate
 zh_name: 平滑偏差与稳定性误差平衡
-type: proof_pattern
 category: proof_pattern
-summary: "EN: Combine a smoothed-problem stability bound with a smoothing-bias term, then optimize the smoothing scale to obtain a polynomial Wasserstein rate. ZH: 将平滑问题的稳定性误差和平滑偏差相加，再优化平滑尺度得到多项式 Wasserstein 速率。"
-status: ready_for_library
+description: "EN: Combine a smoothed-problem stability bound with a smoothing-bias term, then optimize the smoothing scale to obtain a polynomial Wasserstein rate. ZH: 将平滑问题的稳定性误差和平滑偏差相加，再优化平滑尺度得到多项式 Wasserstein 速率。"
+status: accepted_candidate
 source:
-  paper_md: see synthesis.source_papers
-  start_line: 0
-  end_line: 0
-inputs:
+  paper_title: null
+  paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
+  source_blocks:
+    - lines 259-279
+    - lines 281-295
+  start_line: 259
+  end_line: 295
+input:
   - perturbation bound for smoothed dynamics
   - smoothing scale
   - W2 bias bound between smoothed and original targets
   - regularity parameter
   - function class satisfying the stability conditions
-outputs:
+output:
   - combined W2 error inequality
   - optimized smoothing parameter
   - polynomial convergence rate
@@ -38,6 +40,28 @@ trigger_keywords:
 limitations:
   - The rate can degrade sharply with the regularity parameter.
   - The bias estimate is schedule-dependent.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
+quality:
+  reusability: 5
+  clarity: 5
+  generality: 4
+  verifiability: 4
+  agent_callability: 5
+  mathematical_risk: 3
+  total_score: 4.25
 synthesis:
   cluster_id: C05
   source_skill_ids:
@@ -47,9 +71,10 @@ synthesis:
       paper_md: examples/auto_research_trial/papers/uqQPyWFDhY/paper.md
       start_line: 259
       end_line: 295
-  merge_status: ready_for_library
+  merge_status: needs_human_review
   generalization_notes:
     - The transferable idea is the bias-stability balance, not the exact exponent from one paper.
+    - Quality scores are inherited from the single source card and have not been reassessed for synthesis.
   conflicts_or_risks:
     - Must not reuse the exponent unless the same assumptions and schedule hold.
-review_status: ready_for_library
+  conflict_resolutions: []

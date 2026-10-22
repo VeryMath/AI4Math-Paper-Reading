@@ -28,6 +28,9 @@ Extract reusable mathematical research skills, not summaries. A valid skill is a
    - Keep mathematical conditions such as smoothness, coercivity, boundedness, convexity, mesh regularity, and independence.
 6. Score and classify candidates with `quality_rubric.md`.
 7. Generate Skill Cards for accepted and review-worthy candidates.
+8. Re-derive the reusable statement without importing the paper's final bound. Record every theorem used, including its hypotheses and whether those hypotheses were checked. Use exact solutions or formal proof where available; numerical agreement checks only the evaluated cases.
+9. Reuse the card on a different mathematical problem. Record the changed setting, assumption checks, adaptations, and outcome. Examine one omitted assumption or rejected application and explain the resulting failure.
+10. Fill the verification and promotion fields from work actually completed. Do not infer correctness from source citations, extraction scores, or agreement between two extracted cards.
 
 ## Rejection Rules
 
@@ -57,3 +60,7 @@ Every candidate must include:
 - `source.end_line`;
 - a short `source_span` string;
 - enough source text in the report or notes to let a reviewer locate the proof idea.
+
+Keep a theorem's time interval, integration measure, moment assumptions, and regularity conditions explicit. An estimate on a unit time interval does not automatically hold for every final time. A drift error under one path distribution cannot be moved to another distribution without a separate comparison argument.
+
+See `../../../examples/auto_research_trial/flow_stability_validation.md` for an extraction from two existing papers, a corrected merge, two exact-solution reuses, and failed generalizations.

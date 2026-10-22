@@ -4,6 +4,8 @@ Paper: `An Error Analysis of Flow Matching for Deep Generative Modeling`
 
 Input preserved: `paper.md`
 
+2026-10-22 状态补充：下列 accepted 只表示抽取质量。所有单篇卡新增验证字段并保留为候选；连续流稳定性目标已在[跨论文检查](../../flow_stability_validation.md)完成另行推导和精确解复用，单篇统计收敛率未验证。
+
 ## Accepted / 已接受
 
 - `truncation_based_l2_approximation_on_unbounded_domain`  

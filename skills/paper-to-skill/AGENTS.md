@@ -28,9 +28,9 @@ Every extracted skill must include source line references back to `paper.md`.
 
 - Encode the extraction workflow as a portable Skill first.
 - Keep platform-specific adapter files thin and point them back to `skills/registry.yaml` and the shared `skills/` layer.
-- Keep schemas and templates explicit.
+- Keep required YAML fields and templates explicit.
 - Keep future Python automation compatible with the Skill workflow.
-- If Python modules are later added, use Pydantic for schemas and pytest for tests.
+- Use direct mathematical checks and existing validation commands; do not add a schema framework or test dependencies.
 - Do not silently drop source text.
 - Prefer small composable modules and deterministic output formats.
 

@@ -15,6 +15,20 @@ assumptions: []
 core_steps: []
 trigger_keywords: []
 limitations: []
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: "Extraction quality alone does not establish mathematical correctness or reuse."
+  unmet_requirements:
+    - Check mathematical dependencies and the reusable statement.
+    - Record successful reuse and an examined failure boundary.
 quality:
   reusability: 1
   clarity: 1
@@ -22,4 +36,4 @@ quality:
   verifiability: 1
   agent_callability: 1
   mathematical_risk: 5
-  total_score: 0.95
+  total_score: 0.7

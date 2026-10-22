@@ -46,6 +46,20 @@ trigger_keywords:
 limitations:
   - Needs careful independence checks.
   - Bounds can be loose when covering numbers are crude.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
 quality:
   reusability: 4
   clarity: 4
@@ -53,4 +67,4 @@ quality:
   verifiability: 4
   agent_callability: 4
   mathematical_risk: 3
-  total_score: 3.85
+  total_score: 3.65

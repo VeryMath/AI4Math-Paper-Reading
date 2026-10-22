@@ -28,3 +28,4 @@ This root `SKILL.md` is not the workflow driver. It is a compatibility entrypoin
 - Every accepted or review-worthy SkillCard must include `source.paper_md`, `source.start_line`, and `source.end_line`.
 - Treat structured JSON, YAML, and reports as indexes or review artifacts, not replacements for the original paper.
 - Use human feedback and review decisions as explicit workflow state when available.
+- Record mathematical dependencies, independent verification, failure cases, and cross-problem reuse in each SkillCard. A high extraction score does not establish library readiness.

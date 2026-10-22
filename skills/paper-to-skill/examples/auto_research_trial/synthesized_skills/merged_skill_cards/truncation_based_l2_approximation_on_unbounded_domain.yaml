@@ -1,21 +1,24 @@
-id: truncation_based_l2_approximation_on_unbounded_domain
-name: Truncation-based L2 approximation on unbounded domains
+name: truncation_based_l2_approximation_on_unbounded_domain
 zh_name: 无界域上的截断式 L2 逼近
-type: proof_pattern
 category: proof_pattern
-summary: "EN: Extend compact-domain approximation results to an unbounded-domain L2 bound by splitting compact and tail regions. ZH: 将紧域逼近定理通过紧集/尾部分解扩展为无界域 L2 误差界。"
-status: ready_for_library
+description: "EN: Extend compact-domain approximation results to an unbounded-domain L2 bound by splitting compact and tail regions. ZH: 将紧域逼近定理通过紧集/尾部分解扩展为无界域 L2 误差界。"
+status: accepted_candidate
 source:
-  paper_md: see synthesis.source_papers
-  start_line: 0
-  end_line: 0
-inputs:
+  paper_title: null
+  paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
+  source_blocks:
+    - lines 204-212
+    - lines 531-619
+    - lines 632-662
+  start_line: 204
+  end_line: 212
+input:
   - target function on an unbounded domain
   - compact-domain approximator
   - sampling distribution with moment or tail control
   - truncation radius
   - desired tolerance
-outputs:
+output:
   - full-domain L2 approximation bound
   - tail-control proof obligation
   - parameter choice for the truncation radius
@@ -40,6 +43,28 @@ trigger_keywords:
 limitations:
   - Tail assumptions are essential.
   - Constants can be poor in high dimension.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
+quality:
+  reusability: 5
+  clarity: 4
+  generality: 5
+  verifiability: 4
+  agent_callability: 4
+  mathematical_risk: 3
+  total_score: 4.1
 synthesis:
   cluster_id: C02
   source_skill_ids:
@@ -49,9 +74,19 @@ synthesis:
       paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
       start_line: 204
       end_line: 212
-  merge_status: ready_for_library
+    - paper_id: vES22INUKm
+      paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
+      start_line: 531
+      end_line: 619
+    - paper_id: vES22INUKm
+      paper_md: examples/auto_research_trial/papers/vES22INUKm/paper.md
+      start_line: 632
+      end_line: 662
+  merge_status: needs_human_review
   generalization_notes:
     - Single-paper source, but the proof pattern is standard and operational.
+    - The three source ranges refer to one paper, including its supporting proof sections.
+    - Quality scores are inherited from the single source card and have not been reassessed for synthesis.
   conflicts_or_risks:
     - Reuse requires explicit tail control.
-review_status: ready_for_library
+  conflict_resolutions: []

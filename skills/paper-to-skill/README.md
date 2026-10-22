@@ -6,6 +6,10 @@ Chinese guide: [README.zh-CN.md](README.zh-CN.md)
 
 It is not a paper summarizer: the goal is to preserve source material, extract reusable reasoning patterns, and keep source references reviewable.
 
+The maintained VeryMath source is [AI4Math-Paper-Reading](https://github.com/VeryMath/AI4Math-Paper-Reading/tree/main/skills/paper-to-skill). The package is also collected in AI4Math-Skill-Library. Maintain improvements in the VeryMath package; the former personal repository is a historical reference.
+
+SkillCards now record mathematical dependencies, independent checks, failure cases, and reuse on other problems. Extraction scores describe candidate quality; library readiness also needs checked assumptions, a separate mathematical argument, successful reuse, and an examined failure boundary. See the [worked flow-stability check](examples/auto_research_trial/flow_stability_validation.md). Existing cards without these records remain unverified candidates.
+
 ## When To Use It
 
 Use this skill when you have:

@@ -40,6 +40,20 @@ trigger_keywords:
 limitations:
   - The argument is asymmetric in the exact and approximate paths.
   - Exponential Lipschitz dependence may be loose.
+mathematical_dependencies: []
+independent_verification:
+  status: not_run
+  checks: []
+failure_cases: []
+cross_problem_reuse:
+  status: not_run
+  cases: []
+promotion:
+  status: candidate
+  rationale: Existing extraction retained; no separate mathematical verification or reuse was recorded for this card.
+  unmet_requirements:
+    - Check theorem dependencies and the exact reusable statement.
+    - Record independent verification, actual reuse, and a failure boundary.
 quality:
   reusability: 5
   clarity: 5
@@ -47,4 +61,4 @@ quality:
   verifiability: 4
   agent_callability: 5
   mathematical_risk: 2
-  total_score: 4.6
+  total_score: 4.5

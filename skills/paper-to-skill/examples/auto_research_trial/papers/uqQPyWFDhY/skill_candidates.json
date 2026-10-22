@@ -15,7 +15,7 @@
     "reusability_score": 5,
     "confidence": 0.91,
     "status": "accepted_candidate",
-    "quality": {"reusability": 5, "clarity": 5, "generality": 5, "verifiability": 4, "agent_callability": 5, "mathematical_risk": 2, "total_score": 4.6}
+    "quality": {"reusability": 5, "clarity": 5, "generality": 5, "verifiability": 4, "agent_callability": 5, "mathematical_risk": 2, "total_score": 4.5}
   },
   {
     "skill_name": "gaussian_smoothing_lipschitz_integral_control",
@@ -32,8 +32,8 @@
     "limitations": ["Depends on a nonstandard regularity condition.", "Boundary smoothing introduces bias that must be controlled separately.", "Pointwise covariance control may be hard to verify."],
     "reusability_score": 5,
     "confidence": 0.84,
-    "status": "accepted_candidate",
-    "quality": {"reusability": 5, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 4, "mathematical_risk": 3, "total_score": 4.1}
+    "status": "needs_review",
+    "quality": {"reusability": 5, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 4, "mathematical_risk": 3, "total_score": 3.9}
   },
   {
     "skill_name": "smoothing_bias_variance_balance_for_polynomial_wasserstein_rate",
@@ -51,7 +51,7 @@
     "reusability_score": 5,
     "confidence": 0.86,
     "status": "accepted_candidate",
-    "quality": {"reusability": 5, "clarity": 5, "generality": 4, "verifiability": 4, "agent_callability": 5, "mathematical_risk": 3, "total_score": 4.35}
+    "quality": {"reusability": 5, "clarity": 5, "generality": 4, "verifiability": 4, "agent_callability": 5, "mathematical_risk": 3, "total_score": 4.25}
   },
   {
     "skill_name": "lambda_regular_certification_via_conditional_covariance",
@@ -69,6 +69,6 @@
     "reusability_score": 4,
     "confidence": 0.78,
     "status": "needs_review",
-    "quality": {"reusability": 4, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 3, "mathematical_risk": 4, "total_score": 3.65}
+    "quality": {"reusability": 4, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 3, "mathematical_risk": 4, "total_score": 3.45}
   }
 ]

@@ -43,7 +43,7 @@
     "reusability_score": 4,
     "confidence": 0.79,
     "status": "needs_review",
-    "quality": {"reusability": 4, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 4, "mathematical_risk": 3, "total_score": 3.85}
+    "quality": {"reusability": 4, "clarity": 4, "generality": 4, "verifiability": 4, "agent_callability": 4, "mathematical_risk": 3, "total_score": 3.65}
   },
   {
     "skill_name": "coupling_gronwall_wasserstein_flow_error_bound",
@@ -66,6 +66,6 @@
     "reusability_score": 5,
     "confidence": 0.9,
     "status": "accepted_candidate",
-    "quality": {"reusability": 5, "clarity": 5, "generality": 4, "verifiability": 5, "agent_callability": 5, "mathematical_risk": 2, "total_score": 4.55}
+    "quality": {"reusability": 5, "clarity": 5, "generality": 4, "verifiability": 5, "agent_callability": 5, "mathematical_risk": 2, "total_score": 4.45}
   }
 ]
