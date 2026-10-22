@@ -9,18 +9,25 @@ status: [待读]
 tags: ["#additive-combinatorics", "#PFR-conjecture", "#entropy-method", "#Freiman-Ruzsa", "#characteristic-2"]
 ---
 
+> 2026-10-22 核对说明：这是既有长笔记，尚未全部按原文复核；已核对范围、现有局部图和纠错候选见 [source-checks.md](source-checks.md)。当前 JSON 标为 partial。
+
 ## 文献笔记：On a conjecture of Marton
 
 ### L1 基础视图
-- **核心一句话**：证明了特征 2 下的多项式 Freiman-Ruzsa 猜想（Marton 猜想）：若 $A \subset \F_2^n$ 满足 $|A+A| \leq K|A|$，则 $A$ 可被至多 $2K^{12}$ 个陪集覆盖。
+- **核心一句话**：证明了特征 2 下的多项式 Freiman-Ruzsa 猜想（Marton 猜想）：若 $A \subset \F_2^n$ 满足 $|A+A| \leq K|A|$，则 $A$ 可被至多 $2K^{12}$ 个子群 $H$ 的陪集覆盖，且 $|H|\leq |A|$。
 - **直觉与启发**：将组合问题转化为熵形式，通过变分法（极小化含惩罚项的泛函）和纤维引理完成证明。这是加性组合学的一个里程碑式突破。
 
 ### 核心结论
 
-**逐字原文（Theorem 1 / PFR）**：
-> Suppose that $A \subset \F_2^n$ is a set with $|A+A| \leq K|A|$. Then $A$ is covered by at most $2K^{C}$ cosets of some subgroup $H \leq \F_2^n$ of size at most $|A|$. Conjecture 1 (pfr-conj) is true with $C = 12$.
+**原文（标签 pfr，`paper/pfr2-submit.tex` 第 187–189 行）**：
 
-**逐字原文（Theorem pfr-entropy — 熵形式）**：
+> `\Cref{pfr-conj} is true with $C = 12$.`
+
+**对应猜想的陈述摘要（标签 pfr-conj，第 177–179 行；非连续逐字引文）**：
+
+> 若 $A \subset \F_2^n$ 满足 $|A+A| \leq K|A|$，则 $A$ 可由至多 $2K^C$ 个子群 $H$ 的陪集覆盖，且 $|H|\leq |A|$。
+
+**陈述摘要（标签 pfr-entropy，第 255–263 行；符号已整理，非逐字引文）**：
 > Let $G = \F_2^n$, and suppose that $X^0_1, X^0_2$ are $G$-valued random variables. Then there is some subgroup $H \leq G$ such that $\mathbf{d}(X^0_1, U_H) + \mathbf{d}(X^0_2, U_H) \leq 11\,\mathbf{d}(X^0_1, X^0_2)$. Furthermore, both $\mathbf{d}(X^0_1, U_H)$ and $\mathbf{d}(X^0_2, U_H)$ are at most $6\,\mathbf{d}(X^0_1, X^0_2)$.
 
 **用我的话复述**：

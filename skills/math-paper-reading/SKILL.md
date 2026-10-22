@@ -1,32 +1,47 @@
 ---
 name: math-paper-reading
-description: Route mathematical paper-reading tasks through structured extraction, dependency analysis, deep reading, literature search, and reference management modules.
+description: Read mathematical papers from their source text, using correctable structure indexes for theorem extraction, dependency analysis, proof explanations, literature queries, and reference notes.
 ---
 
 # Math Paper Reading
 
-Use this skill when a coding agent needs to read, structure, explain, trace, or
-manage mathematical papers with a data-driven workflow.
+Start with [agent_router.md](agent_router.md) and load only the modules needed
+for the user's current task. A full-paper extraction is optional for a local
+question or a targeted literature query.
 
-## Entry Point
+Resolve module references relative to this package. Read papers from their
+actual supplied locations and save working outputs in the user's project;
+do not treat the package's examples or reference database as user data.
 
-Start with `agent_router.md`. It is the master router and decides which
-package-local module to load:
+## Modules
 
-- `skill_base.md`: extract definitions, lemmas, theorems, proofs, and
-  dependency structure into JSON.
-- `skill_pathway_proof.md`: compute dependency paths and render proof graphs.
-- `skill_paper_deep_read.md`: provide layered paper reading and gap filling.
-- `skill_reference_manager.md`: maintain the local paper reference database.
-- `skill_literature_search.md`: generate targeted literature-search strategies.
+- [skill_base.md](skill_base.md): extract statements, assumptions, locations,
+  and source-supported dependencies into a working JSON index.
+- [skill_pathway_proof.md](skill_pathway_proof.md): compute dependencies and
+  reading paths; keep confirmed, uncertain, and external edges distinct.
+- [skill_paper_deep_read.md](skill_paper_deep_read.md): explain the paper and
+  separate source text, additional derivations, and unresolved proof steps.
+- [skill_reference_manager.md](skill_reference_manager.md): maintain reference
+  metadata and user notes without treating extracted claims as verified facts.
+- [skill_literature_search.md](skill_literature_search.md): build source-linked
+  queries and distinguish proposed searches from retrieved evidence.
 
-## Operating Rules
+## Source and correction rules
 
-- Keep fact extraction separate from interpretation.
-- Prefer structured JSON evidence before graph, reading, or reference updates.
-- Use package-local examples only as examples; do not treat them as user data.
-- For complex dependency or merge tasks, write and run scripts instead of
-  estimating manually.
-
-Prefer the router and package-local module files over this thin compatibility
-entrypoint when executing a concrete workflow.
+- Use the original paper to check what its authors state, assume, and cite.
+  JSON is a correctable index, not mathematical ground truth.
+- Consult the relevant source passage whenever a statement, condition, or edge
+  is uncertain or disputed, even when a JSON index already exists.
+- Correct source-supported extraction mistakes in the current index. Explain
+  the source location and the correction, then update affected reports and
+  graph calculations. Do not require entity locks or a full workflow restart.
+- Keep source quotations separate from interpretation and Agent-proposed
+  derivations. Retain unresolved gaps and suspected author errors explicitly;
+  do not silently repair a quotation or declare proof completion.
+- For a confirmed dependency, `B.dependencies` containing `A` means the graph
+  edge `A -> B`. Rebuild `cited_by` from these confirmed edges. Uncertain or
+  external references do not contribute to confirmed internal graph degrees.
+- Use available code tools or existing functions for exact graph calculations;
+  do not require generating a helper script merely to proceed.
+- Preserve user notes and state the checked scope. Package examples are not
+  user data; graph consistency is not a proof of mathematical correctness.

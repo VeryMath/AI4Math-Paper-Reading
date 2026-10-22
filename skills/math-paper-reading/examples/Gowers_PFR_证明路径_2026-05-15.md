@@ -1,5 +1,7 @@
 ## 全文证明路径梳理 — On a conjecture of Marton
 
+> 2026-10-22 核对说明：这是既有长笔记，尚未全部按原文复核；已核对范围、现有局部图和纠错候选见 [source-checks.md](source-checks.md)。当前 JSON 标为 partial。
+
 > **数据来源**：`gowers2024_marton_structure.json` + 原文全文
 
 ---
@@ -23,7 +25,7 @@
 | $X, Y, Z$ | $G$ 值随机变量 | 全文 |
 | $\mathbf{H}[X]$ | Shannon 熵 | §A |
 | $\mathbf{I}[X:Y]$ | 互信息 | §A |
-| $\mathbf{d}(X,Y)$ | Ruzsa 熵距离 $\mathbf{H}[X-Y] - \tfrac12\mathbf{H}[X] - \tfrac12\mathbf{H}[Y]$ | §1 |
+| $\mathbf{d}(X,Y)$ | Ruzsa 熵距离 $\mathbf{H}[X'-Y'] - \tfrac12\mathbf{H}[X'] - \tfrac12\mathbf{H}[Y']$，其中 $X',Y'$ 是独立副本（原文第 243–248 行） | §1 |
 | $\mathbf{d}(X\|Z, Y\|W)$ | 条件 Ruzsa 距离 | §A |
 | $\tau[X_1;X_2]$ | 含惩罚项的泛函 $\mathbf{d}(X_1,X_2) + \eta\,\mathbf{d}(X_1^0,X_1) + \eta\,\mathbf{d}(X_2^0,X_2)$ | §2 |
 | $\eta$ | 常数 $= 1/9$ | §2 |
