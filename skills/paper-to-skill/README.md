@@ -138,7 +138,7 @@ The shared product is the Skill layer under `skills/`. Platform-specific files a
 - `GEMINI.md`: Gemini orientation.
 - `.codex/INSTALL.md`: Codex loading notes.
 - `.opencode/INSTALL.md`: OpenCode loading notes.
-- `.cursor/rules/paper-to-skill.mdc`: Cursor rule entrypoint.
+- `.cursor/rules/ai4math-paper-skills.mdc`: Cursor rule entrypoint.
 - `.github/copilot-instructions.md`: GitHub Copilot coding agent instructions.
 
 All adapters should point back to `skills/registry.yaml` and should not fork workflow behavior.
